@@ -28,6 +28,19 @@ async fn root() -> impl IntoResponse{
         .unwrap()
 }
 
+async fn root() -> impl IntoResponse{
+    let mut r=File::open("index2.html").unwrap();
+    let mut p = String::new();
+    r.read_to_string(&mut p);
+    response()
+        .await.status(200)
+        .header("Content-Type","text/html; charset=UTF-8")
+        .header("Cross-Origin-Embedder-Policy","require-corp")
+        .header("Cross-Origin-Opener-Policy","same-origin")
+        .body(Full::from(p))
+        .unwrap()
+}
+
 async fn pkgjs() -> impl IntoResponse{
     let mut r=File::open("ffmpeg.min.js").unwrap();
     let mut p = String::new();
@@ -47,9 +60,10 @@ async fn main() {
         .route(
         "/", get(root))
         .route(
+        "/index2", get(index2))
+        .route(
         "/ffmpeg.min.js", get(pkgjs));
-    let q = env::var("PORT")
-        .unwrap()
+    let q = "8484"
         .to_string();
     axum::Server::bind(&("0.0.0.0:".to_owned()+&q).parse().unwrap())
         .serve(app.into_make_service())
