@@ -30,7 +30,7 @@ async fn pkgjs() -> impl IntoResponse{
         .await.status(200)
         .header("Content-Type","text/javascript; charset=UTF-8")
         .header("Cross-Origin-Embedder-Policy","require-corp")
-        .header("Cross-Origin-Opener-Policy:same-origin","same-origin")
+        .header("Cross-Origin-Opener-Policy","same-origin")
         .body(Full::from(p))
         .unwrap()
 }
