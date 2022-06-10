@@ -28,7 +28,7 @@ async fn root() -> impl IntoResponse{
         .unwrap()
 }
 
-async fn root() -> impl IntoResponse{
+async fn index2() -> impl IntoResponse{
     let mut r=File::open("index2.html").unwrap();
     let mut p = String::new();
     r.read_to_string(&mut p);
