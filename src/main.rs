@@ -60,7 +60,7 @@ async fn main() {
         .route(
         "/", get(root))
         .route(
-        "/", get(index2))
+        "/index2", get(index2))
         .route(
         "/ffmpeg.min.js", get(pkgjs));
     let q = env::var("PORT")
