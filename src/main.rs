@@ -78,8 +78,7 @@ async fn main() {
         "/index3", get(index3))
         .route(
         "/ffmpeg.min.js", get(pkgjs));
-    let q = env::var("PORT")
-        .unwrap()
+    let q = "8484"
         .to_string();
     axum::Server::bind(&("0.0.0.0:".to_owned()+&q).parse().unwrap())
         .serve(app.into_make_service())
