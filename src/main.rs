@@ -7,7 +7,6 @@ use std::env;
 use axum::body::Full;
 use std::process::Command;
 use axum::extract::WebSocketUpgrade;
-use aws_config::meta::region::RegionProviderChain;
 struct js
 {
     String:String
@@ -19,9 +18,6 @@ async fn response() -> axum::http::response::Builder {
 
 async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
     ws.on_upgrade(move |mut sock| async move{
-    let region_provider = RegionProviderChain::default_provider().or_else("us-east-1");
-    let config = aws_config::from_env().region(region_provider).load().await;
-    let client = Client::new(&config);
     let qw=sock.recv().await.unwrap().unwrap().into_data();
     fs::write(".\\frame_interpolation\\qq\\q.jpg", qw).unwrap();
     let qwp=sock.recv().await.unwrap().unwrap().into_data();
