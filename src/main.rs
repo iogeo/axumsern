@@ -5,7 +5,9 @@ use std::fs;
 use std::str::FromStr;
 use std::env;
 use axum::body::Full;
-
+use std::process::Command;
+use axum::extract::WebSocketUpgrade;
+use aws_config::meta::region::RegionProviderChain;
 struct js
 {
     String:String
@@ -15,34 +17,30 @@ async fn response() -> axum::http::response::Builder {
     Response::builder()
 }
 
-async fn root() -> impl IntoResponse{
-    let mut r=File::open("indexmain.html").unwrap();
+async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
+    ws.on_upgrade(move |mut sock| async move{
+    let region_provider = RegionProviderChain::default_provider().or_else("us-east-1");
+    let config = aws_config::from_env().region(region_provider).load().await;
+    let client = Client::new(&config);
+    let qw=sock.recv().await.unwrap().unwrap().into_data();
+    fs::write(".\\frame_interpolation\\qq\\q.jpg", qw).unwrap();
+    let qwp=sock.recv().await.unwrap().unwrap().into_data();
+    fs::write(".\\frame_interpolation\\qq\\q2.jpg", qwp).unwrap();
+    let qww = Command::new("sh")
+            .arg("-c")
+            .arg(r#"python -m frame_interpolation.eval.interpolator_cli --pattern "frame_interpolation\\qq" --model_path eqqww\\\\film_net\\\\Style\\\\saved_model --times_to_interpolate 2 --output_video"#)
+            .output()
+            .expect("failed to execute process");
+    fs::write(".\\frame_interpolation\\qq\\q3.txt", qww.stderr).unwrap();
+    let mut r=File::open("interpolated.mp4").unwrap();
     let mut p = String::new();
     r.read_to_string(&mut p);
-    response()
-        .await.status(200)
-        .header("Content-Type","text/html; charset=UTF-8")
-        .header("Cross-Origin-Embedder-Policy","require-corp")
-        .header("Cross-Origin-Opener-Policy","same-origin")
-        .body(Full::from(p))
-        .unwrap()
+    sock.send(axum::extract::ws::Message::Text(p)).await.unwrap();
+    })
 }
 
 async fn index2() -> impl IntoResponse{
     let mut r=File::open("index2.html").unwrap();
-    let mut p = String::new();
-    r.read_to_string(&mut p);
-    response()
-        .await.status(200)
-        .header("Content-Type","text/html; charset=UTF-8")
-        .header("Cross-Origin-Embedder-Policy","require-corp")
-        .header("Cross-Origin-Opener-Policy","same-origin")
-        .body(Full::from(p))
-        .unwrap()
-}
-
-async fn index3() -> impl IntoResponse{
-    let mut r=File::open("index3.html").unwrap();
     let mut p = String::new();
     r.read_to_string(&mut p);
     response()
@@ -74,8 +72,6 @@ async fn main() {
         "/", get(root))
         .route(
         "/index2", get(index2))
-        .route(
-        "/index3", get(index3))
         .route(
         "/ffmpeg.min.js", get(pkgjs));
     let q = "8484"
