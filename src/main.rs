@@ -101,6 +101,10 @@ root_store.add_server_trust_anchors(
             )
         })
 );
+    let config = rustls::ClientConfig::builder()
+    .with_safe_defaults()
+    .with_root_certificates(root_store)
+    .with_no_client_auth();
     let configp2 = RustlsConfig::from_pem_file(
         "cert.pem",
         "key.pem",
