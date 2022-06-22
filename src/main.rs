@@ -10,6 +10,8 @@ use std::process::Command;
 use axum::extract::WebSocketUpgrade;
 use std::thread::sleep;
 use core::time::Duration;
+use std::sync::Arc;
+
 struct js
 {
     String:String
