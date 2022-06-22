@@ -7,6 +7,7 @@ edition = "2021"
 
 [dependencies]
 axum = { version = "0.5.1", features = ["ws", "headers"] }
+axum-server = "0.4.0"
 hyper = { version = "0.14.18", features = ["full"] }
 tokio = { version = "1.17.0", features = ["full"] }
 postgres = "0.19.2"
