@@ -101,12 +101,13 @@ root_store.add_server_trust_anchors(
             )
         })
 );
-    let config = rustls::ServerConfig::builder()
-    .with_safe_defaults()
-    .with_root_certificates(root_store)
-    .with_no_client_auth();
-    let configp2 = Arc::new(config);
-    axum_server::bind_rustls(&(("0.0.0.0:".to_owned()+&q).parse().unwrap()), configp2)
+    let config = RustlsConfig::from_pem_file(
+        "examples/self-signed-certs/cert.pem",
+        "examples/self-signed-certs/key.pem",
+    )
+    .await
+    .unwrap();
+    axum_server::bind_rustls(&(("0.0.0.0:".to_owned()+&q).parse().unwrap()), config)
         .serve(app.into_make_service())
         .await
         .unwrap();
