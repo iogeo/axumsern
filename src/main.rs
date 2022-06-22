@@ -106,8 +106,7 @@ root_store.add_server_trust_anchors(
     .with_root_certificates(root_store)
     .with_no_client_auth();
     let configp2 = Arc::new(config);
-    let configpq2 = RustlsConfig::from_config(configp2    )
-    .await
+    let configpq2 = RustlsConfig::from_config(configp2)
     .unwrap();
     axum_server::bind_rustls((("0.0.0.0:".to_owned()+&q).parse().unwrap()), configpq2)
         .serve(app.into_make_service())
