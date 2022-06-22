@@ -86,7 +86,25 @@ async fn main() {
         "/ffmpeg.min.js", get(pkgjs));
     let q = "80"
         .to_string();
-    axum::Server::bind(&("0.0.0.0:".to_owned()+&q).parse().unwrap())
+    let mut root_store = rustls::RootCertStore::empty();
+root_store.add_server_trust_anchors(
+    webpki_roots::TLS_SERVER_ROOTS
+        .0
+        .iter()
+        .map(|ta| {
+            rustls::OwnedTrustAnchor::from_subject_spki_name_constraints(
+                ta.subject,
+                ta.spki,
+                ta.name_constraints,
+            )
+        })
+);
+    let config = rustls::ServerConfig::builder()
+    .with_safe_defaults()
+    .with_root_certificates(root_store)
+    .with_no_client_auth();
+    let config2 = Arc::new(config);
+    axum_server::bind_rustls(&("0.0.0.0:".to_owned()+&q).parse().unwrap()), config2)
         .serve(app.into_make_service())
         .await
         .unwrap();
