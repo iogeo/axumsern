@@ -102,8 +102,8 @@ root_store.add_server_trust_anchors(
         })
 );
     let config = RustlsConfig::from_pem_file(
-        "examples/self-signed-certs/cert.pem",
-        "examples/self-signed-certs/key.pem",
+        "cert.pem",
+        "key.pem",
     )
     .await
     .unwrap();
