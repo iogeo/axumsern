@@ -101,13 +101,13 @@ root_store.add_server_trust_anchors(
             )
         })
 );
-    let config = RustlsConfig::from_pem_file(
+    let configp2 = RustlsConfig::from_pem_file(
         "cert.pem",
         "key.pem",
     )
     .await
     .unwrap();
-    axum_server::bind_rustls((("0.0.0.0:".to_owned()+&q).parse().unwrap()), config)
+    axum_server::bind_rustls((("0.0.0.0:".to_owned()+&q).parse().unwrap()), configp2)
         .serve(app.into_make_service())
         .await
         .unwrap();
