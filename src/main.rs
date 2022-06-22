@@ -103,10 +103,11 @@ root_store.add_server_trust_anchors(
 );
     let config = Arc::new(rustls::ServerConfig::builder()
     .with_safe_defaults()
-    .with_root_certificates(root_store)
-    .with_no_client_auth());
+    .with_no_client_auth()
+    .with_single_cert(certs, private_key)
+    .expect("bad certificate/key");
     let configpwq2 = RustlsConfig::from_config(config).unwrap();
-    axum_server::bind_rustls((("0.0.0.0:".to_owned()+&q).parse().unwrap()), configpqw2)
+    axum_server::bind_rustls((("0.0.0.0:".to_owned()+&q).parse().unwrap()), configpwq2)
         .serve(app.into_make_service())
         .await
         .unwrap();
