@@ -26,7 +26,7 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
     fs::write(".\\frame_interpolation\\qq\\q2.jpg", qwp).unwrap();
     let qww = Command::new("sh")
             .arg("-c")
-            .arg(r#"python -m frame_interpolation.eval.interpolator_cli --pattern "frame_interpolation\\qq" --model_path eqqww\\\\film_net\\\\Style\\\\saved_model --times_to_interpolate 2 --output_video"#)
+            .arg(r#"python3 -m frame_interpolation.eval.interpolator_cli --pattern "frame_interpolation\\qq" --model_path eqqw\\\\film_net\\\\Style\\\\saved_model --times_to_interpolate 2 --output_video"#)
             .output()
             .expect("failed to execute process");
     fs::write(".\\frame_interpolation\\qq\\q3.txt", qww.stderr).unwrap();
