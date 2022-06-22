@@ -101,7 +101,7 @@ root_store.add_server_trust_anchors(
             )
         })
 );
-    let config = rustls::ClientConfig::builder()
+    let config = rustls::ServerConfig::builder()
     .with_safe_defaults()
     .with_root_certificates(root_store)
     .with_no_client_auth();
