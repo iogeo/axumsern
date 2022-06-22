@@ -9,7 +9,7 @@ edition = "2021"
 rustls = "0.20.6"
 webpki-roots = "0.22.3"
 axum = { version = "0.5.1", features = ["ws", "headers"] }
-axum-server = "0.4.0"
+axum-server = { version = "0.4.0", features = ["tls-rustls"] }
 hyper = { version = "0.14.18", features = ["full"] }
 tokio = { version = "1.17.0", features = ["full"] }
 postgres = "0.19.2"
