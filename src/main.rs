@@ -107,7 +107,7 @@ root_store.add_server_trust_anchors(
     )
     .await
     .unwrap();
-    axum_server::bind_rustls(&(("0.0.0.0:".to_owned()+&q).parse().unwrap()), config)
+    axum_server::bind_rustls((("0.0.0.0:".to_owned()+&q).parse().unwrap()), config)
         .serve(app.into_make_service())
         .await
         .unwrap();
