@@ -1,6 +1,5 @@
 use std::io::prelude::*;
-use axum::{Json, response::{Html, IntoResponse, Response},routing::get,Router,http::{Uri, header::{self, HeaderMap, HeaderName}}};
-use axum_server::tls_rustls::RustlsConfig;
+use axum::{Json, response::{Html, IntoResponse, Response},routing::get,Router,http::{Uri, header::{self, HeaderMap, HeaderName}},};
 use std::fs::File;
 use std::fs;
 use std::str::FromStr;
@@ -8,10 +7,6 @@ use std::env;
 use axum::body::Full;
 use std::process::Command;
 use axum::extract::WebSocketUpgrade;
-use std::thread::sleep;
-use core::time::Duration;
-use std::sync::Arc;
-
 struct js
 {
     String:String
@@ -29,25 +24,14 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
     fs::write(".\\frame_interpolation\\qq\\q2.jpg", qwp).unwrap();
     let qww = Command::new("sh")
             .arg("-c")
-            .arg(r#"python3 -m frame_interpolation.eval.interpolator_cli --pattern "frame_interpolation\\qq" --model_path eqqw\\\\film_net\\\\Style\\\\saved_model --times_to_interpolate 2 --output_video"#)
+            .arg(r#"python -m frame_interpolation.eval.interpolator_cli --pattern "frame_interpolation\\qq" --model_path eqqww\\\\film_net\\\\Style\\\\saved_model --times_to_interpolate 2 --output_video"#)
             .output()
             .expect("failed to execute process");
     fs::write(".\\frame_interpolation\\qq\\q3.txt", qww.stderr).unwrap();
-    let mut e =3;
-    let mut r;
-    while e >= 3
-    {
-    match File::open(".\\frame_interpolation\\qq\\interpolated.mp4") {
-        Err(p) => {sleep(Duration::from_millis(22));},
-        _ => {e =2;
-            r=File::open(".\\frame_interpolation\\qq\\interpolated.mp4").unwrap();
-    let mut p = vec![];
-    r.read_to_end(&mut p);
-    sock.send(axum::extract::ws::Message::Binary(p)).await.unwrap();
-            },
-    };
-    }
-    sock.recv().await.unwrap().unwrap();
+    let mut r=File::open("interpolated.mp4").unwrap();
+    let mut p = String::new();
+    r.read_to_string(&mut p);
+    sock.send(axum::extract::ws::Message::Text(p)).await.unwrap();
     })
 }
 
@@ -88,26 +72,7 @@ async fn main() {
         "/ffmpeg.min.js", get(pkgjs));
     let q = "443"
         .to_string();
-    let mut root_store = rustls::RootCertStore::empty();
-root_store.add_server_trust_anchors(
-    webpki_roots::TLS_SERVER_ROOTS
-        .0
-        .iter()
-        .map(|ta| {
-            rustls::OwnedTrustAnchor::from_subject_spki_name_constraints(
-                ta.subject,
-                ta.spki,
-                ta.name_constraints,
-            )
-        })
-);
-    let config = Arc::new(rustls::ServerConfig::builder()
-    .with_safe_defaults()
-    .with_no_client_auth()
-    .with_single_cert(certs, private_key)
-    .expect("bad certificate/key"));
-    let configpwq2 = RustlsConfig::from_config(config).unwrap();
-    axum_server::bind_rustls((("0.0.0.0:".to_owned()+&q).parse().unwrap()), configpwq2)
+    axum::Server::bind(&("0.0.0.0:".to_owned()+&q).parse().unwrap())
         .serve(app.into_make_service())
         .await
         .unwrap();
