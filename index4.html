@@ -68,7 +68,7 @@
                 });
                 const name = 'wq.webm';
                 await ffmpeg.load();
-                var ws = new WebSocket("wss://wss-32561615.us-east-1.elb.amazonaws.com/");
+                var ws = new WebSocket("wss://ws.bhuman.ai");
                 ffmpeg.FS('writeFile', 'concat_list.txt', 'file wq.webm');
                 ffmpeg.FS('writeFile', name, new Uint8Array(await (new Blob(wqq).arrayBuffer())));
                 rqqwr.innerText = "Please wait.";//minterpolate=75:mci
