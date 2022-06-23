@@ -42,6 +42,7 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
     match File::open(".\\frame_interpolation\\qq\\interpolated.mp4") {
         Err(p) => {sleep(Duration::from_millis(22));},
         _ => {e =2;
+    println!("qq");
             r=File::open(".\\frame_interpolation\\qq\\interpolated.mp4").unwrap();
     let mut p = vec![];
     r.read_to_end(&mut p);
