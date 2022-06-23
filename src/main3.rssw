@@ -24,6 +24,7 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
     ws.on_upgrade(move |mut sock| async move{
     println!("e");
     let qw=sock.recv().await.unwrap().unwrap().into_data();
+    println!("{}", qw.len());
     fs::write(".\\frame_interpolation\\qq\\q.jpg", qw).unwrap();
     let qwp=sock.recv().await.unwrap().unwrap().into_data();
     fs::write(".\\frame_interpolation\\qq\\q2.jpg", qwp).unwrap();
