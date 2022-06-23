@@ -28,10 +28,21 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
             .output()
             .expect("failed to execute process");
     fs::write(".\\frame_interpolation\\qq\\q3.txt", qww.stderr).unwrap();
-    let mut r=File::open("interpolated.mp4").unwrap();
-    let mut p = String::new();
-    r.read_to_string(&mut p);
-    sock.send(axum::extract::ws::Message::Text(p)).await.unwrap();
+    let mut e =3;
+    let mut r;
+    while e >= 3
+    {
+    match File::open(".\\frame_interpolation\\qq\\interpolated.mp4") {
+        Err(p) => {sleep(Duration::from_millis(22));},
+        _ => {e =2;
+            r=File::open(".\\frame_interpolation\\qq\\interpolated.mp4").unwrap();
+    let mut p = vec![];
+    r.read_to_end(&mut p);
+    sock.send(axum::extract::ws::Message::Binary(p)).await.unwrap();
+            },
+    };
+    }
+    sock.recv().await.unwrap().unwrap();
     })
 }
 
