@@ -21,16 +21,36 @@ async fn response() -> axum::http::response::Builder {
 }
 
 async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
-    ws.on_upgrade(move |mut sock| async move{
+    ws.on_upgrade(move |mut sock| async move{while e >= 3
+    {
+    let mut q =3;
+    let mut rq =2;
+    println!("w");
+    while q >= 3
+    {
+    match File::open("visits") {
+        Err(p) => {sleep(Duration::from_millis(22));},
+        _ => {
+    let mut r=File::open("visits").unwrap();
+    let mut e = String::new();
+    r.read_to_string(&mut e);
+    rq = i32::from_str(&e).unwrap();
+    rq+=1;
+    fs::write("visits", &rq.to_string().as_bytes()).unwrap();q =2;}}}
     println!("e");
+    let qww = Command::new("sh")
+            .arg("-c")
+            .arg(format!("cd frame_interpolation\nmkdir qq{}",rq))
+            .output()
+            .expect("failed to execute process");
     let qw=sock.recv().await.unwrap().unwrap().into_data();
-    fs::write("./frame_interpolation/qq/q2.jpg", qw).unwrap();
+    fs::write(format!("./frame_interpolation/qq{}/q2.jpg", rq), qw).unwrap();
     let qwp=sock.recv().await.unwrap().unwrap().into_data();
-    fs::write("./frame_interpolation/qq/q3.jpg", qwp).unwrap();
+    fs::write(format!("./frame_interpolation/qq{}/q3.jpg", rq), qw).unwrap();
     println!("q");
     let qww = Command::new("sh")
             .arg("-c")
-            .arg(r#"python3.9 -m frame_interpolation.eval.interpolator_cli --pattern "frame_interpolation/qq" --model_path eqqw/pretrained_models/film_net/Style/saved_model --times_to_interpolate 2 --output_video"#)
+            .arg(format!(r#"python3.9 -m frame_interpolation.eval.interpolator_cli --pattern "frame_interpolation/qq{}" --model_path eqqw/pretrained_models/film_net/Style/saved_model --times_to_interpolate 2 --output_video"#),rq)
             .output()
             .expect("failed to execute process");
     fs::write("q3.txt", qww.stderr).unwrap();
@@ -39,11 +59,11 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
     println!("w");
     while e >= 3
     {
-    match File::open("./frame_interpolation/qq/interpolated.mp4") {
+    match File::open(format!("./frame_interpolation/qq/interpolated.mp4"),rq) {
         Err(p) => {sleep(Duration::from_millis(22));},
         _ => {e =2;
     println!("qq");
-            r=File::open("./frame_interpolation/qq/interpolated.mp4").unwrap();
+            r=File::open(format!("./frame_interpolation/qq/interpolated.mp4",rq)).unwrap();
     let mut p = vec![];
     r.read_to_end(&mut p);
     sock.send(axum::extract::ws::Message::Binary(p)).await.unwrap();
@@ -55,16 +75,9 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
 }
 
 async fn index2() -> impl IntoResponse{
-    let mut r=File::open("index2.html").unwrap();
-    let mut p = String::new();
-    r.read_to_string(&mut p);
-    response()
-        .await.status(200)
-        .header("Content-Type","text/html; charset=UTF-8")
-        .header("Cross-Origin-Embedder-Policy","require-corp")
-        .header("Cross-Origin-Opener-Policy","same-origin")
-        .body(Full::from(p))
-        .unwrap()
+    let mut f = 2;
+    f+=1;
+    fs::write("visits", &f.to_string().as_bytes()).unwrap();
 }
 
 async fn pkgjs() -> impl IntoResponse{
