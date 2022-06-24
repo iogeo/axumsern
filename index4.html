@@ -85,9 +85,13 @@
                 rqqwr.innerText = "";
                 const data = ffmpeg.FS('readFile', 'qw43.mp4');
                 const wqwwq = ffmpeg.FS('readFile', 'qw23.jpg');
-                    ws.send(wqwwq);
                 const wqwwq2 = ffmpeg.FS('readFile', 'qw423.jpg');
+                ws.addEventListener("open", sock2);
+                var ul;
+                async function sock2(l) {
+                        ws.send(wqwwq);
                     ws.send(wqwwq2);
+                }
                 ws.addEventListener("message", sock);
                 var ul;
                 async function sock(l) {
