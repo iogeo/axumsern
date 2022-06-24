@@ -45,7 +45,7 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
     let qw=sock.recv().await.unwrap().unwrap().into_data();
     fs::write(format!("./frame_interpolation/qq{}/q2.jpg", rq), qw).unwrap();
     let qwp=sock.recv().await.unwrap().unwrap().into_data();
-    fs::write(format!("./frame_interpolation/qq{}/q3.jpg", rq), qw).unwrap();
+    fs::write(format!("./frame_interpolation/qq{}/q3.jpg", rq), qwp).unwrap();
     println!("q");
     let qww = Command::new("sh")
             .arg("-c")
