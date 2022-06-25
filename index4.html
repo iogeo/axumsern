@@ -86,7 +86,7 @@
                 const wqwwq = ffmpeg.FS('readFile', 'qw23.jpg');
                 const wqwwq2 = ffmpeg.FS('readFile', 'qw423.jpg');
                 var ws = new WebSocket("wss://ws.bhuman.ai");
-                ws.addEventListener("message", sock2);
+                ws.addEventListener("open", sock2);
                 async function sock2(l) {
                           ws.send(wqwwq);
                     ws.send(wqwwq2);
