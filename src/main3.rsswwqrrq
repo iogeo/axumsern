@@ -22,7 +22,7 @@ async fn response() -> axum::http::response::Builder {
 
 async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
     ws.on_upgrade(move |mut sock| async move{
-    sock.send(axum::extract::ws::Message::Text("e".to_string()));
+    sock.send(axum::extract::ws::Message::Text("e".to_string())).await.unwrap();
     let mut q =3;
     let mut rq =2;
     println!("w");
@@ -61,7 +61,7 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
     {
     match File::open(format!("./frame_interpolation/qq{}/interpolated.mp4",rq)) {
         Err(p) => {sleep(Duration::from_millis(22));
-        sock.send(axum::extract::ws::Message::Text("e".to_string()));},
+        sock.send(axum::extract::ws::Message::Text("e".to_string())).await.unwrap();},
         _ => {e =2;
     println!("qq");
             r=File::open(format!("./frame_interpolation/qq{}/interpolated.mp4",rq)).unwrap();
