@@ -22,7 +22,7 @@ async fn response() -> axum::http::response::Builder {
 
 async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
     ws.on_upgrade(move |mut sock| async move{
-    sock.send(axum::extract::ws::Message:Text("e".to_string()));
+    sock.send(axum::extract::ws::Message::Text("e".to_string()));
     let mut q =3;
     let mut rq =2;
     println!("w");
