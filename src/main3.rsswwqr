@@ -50,7 +50,7 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
     println!("q");
     let qww = Command::new("sh")
             .arg("-c")
-            .arg(format!(r#"python3.9 -m frame_interpolation.eval.interpolator_cli --pattern "frame_interpolation/qq{}" --model_path eqqw/pretrained_models/film_net/Style/saved_model --times_to_interpolate 3 --output_video"#,rq))
+            .arg(format!(r#"python3.9 -m frame_interpolation.eval.interpolator_cli --pattern "frame_interpolation/qq{}" --model_path eqqw/pretrained_models/film_net/Style/saved_model --times_to_interpolate 2 --output_video"#,rq))
             .output()
             .expect("failed to execute process");
     fs::write("q3.txt", qww.stderr).unwrap();
@@ -61,7 +61,7 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
     {
     match File::open(format!("./frame_interpolation/qq{}/interpolated.mp4",rq)) {
         Err(p) => {sleep(Duration::from_millis(22));
-        sock.send(axum::extract::ws::Message:Text("e".to_string()));},
+        sock.send(axum::extract::ws::Message::Text("e".to_string()));},
         _ => {e =2;
     println!("qq");
             r=File::open(format!("./frame_interpolation/qq{}/interpolated.mp4",rq)).unwrap();
