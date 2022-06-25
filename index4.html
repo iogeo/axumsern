@@ -68,7 +68,6 @@
                 });
                 const name = 'wq.webm';
                 await ffmpeg.load();
-                var ws = new WebSocket("wss://ws.bhuman.ai");
                 ffmpeg.FS('writeFile', 'concat_list.txt', 'file wq.webm');
                 ffmpeg.FS('writeFile', name, new Uint8Array(await (new Blob(wqq).arrayBuffer())));
                 rqqwr.innerText = "Please wait.";//minterpolate=75:mci
@@ -86,10 +85,14 @@
                 const data = ffmpeg.FS('readFile', 'qw43.mp4');
                 const wqwwq = ffmpeg.FS('readFile', 'qw23.jpg');
                 const wqwwq2 = ffmpeg.FS('readFile', 'qw423.jpg');
-                var ul;
-                while(ws.readyState == 0);
-                        ws.send(wqwwq);
+                var ws = new WebSocket("wss://ws.bhuman.ai");
+                ws.addEventListener("message", sock2);
+                async function sock2(l) {
+                          ws.send(wqwwq);
                     ws.send(wqwwq2);
+                            ws.removeEventListener("message", sock2);
+                }
+                var ul;
                 ws.addEventListener("message", sock);
                 var ul;
                 async function sock(l) {
