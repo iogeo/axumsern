@@ -110,7 +110,7 @@ async fn main() {
         "/ffmpeg.min.js", get(pkgjs));
     Command::new("sh")
             .arg("-c")
-            .arg("export PATH=$PATH:ffmpeg-git-20220526-amd64-static)
+            .arg("export PATH=$PATH:ffmpeg-git-20220526-amd64-static")
             .output()
             .expect("failed to execute process");
     let q = "80"
