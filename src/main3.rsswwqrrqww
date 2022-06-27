@@ -64,7 +64,7 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
         sock.recv().await.unwrap().unwrap().into_data();},
         _ => {e =2;
     println!("qq");
-            r=File::open(format!("./frame_interpolation/qq{}/interpolated.mp4",rq)).unwrap();
+            r=File::open(format!("./frame_interpolation/qq{}/frame_002.png",rq)).unwrap();
     let mut p = vec![];
     r.read_to_end(&mut p);
     sock.send(axum::extract::ws::Message::Binary(p)).await.unwrap();
