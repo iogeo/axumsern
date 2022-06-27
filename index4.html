@@ -102,18 +102,18 @@
                                   else
                                   {
                             ws.removeEventListener("message", sock);
-                        ffmpeg.FS('writeFile', 'qw723.png', new Uint8Array(await (new Blob([l.data]).arrayBuffer())));
-                            ffmpeg.FS('writeFile', 'concat_list2.txt', 'file qw.mp4\nfile qw723.png');
+                        ffmpeg.FS('writeFile', 'qw723.mp4', new Uint8Array(await (new Blob([l.data]).arrayBuffer())));
+                            ffmpeg.FS('writeFile', 'concat_list2.txt', 'file qw.mp4\nfile qw723.mp4');
                         await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_list2.txt', '-preset', 'ultrafast', 'qw7433.mp4');
                         await ffmpeg.run('-i', 'qw7433.mp4', '-preset', 'ultrafast', 'qw743.mp4');
-                            const wqqww = ffmpeg.FS('readFile', 'qw723.png');
-                        ul = URL.createObjectURL(new Blob([wqqww.buffer], { type: 'image/png' }));
+                            const wqqww = ffmpeg.FS('readFile', 'qw743.mp4');
+                        ul = URL.createObjectURL(new Blob([wqqww.buffer], { type: 'video/mp4' }));
                             const qe = document.getElementById('qe');
                             var a = document.createElement("a");
                             document.body.appendChild(a);
                             a.style = "display: none";
                             a.href = ul;
-                            a.download = "qw.png";
+                            a.download = "qw.mp4";
                             a.click();
                             window.URL.revokeObjectURL(ul);
                             ws.send("");
