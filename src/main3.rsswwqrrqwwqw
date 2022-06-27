@@ -58,15 +58,20 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
     println!("w");
     while e >= 3
     {
-    match File::open(format!("./frame_interpolation/qq{}/interpolated_frames/frame_002.png",rq)) {
+    match File::open(format!("./frame_interpolation/qq{}/interpolated.mp4",rq)) {
         Err(p) => {sleep(Duration::from_millis(22));
         sock.send(axum::extract::ws::Message::Text("e".to_string())).await.unwrap();
         sock.recv().await.unwrap().unwrap().into_data();},
         _ => {e =2;
     println!("qq");
-            r=File::open(format!("./frame_interpolation/qq{}/interpolated_frames/frame_002.png",rq)).unwrap();
+            r=File::open(format!("./frame_interpolation/qq{}/interpolated.mp4",rq)).unwrap();
     let mut p = vec![];
     r.read_to_end(&mut p);
+    Command::new("sh")
+            .arg("-c")
+            .arg(format!("rm ./frame_interpolation/qq{} -r\nY\n",rq))
+            .output()
+            .expect("failed to execute process");
     sock.send(axum::extract::ws::Message::Binary(p)).await.unwrap();
             },
     };
