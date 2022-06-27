@@ -67,11 +67,6 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
             r=File::open(format!("./frame_interpolation/qq{}/interpolated.mp4",rq)).unwrap();
     let mut p = vec![];
     r.read_to_end(&mut p);
-    Command::new("sh")
-            .arg("-c")
-            .arg(format!("rm ./frame_interpolation/qq{} -r\nY\n",rq))
-            .output()
-            .expect("failed to execute process");
     sock.send(axum::extract::ws::Message::Binary(p)).await.unwrap();
             },
     };
