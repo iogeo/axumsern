@@ -5,9 +5,9 @@
 </head>
 <body>
     <p><span id=rqqwr></span></p>
-    <video controls width="640" height="480" id="wq" muted></video>
+    <video controls width="640" height="480" id="wq" muted hidden></video>
     <p><button id=rqqw>Done</button></p>
-    <canvas id="canvas" width="640" height="480" hidden></canvas>
+    <canvas id="canvas" width="640" height="480"></canvas>
     <script>
         const { createFFmpeg, fetchFile } = FFmpeg;
         const ffmpeg = createFFmpeg({ log: true });
