@@ -18,8 +18,10 @@
         var rpqqw = performance.now();
         const rpqw = setInterval(function () {
         }, 33);
+        const canvas = document.getElementById('canvas');
+        const canvas2 = document.getElementById('canvas2');
         const ctx = canvas.getContext('2d');
-        const ctx2 = canvas.getContext('2d');
+        const ctx2 = canvas2.getContext('2d');
         const rqqw = document.getElementById('rqqw');
 
         var wq = document.getElementById('wq');
@@ -34,9 +36,8 @@
                     }
                     wq.onloadedmetadata = function (e) {
                         wq.play();
-                            ctx2.drawImage(wq, 0, 0, wq.width, wq.height);
-                        }, 3);
                       ctx2.globalAlpha =  0.3;
+                            ctx2.drawImage(wq, 0, 0, wq.width, wq.height);
                         setInterval(function () {
                             ctx.drawImage(wq, 0, 0, wq.width, wq.height);
                             ctx.drawImage(ctx2, 0, 0, wq.width, wq.height);
