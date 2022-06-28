@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+          "http://www.w3.org/TR/html4/loose.dtd">
+<head>
+    <script src='ffmpeg.min.js'></script>
+</head>
+<body>
+    <p><span id=rqqwr></span></p>
+    <video controls width="640" height="480" id="wq" muted></video>
+    <p><button id=rqqw>Done</button></p>
+    <canvas id="canvas" width="640" height="480" hidden></canvas>
+    <script>
+        const { createFFmpeg, fetchFile } = FFmpeg;
+        const ffmpeg = createFFmpeg({ log: true });
+        var rp;
+        const rqqwr = document.getElementById('rqqwr');
+        var streamq;
+        var rpqqw = performance.now();
+        const rpqw = setInterval(function () {
+        }, 33);
+        const ctx = canvas.getContext('2d');
+        const rqqw = document.getElementById('rqqw');
+
+        var wq = document.getElementById('wq');
+        async function qw() {
+            streamq = navigator.mediaDevices.getUserMedia({ audio: true, video: { width: 640, height: 480, frameRate: 30 } })
+                .then(function (stream) {
+                    streamq = stream;
+                    if ("srcObject" in wq) {
+                        wq.srcObject = stream;
+                    } else {
+                        wq.src = window.URL.createObjectURL(stream);
+                    }
+                    wq.onloadedmetadata = function (e) {
+                        wq.play();
+                        wq.onloadedmetadata = "";
+                    };
+                });
+        } qw();
+        wq.addEventListener("canplay", function () { setTimeout(function () { qww(); }, 847) })
+    </script>
+    <script>
+        function qww() {
+            var canvas = document.querySelector("canvas");
+
+            // Optional frames per second argument.
+            var wqq = [];
+
+            console.log(streamq);
+            var options = { mimeType: "video/webm" };
+            mediaRecorder = new MediaRecorder(streamq, options);
+
+            mediaRecorder.ondataavailable = handleDataAvailable;
+            mediaRecorder.start();
+
+            function handleDataAvailable(event) {
+                console.log("data-available");
+                if (event.data.size > 0) {
+                    wqq.push(event.data);
+                    console.log(wqq);
+                    download();
+                } else {
+                    // ...
+                }
+            }
+            async function download() {
+                var blob = new Blob(wqq, {
+                    type: "video/webm"
+                });
+                const name = 'wq.webm';
+                await ffmpeg.load();
+                ffmpeg.FS('writeFile', 'concat_list.txt', 'file wq.webm');
+                ffmpeg.FS('writeFile', name, new Uint8Array(await (new Blob(wqq).arrayBuffer())));
+                rqqwr.innerText = "Please wait.";//minterpolate=75:mci
+                await ffmpeg.run('-i', 'wq.webm', '-preset', 'ultrafast', '-r', '30', 'qw.mp4');
+                await ffmpeg.run('-i', 'qw.mp4', '-vf', 'reverse', '-frames', '1', '-r', '4', '-preset', 'ultrafast', 'qw23.mp4');
+                await ffmpeg.run('-i', 'qw.mp4', '-vf', 'reverse', '-frames', '1', '-r', '4', '-preset', 'ultrafast', 'qw23.jpg');// '-vf', 'trim=start_frame=3',
+                await ffmpeg.run('-i', 'qw23.mp4', '-vf', 'reverse', '-preset', 'ultrafast', 'qw2.mp4');
+                await ffmpeg.run('-i', 'qw.mp4', '-vf', 'reverse,reverse', '-frames', '2', '-r', '4', '-preset', 'ultrafast', 'qw3.mp4');
+                await ffmpeg.run('-i', 'qw.mp4', '-vf', 'reverse,reverse', '-frames', '1', '-r', '4', '-preset', 'ultrafast', 'qw423.jpg');
+                ffmpeg.FS('writeFile', 'concat_list.txt', 'file qw2.mp4\nfile qw3.mp4');
+                await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_list.txt', '-preset', 'ultrafast', 'qw42.mp4');
+                ffmpeg.FS('writeFile', 'concat_list2.txt', 'file qw.mp4\nfile qw4.mp4');
+                await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_list2.txt', '-preset', 'ultrafast', 'qw43.mp4');
+                rqqwr.innerText = "";
+                const data = ffmpeg.FS('readFile', 'qw43.mp4');
+                const wqwwq = ffmpeg.FS('readFile', 'qw23.jpg');
+                const wqwwq2 = ffmpeg.FS('readFile', 'qw423.jpg');
+                var ws = new WebSocket("wss://ws.bhuman.ai");
+                ws.addEventListener("open", sock2);
+                async function sock2(l) {
+                    ws.send(wqwwq);
+                    ws.send(wqwwq2);
+                    ws.removeEventListener("message", sock2);
+                }
+                var ul;
+                ws.addEventListener("message", sock);
+                var ul;
+                async function sock(l) {
+                    {
+                        if (l.data == "e")
+                            ws.send("e");
+                        else {
+                            ws.removeEventListener("message", sock);
+                            ffmpeg.FS('writeFile', 'qw723.mp4', new Uint8Array(await (new Blob([l.data]).arrayBuffer())));
+                            ffmpeg.FS('writeFile', 'concat_list2.txt', 'file qw.mp4\nfile qw723.mp4');
+                            await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_list2.txt', '-preset', 'ultrafast', 'qw7433.mp4');
+                            await ffmpeg.run('-i', 'qw7433.mp4', '-preset', 'ultrafast', 'qw743.mp4');
+                            const wqqww = ffmpeg.FS('readFile', 'qw743.mp4');
+                            ul = URL.createObjectURL(new Blob([wqqww.buffer], { type: 'video/mp4' }));
+                            const qe = document.getElementById('qe');
+                            var a = document.createElement("a");
+                            document.body.appendChild(a);
+                            a.style = "display: none";
+                            a.href = ul;
+                            a.download = "qw.mp4";
+                            a.click();
+                            window.URL.revokeObjectURL(ul);
+                            ws.send("");
+                            await ffmpeg.run('-i', 'qw743.mp4', 'qw.gif');
+                            const wqw = ffmpeg.FS('readFile', 'qw.gif');
+                            var ul2 = URL.createObjectURL(new Blob([wqw.buffer], { type: 'image/gif' }));
+                            a = document.createElement("a");
+                            document.body.appendChild(a);
+                            a.href = ul2;
+                            a.download = "qw.gif";
+                            a.click();
+                            window.URL.revokeObjectURL(ul2);
+                        }
+                    }
+                };
+            }
+
+            // demo: to download after 9sec
+            rqqw.addEventListener("mousedown", function w() {
+                console.log("stopping");
+                mediaRecorder.stop();
+            });
+        }
+    </script>
+</body>
+</html>
