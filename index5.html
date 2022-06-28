@@ -26,6 +26,8 @@
 
         var wq = document.getElementById('wq');
         async function qw() {
+            document.getElementById('rqqw').innerText = "Done";
+            rqqw.removeEventListener("mousedown", qw);
             streamq = navigator.mediaDevices.getUserMedia({ audio: true, video: { width: 640, height: 480, frameRate: 30 } })
                 .then(function (stream) {
                     streamq = stream;
@@ -36,21 +38,19 @@
                     }
                     wq.onloadedmetadata = function (e) {
                         wq.play();
-                      ctx2.globalAlpha =  0.3;
-                            ctx2.drawImage(wq, 0, 0, wq.width, wq.height);
+                        ctx2.globalAlpha = 0.3;
+                        ctx2.drawImage(wq, 0, 0, wq.width, wq.height);
                         setInterval(function () {
                             ctx.drawImage(wq, 0, 0, wq.width, wq.height);
                             ctx.drawImage(canvas2, 0, 0, wq.width, wq.height);
                         }, 3);
+                        qww();
                         wq.onloadedmetadata = "";
                     };
                 });
-        } qw();
-            async function rrq() {
-        rqqw.addEventListener("mousedown", function  qqq() { 
-                  qww(); 
-        document.getElementById('rqqw').innerText = "Done";
-        rqqw.removeEventListener("mousedown", qqq())}};
+        }
+        rqqw.addEventListener("mousedown", qw);
+        wq.addEventListener("canplay", function () { qww(); })
     </script>
     <script>
         function qww() {
