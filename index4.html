@@ -36,7 +36,7 @@
                     };
                 });
         } qw();
-        wq.addEventListener("canplay", function () { setTimeout(function () {qww();}, 847) })
+        wq.addEventListener("canplay", function () { setTimeout(function () { qww(); }, 847) })
     </script>
     <script>
         function qww() {
@@ -88,26 +88,26 @@
                 var ws = new WebSocket("wss://ws.bhuman.ai");
                 ws.addEventListener("open", sock2);
                 async function sock2(l) {
-                          ws.send(wqwwq);
+                    ws.send(wqwwq);
                     ws.send(wqwwq2);
-                            ws.removeEventListener("message", sock2);
+                    ws.removeEventListener("message", sock2);
                 }
                 var ul;
                 ws.addEventListener("message", sock);
                 var ul;
                 async function sock(l) {
-                        {
-                                  if(l.data == "e")
-                                            ws.send("e");
-                                  else
-                                  {
+                    {
+                        if (l.data == "e")
+                            ws.send("e");
+                        else {
                             ws.removeEventListener("message", sock);
-                        ffmpeg.FS('writeFile', 'qw723.mp4', new Uint8Array(await (new Blob([l.data]).arrayBuffer())));
+                            ffmpeg.FS('writeFile', 'qw723.mp4', new Uint8Array(await (new Blob([l.data]).arrayBuffer())));
                             ffmpeg.FS('writeFile', 'concat_list2.txt', 'file qw.mp4\nfile qw723.mp4');
-                        await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_list2.txt', '-preset', 'ultrafast', 'qw7433.mp4');
-                        await ffmpeg.run('-i', 'qw7433.mp4', '-preset', 'ultrafast', 'qw743.mp4');
+                            await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_list2.txt', '-preset', 'ultrafast', 'qw7433.mp4');
+                            await ffmpeg.run('-i', 'qw7433.mp4', '-preset', 'ultrafast', 'qw793.mp4');
+                            await ffmpeg.run('-i', 'qw793.mp4', '-i', 'qw23.jpg', '-filter_complex', '"overlay"', '-preset', 'ultrafast', 'qw743.mp4');
                             const wqqww = ffmpeg.FS('readFile', 'qw743.mp4');
-                        ul = URL.createObjectURL(new Blob([wqqww.buffer], { type: 'video/mp4' }));
+                            ul = URL.createObjectURL(new Blob([wqqww.buffer], { type: 'video/mp4' }));
                             const qe = document.getElementById('qe');
                             var a = document.createElement("a");
                             document.body.appendChild(a);
@@ -126,8 +126,9 @@
                             a.download = "qw.gif";
                             a.click();
                             window.URL.revokeObjectURL(ul2);
-                        }}
-                    };
+                        }
+                    }
+                };
             }
 
             // demo: to download after 9sec
