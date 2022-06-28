@@ -67,6 +67,19 @@ async fn index4() -> impl IntoResponse{
         .unwrap()
 }
 
+async fn index5() -> impl IntoResponse{
+    let mut r=File::open("index4.html").unwrap();
+    let mut p = String::new();
+    r.read_to_string(&mut p);
+    response()
+        .await.status(200)
+        .header("Content-Type","text/html; charset=UTF-8")
+        .header("Cross-Origin-Embedder-Policy","require-corp")
+        .header("Cross-Origin-Opener-Policy","same-origin")
+        .body(Full::from(p))
+        .unwrap()
+}
+
 async fn pkgjs() -> impl IntoResponse{
     let mut r=File::open("ffmpeg.min.js").unwrap();
     let mut p = String::new();
