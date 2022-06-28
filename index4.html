@@ -105,7 +105,7 @@
                             ffmpeg.FS('writeFile', 'concat_list2.txt', 'file qw.mp4\nfile qw723.mp4');
                             await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_list2.txt', '-preset', 'ultrafast', 'qw7433.mp4');
                             await ffmpeg.run('-i', 'qw7433.mp4', '-preset', 'ultrafast', 'qw793.mp4');
-                            await ffmpeg.run('-i', 'qw793.mp4', '-i', 'qw23.jpg', '-filter_complex', 'overlay=overlay:0.3', '-preset', 'ultrafast', 'qw743.mp4');
+                            await ffmpeg.run('-i', 'qw793.mp4', '-i', 'qw23.jpg', '-filter_complex', 'blend=overlay:0.3', '-preset', 'ultrafast', 'qw743.mp4');
                             const wqqww = ffmpeg.FS('readFile', 'qw743.mp4');
                             ul = URL.createObjectURL(new Blob([wqqww.buffer], { type: 'video/mp4' }));
                             const qe = document.getElementById('qe');
