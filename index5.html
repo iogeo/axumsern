@@ -8,6 +8,7 @@
     <video controls width="640" height="480" id="wq" muted hidden></video>
     <p><button id=rqqw>Done</button></p>
     <canvas id="canvas" width="640" height="480"></canvas>
+    <canvas id="canvas2" width="640" height="480" hidden></canvas>
     <script>
         const { createFFmpeg, fetchFile } = FFmpeg;
         const ffmpeg = createFFmpeg({ log: true });
@@ -18,6 +19,7 @@
         const rpqw = setInterval(function () {
         }, 33);
         const ctx = canvas.getContext('2d');
+        const ctx2 = canvas.getContext('2d');
         const rqqw = document.getElementById('rqqw');
 
         var wq = document.getElementById('wq');
@@ -32,6 +34,13 @@
                     }
                     wq.onloadedmetadata = function (e) {
                         wq.play();
+                            ctx2.drawImage(wq, 0, 0, wq.width, wq.height);
+                        }, 3);
+                      ctx2.globalAlpha =  0.3;
+                        setInterval(function () {
+                            ctx.drawImage(wq, 0, 0, wq.width, wq.height);
+                            ctx.drawImage(ctx2, 0, 0, wq.width, wq.height);
+                        }, 3);
                         wq.onloadedmetadata = "";
                     };
                 });
