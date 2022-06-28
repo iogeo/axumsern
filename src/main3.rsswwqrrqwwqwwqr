@@ -90,7 +90,7 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
     fs::write("qw", "".to_string().as_bytes()).unwrap();q =2;sock.send(axum::extract::ws::Message::Text("e".to_string())).await.unwrap();},
         _ => {}
         }
-        sock.recv().await.unwrap().unwrap().into_data();},
+        sock.recv().await.unwrap().unwrap().into_data();}
         _ => {
     while q >= 3
     {
