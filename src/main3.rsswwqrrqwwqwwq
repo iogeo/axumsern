@@ -77,9 +77,17 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
     {
     match File::open(format!("./frame_interpolation/qq{}/interpolated.mp4",rq)) {
         Err(p) => {sleep(Duration::from_millis(22));
-        match sock.send(axum::extract::ws::Message::Text("e".to_string())).await;
+        match sock.send(axum::extract::ws::Message::Text("e".to_string())).await
         {
-        Err(p) => {sleep(Duration::from_millis(22));sock.send(axum::extract::ws::Message::Text("e".to_string())).await.unwrap();},
+        Err(p) => {sleep(Duration::from_millis(22));
+    while q >= 3
+    {
+    match File::open("qw") {
+        Err(p) => {sleep(Duration::from_millis(22));
+        sock.send(axum::extract::ws::Message::Text("e".to_string())).await.unwrap();
+        sock.recv().await.unwrap().unwrap().into_data();},
+        _ => {
+    fs::write("qw", "".to_string().as_bytes()).unwrap();q =2;sock.send(axum::extract::ws::Message::Text("e".to_string())).await.unwrap();},
         _ => {}
         }
         sock.recv().await.unwrap().unwrap().into_data();},
