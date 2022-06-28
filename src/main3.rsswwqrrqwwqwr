@@ -52,8 +52,12 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
     while q >= 3
     {
     match File::open("qw") {
-        Err(p) => {sleep(Duration::from_millis(22));},
+        Err(p) => {sleep(Duration::from_millis(22));
+        sock.send(axum::extract::ws::Message::Text("e".to_string())).await.unwrap();
+        sock.recv().await.unwrap().unwrap().into_data();},
         _ => {
+        sock.send(axum::extract::ws::Message::Text("e".to_string())).await.unwrap();
+        sock.recv().await.unwrap().unwrap().into_data();},
     let mut r=File::open("qw").unwrap();
     let mut e = String::new();
     r.read_to_string(&mut e);
@@ -66,7 +70,9 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
             .spawn()
             .expect("failed to execute process");
     match File::open("qw") {
-        Err(p) => {sleep(Duration::from_millis(22));},
+        Err(p) => {sleep(Duration::from_millis(22));
+        sock.send(axum::extract::ws::Message::Text("e".to_string())).await.unwrap();
+        sock.recv().await.unwrap().unwrap().into_data();},
         _ => {
     fs::write("qw", "".to_string().as_bytes()).unwrap();q =2;}}
     let mut e =3;
