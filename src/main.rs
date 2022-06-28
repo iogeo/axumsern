@@ -68,7 +68,7 @@ async fn index4() -> impl IntoResponse{
 }
 
 async fn index5() -> impl IntoResponse{
-    let mut r=File::open("index4.html").unwrap();
+    let mut r=File::open("index5.html").unwrap();
     let mut p = String::new();
     r.read_to_string(&mut p);
     response()
