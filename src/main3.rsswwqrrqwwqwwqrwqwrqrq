@@ -44,7 +44,7 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
     Command::new("sh")
             .arg("-c")
             .arg(format!("cd frame_interpolation\nmkdir qq{}",rq))
-            .spawn()
+            .output()
             .expect("failed to execute process");
     fs::write(format!("./frame_interpolation/qq{}/q2.jpg", rq), qw).unwrap();
     fs::write(format!("./frame_interpolation/qq{}/q3.jpg", rq), qwp).unwrap();
