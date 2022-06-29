@@ -89,7 +89,7 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
     let mut r=File::open("qw").unwrap();
     let mut qwe = String::new();
     r.read_to_string(&mut qwe);e =2;
-        while qwe=="e"; sock.send(axum::extract::ws::Message::Text("e".to_string())).await.unwrap();},
+        while qwe=="e"{}; sock.send(axum::extract::ws::Message::Text("e".to_string())).await.unwrap();},
         _ => {}
         }
         sock.recv().await.unwrap().unwrap().into_data();},
