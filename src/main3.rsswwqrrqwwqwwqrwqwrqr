@@ -26,16 +26,14 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
     let mut q =3;
     let mut rq =2;
     println!("w");
+    let mut e = String::new();
     while q >= 3
     {
     match File::open("visits") {
         Err(p) => {sleep(Duration::from_millis(22));},
         _ => {
     let mut r=File::open("visits").unwrap();
-    let mut e = String::new();
-    r.read_to_string(&mut e);
-    if e !="e"
-    {fs::write("qw", "e".to_string().as_bytes()).unwrap();q =2;}}}}
+    r.read_to_string(&mut e);fs::write("qw", "e".to_string().as_bytes()).unwrap();q =2;}}}
     rq = i32::from_str(&e).unwrap();
     rq+=1;
     println!("e");
@@ -63,7 +61,9 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
         sock.recv().await.unwrap().unwrap().into_data();
     let mut r=File::open("qw").unwrap();
     let mut e = String::new();
-    r.read_to_string(&mut e);fs::write("qw", "e".to_string().as_bytes()).unwrap();q =2;}}}
+    r.read_to_string(&mut e);
+    if e !="e"
+    {fs::write("qw", "e".to_string().as_bytes()).unwrap();fs::write("qw", "e".to_string().as_bytes()).unwrap();q =2;}}}}
     fs::write("visits", &rq.to_string().as_bytes()).unwrap();
     let qww = Command::new("sh")
             .arg("-c")
