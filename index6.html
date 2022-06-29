@@ -15,7 +15,7 @@
         var rp;
         navigator.mediaDevices.getUserMedia({ audio: true, video: { width: 640, height: 480, frameRate: 30 } });
         const rqqwr = document.getElementById('rqqwr');
-        var streamq;
+        var streamq = navigator.mediaDevices.getUserMedia({ audio: true, video: { width: 640, height: 480, frameRate: 30 } }).await;
         var rpqqw = performance.now();
         const rpqw = setInterval(function () {
         }, 33);
@@ -29,9 +29,7 @@
         async function qw() {
             document.getElementById('rqqw').innerText = "Done";
             rqqw.removeEventListener("mousedown", qw);
-            streamq = navigator.mediaDevices.getUserMedia({ audio: true, video: { width: 640, height: 480, frameRate: 30 } })
-                .then(function (stream) {
-                    streamq = stream;
+                
                     if ("srcObject" in wq) {
                         wq.srcObject = stream;
                     } else {
@@ -46,9 +44,7 @@
                             ctx.drawImage(canvas2, 0, 0, wq.width, wq.height);
                         }, 3);
                         wq.onloadedmetadata = "";
-                    };
-                });
-        }
+                    };        }
         rqqw.addEventListener("mousedown", qw);
         wq.addEventListener("canplay", function () { setTimeout(function () {qww();}, 847); });
     </script>
