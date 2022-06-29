@@ -1,5 +1,5 @@
 use std::io::prelude::*;
-use axum::{Json, response::{Html, IntoResponse, Response},routing::get,Router,http::{Uri, header::{self, HeaderMap, HeaderName}},};
+use axum::{Json, response::{Html, IntoResponse, Response},routing::get,Router,http::{Uri, header::{self, HeaderMap, HeaderName}}};
 use std::fs::File;
 use std::fs;
 use std::str::FromStr;
@@ -38,7 +38,6 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
     {fs::write("qw", "e".to_string().as_bytes()).unwrap();q =2;}}}}
     rq = i32::from_str(&e).unwrap();
     rq+=1;
-    fs::write("visits", &rq.to_string().as_bytes()).unwrap();q =2;}}}
     println!("e");
     let qw=sock.recv().await.unwrap().unwrap().into_data();
     let qwp=sock.recv().await.unwrap().unwrap().into_data();
