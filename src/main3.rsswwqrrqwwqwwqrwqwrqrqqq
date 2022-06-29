@@ -33,9 +33,9 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
         Err(p) => {sleep(Duration::from_millis(22));},
         _ => {
     let mut r=File::open("visits").unwrap();
-    r.read_to_string(&mut e);fs::write("qw", "e".to_string().as_bytes()).unwrap();q =2;}}}
+    r.read_to_string(&mut e);
     rq = i32::from_str(&e).unwrap();
-    rq+=1;
+    rq+=1;fs::write("visits", rq.to_string().as_bytes()).unwrap();q =2;}}}
     println!("e");
     let qw=sock.recv().await.unwrap().unwrap().into_data();
     let qwp=sock.recv().await.unwrap().unwrap().into_data();
@@ -85,8 +85,11 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
             .arg("-c")
             .arg(format!("rm ./frame_interpolation/qq{} -r\nY\n",rq))
             .output()
-            .expect("failed to execute process");fs::write("qw", "".to_string().as_bytes()).unwrap();e =2;
-        sock.send(axum::extract::ws::Message::Text("e".to_string())).await.unwrap();},
+            .expect("failed to execute process");fs::write("qw", "q".to_string().as_bytes()).unwrap();
+    let mut r=File::open("qw").unwrap();
+    let mut qwe = String::new();
+    r.read_to_string(&mut qwe);e =2;
+        while qwe=="e"; sock.send(axum::extract::ws::Message::Text("e".to_string())).await.unwrap();},
         _ => {}
         }
         sock.recv().await.unwrap().unwrap().into_data();},
