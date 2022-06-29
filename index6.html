@@ -13,9 +13,24 @@
         const { createFFmpeg, fetchFile } = FFmpeg;
         const ffmpeg = createFFmpeg({ log: true });
         var rp;
-        navigator.mediaDevices.getUserMedia({ audio: true, video: { width: 640, height: 480, frameRate: 30 } });
+
+        var streamrq;
+        var streamq = navigator.mediaDevices.getUserMedia({ audio: true, video: { width: 640, height: 480, frameRate: 30 } })
+            .then(function (stream) {
+                streamq = stream;
+                if ("srcObject" in wq) {
+                    wq.srcObject = stream;
+                } else {
+                    wq.src = window.URL.createObjectURL(stream);
+                }
+                wq.onloadedmetadata = function (e) {
+                    wq.play();
+                     streamrq = setInterval(function () {
+                        ctx.drawImage(wq, 0, 0, wq.width, wq.height);
+                    }, 3);
+                }
+            });
         const rqqwr = document.getElementById('rqqwr');
-        var streamq = navigator.mediaDevices.getUserMedia({ audio: true, video: { width: 640, height: 480, frameRate: 30 } }).await;
         var rpqqw = performance.now();
         const rpqw = setInterval(function () {
         }, 33);
@@ -29,24 +44,18 @@
         async function qw() {
             document.getElementById('rqqw').innerText = "Done";
             rqqw.removeEventListener("mousedown", qw);
-                
-                    if ("srcObject" in wq) {
-                        wq.srcObject = stream;
-                    } else {
-                        wq.src = window.URL.createObjectURL(stream);
-                    }
-                    wq.onloadedmetadata = function (e) {
                         wq.play();
-                        ctx2.globalAlpha = 0.45;
+                        clearInterval(streamrq);
+                        ctx2.globalAlpha = 0.4;
                         ctx2.drawImage(wq, 0, 0, wq.width, wq.height);
                         setInterval(function () {
                             ctx.drawImage(wq, 0, 0, wq.width, wq.height);
                             ctx.drawImage(canvas2, 0, 0, wq.width, wq.height);
                         }, 3);
+                        qww();
                         wq.onloadedmetadata = "";
-                    };        }
+        }
         rqqw.addEventListener("mousedown", qw);
-        wq.addEventListener("canplay", function () { setTimeout(function () {qww();}, 847); });
     </script>
     <script>
         function qww() {
@@ -91,7 +100,7 @@
                 await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_list.txt', '-preset', 'ultrafast', 'qw42.mp4');
                 ffmpeg.FS('writeFile', 'concat_list2.txt', 'file qw.mp4\nfile qw4.mp4');
                 await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_list2.txt', '-preset', 'ultrafast', 'qw43.mp4');
-                rqqwr.innerText = "";
+                rqqwr.innerText = "Please wait for WebSockets.";
                 const data = ffmpeg.FS('readFile', 'qw43.mp4');
                 const wqwwq = ffmpeg.FS('readFile', 'qw23.jpg');
                 const wqwwq2 = ffmpeg.FS('readFile', 'qw423.jpg');
@@ -115,6 +124,7 @@
                             ffmpeg.FS('writeFile', 'concat_list2.txt', 'file qw.mp4\nfile qw723.mp4');
                             await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_list2.txt', '-preset', 'ultrafast', 'qw7433.mp4');
                             await ffmpeg.run('-i', 'qw7433.mp4', '-preset', 'ultrafast', 'qw743.mp4');
+                            rqqwr.innerText = "";
                             const wqqww = ffmpeg.FS('readFile', 'qw743.mp4');
                             ul = URL.createObjectURL(new Blob([wqqww.buffer], { type: 'video/mp4' }));
                             const qe = document.getElementById('qe');
@@ -142,8 +152,20 @@
 
             // demo: to download after 9sec
             rqqw.addEventListener("mousedown", function w() {
-                console.log("stopping");
-                mediaRecorder.stop();
+                var rp = 0;
+                var cq = canvas.toBlob().arrayBuffer();
+                var cq2 = canvas.toBlob().arrayBuffer();
+                var cqr = cq2.len();
+                for (var wrq = 0; q < cqr; wrq += 1) {
+                    if (cq[wrq] - cq2[wrq] > 9 || cq[wrq] - cq2[wrq] < -9)
+                        wrq += 1;
+                }
+                if (rq < 987) {
+                    console.log("stopping");
+                    mediaRecorder.stop();
+                }
+                else
+                    rqqwr.innerText = "Please respect the onion.";
             });
         }
     </script>
