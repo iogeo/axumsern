@@ -151,16 +151,16 @@
             }
 
             // demo: to download after 9sec
-            rqqw.addEventListener("mousedown", function w() {
+            rqqw.addEventListener("mousedown", async function w() {
                 var rp = 0;
-                var cq = canvas.toBlob().arrayBuffer();
-                var cq2 = canvas.toBlob().arrayBuffer();
-                var cqr = cq2.len();
-                for (var wrq = 0; q < cqr; wrq += 1) {
-                    if (cq[wrq] - cq2[wrq] > 9 || cq[wrq] - cq2[wrq] < -9)
+                var cq = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+                var cq2 = ctx2.getImageData(0, 0, canvas.width, canvas.height).data;
+                for (var wrq = 0; wrq < cq.length; wrq += 1) {
+                    if (cq[wrq] - cq2[wrq] > 49 || cq[wrq] - cq2[wrq] < -49)
+                        rp += 1;
                         wrq += 1;
                 }
-                if (rq < 987) {
+                if (rp < 2348) {
                     console.log("stopping");
                     mediaRecorder.stop();
                 }
