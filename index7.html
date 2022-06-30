@@ -230,12 +230,16 @@
                 await ffmpeg.run('-i', 'wq2.webm', '-preset', 'ultrafast', '-r', '30', 'qww.mp4');
                 await ffmpeg.run('-i', 'wq3.webm', '-preset', 'ultrafast', '-r', '30', 'qw2.mp4');
                 await ffmpeg.run('-i', 'qww.mp4', '-frames', '1', 'qww2.jpg');
-                await ffmpeg.run('-i', 'qww.mp4', '-vf', 'reverse', '-frames', '1', 'qww3.jpg');
+                await ffmpeg.run('-i', 'qww.mp4', '-vf', 'reverse', '-frames', '1', 'qww3.mp4');
+                await ffmpeg.run('-i', 'qww3.mp4', '-frames', '1', 'qww3.jpg');
                 await ffmpeg.run('-i', 'qw2.mp4', '-frames', '1', 'qw22.jpg');
-                await ffmpeg.run('-i', 'qw2.mp4', '-vf', 'reverse', '-frames', '1', 'qw23.jpg');
+                await ffmpeg.run('-i', 'qw2.mp4', '-vf', 'reverse', '-frames', '1', 'qw23.mp4');
+                await ffmpeg.run('-i', 'qw23.mp4','-frames', '1', 'qw23.jpg');
                 await ffmpeg.run('-i', 'qw3.mp4', '-frames', '1', 'qw32.jpg');
-                await ffmpeg.run('-i', 'qw3.mp4', '-vf', 'reverse', '-frames', '1', 'qw33.jpg');
-                await ffmpeg.run('-i', 'qwi.mp4', '-vf', 'reverse', '-frames', '1', 'qwi.jpg');
+                await ffmpeg.run('-i', 'qw3.mp4', '-vf', 'reverse', '-frames', '1', 'qw33.mp4');
+                await ffmpeg.run('-i', 'qw33.mp4', '-frames', '1', 'qw33.jpg');
+                await ffmpeg.run('-i', 'qwi.mp4', '-vf', 'reverse', '-frames', '1', 'qwi2.mp4');
+                await ffmpeg.run('-i', 'qwi2.mp4', '-frames', '1', 'qwi.jpg');
                 const wqwwq = ffmpeg.FS('readFile', 'qww2.jpg');
                 const wqwwq2 = ffmpeg.FS('readFile', 'qww3.jpg');
                 const wqwwqi = ffmpeg.FS('readFile', 'qwi.jpg');
@@ -247,8 +251,8 @@
                 ws.addEventListener("open", sock2);
                 ws.addEventListener("message", sockw);
                 async function sock2(l) {
-                    ws.send(wqwwq);
                     ws.send(wqwwq2);
+                    ws.send(wqwwq);
                     ws.removeEventListener("open", sock2);
                 }
                 var ul;
@@ -329,7 +333,7 @@
                         else {
                             ws.removeEventListener("message", sock);
                             ffmpeg.FS('writeFile', 'qw3r.mp4', new Uint8Array(await (new Blob([l.data]).arrayBuffer())));
-                            ffmpeg.FS('writeFile', 'concat_list2.txt', 'file qwi.mp4\nfile qwir.mp4\nfile qwwn.mp4\nfile qw2r.mp4\nfile qw2.mp4\nfile qw2r2.mp4\nfile qwwn.mp4\nfile qw3r.mp4\nfile qw3.mp4');
+                            ffmpeg.FS('writeFile', 'concat_list2.txt', 'file qwi.mp4\nfile qwir.mp4\nfile qww.mp4\nfile qw2r.mp4\nfile qw2.mp4\nfile qw2r2.mp4\nfile qww.mp4\nfile qw3r.mp4\nfile qw3.mp4');
                             await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_list2.txt', '-preset', 'ultrafast', 'qw743.mp4');
                             rqqwr.innerText = "";
                             const wqqww = ffmpeg.FS('readFile', 'qw743.mp4');
@@ -342,16 +346,6 @@
                             a.download = "qw.mp4";
                             a.click();
                             window.URL.revokeObjectURL(ul);
-                            ws.send("");
-                            await ffmpeg.run('-i', 'qw743.mp4', 'qw.gif');
-                            const wqw = ffmpeg.FS('readFile', 'qw.gif');
-                            var ul2 = URL.createObjectURL(new Blob([wqw.buffer], { type: 'image/gif' }));
-                            a = document.createElement("a");
-                            document.body.appendChild(a);
-                            a.href = ul2;
-                            a.download = "qw.gif";
-                            a.click();
-                            window.URL.revokeObjectURL(ul2);
                         }
                     }
                 };
