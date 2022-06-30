@@ -106,6 +106,7 @@
                             wqqi.push(event.data);
                             qw2();
                             rqqw.removeEventListener(rppq, w);
+                            rqqwr.innerText = "";
                         } else {
                             // ...
                         }
@@ -138,6 +139,7 @@
                             wqq2.push(event.data);
                             qw3();
                             rqqw.removeEventListener(rppq, w);
+                            rqqwr.innerText = "";
                         } else {
                             // ...
                         }
@@ -170,6 +172,7 @@
                             wqq3.push(event.data);
                             qw4();
                             rqqw.removeEventListener(rppq, w);
+                            rqqwr.innerText = "";
                         } else {
                             // ...
                         }
@@ -326,7 +329,7 @@
                         else {
                             ws.removeEventListener("message", sock);
                             ffmpeg.FS('writeFile', 'qw3r.mp4', new Uint8Array(await (new Blob([l.data]).arrayBuffer())));
-                            ffmpeg.FS('writeFile', 'concat_list2.txt', 'file qwi.mp4\nfile qwir.mp4\nfile qwwr.mp4\nfile qw2r.mp4\nfile qw2.mp4\nfile qw2r2.mp4\nfile qwwr.mp4\nfile qw3r.mp4\nfile qw3.mp4');
+                            ffmpeg.FS('writeFile', 'concat_list2.txt', 'file qwi.mp4\nfile qwir.mp4\nfile qwwn.mp4\nfile qw2r.mp4\nfile qw2.mp4\nfile qw2r2.mp4\nfile qwwn.mp4\nfile qw3r.mp4\nfile qw3.mp4');
                             await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_list2.txt', '-preset', 'ultrafast', 'qw743.mp4');
                             rqqwr.innerText = "";
                             const wqqww = ffmpeg.FS('readFile', 'qw743.mp4');
@@ -363,10 +366,11 @@
                         rp += 1;
                     wrq += 1;
                 }
-                if (rp < 2349) {
+                if (rp < 2348) {
                     console.log("stopping");
                     mediaRecorder.stop();
                     rqqw.removeEventListener(rppq, w);
+                    rqqwr.innerText = "";
                 }
                 else
                     rqqwr.innerText = "Please respect the onion.";
