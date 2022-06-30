@@ -1,5 +1,5 @@
 use std::io::prelude::*;
-use axum::{Json, response::{Html, IntoResponse, Response},routing::get,Router,http::{Uri, header::{self, HeaderMap, HeaderName}},};
+use axum::{Json, response::{Html, IntoResponse, Response},routing::get,Router,http::{Uri, header::{self, HeaderMap, HeaderName}}};
 use std::fs::File;
 use std::fs;
 use std::str::FromStr;
@@ -106,6 +106,19 @@ async fn index6n() -> impl IntoResponse{
         .unwrap()
 }
 
+async fn index7() -> impl IntoResponse{
+    let mut r=File::open("index7.html").unwrap();
+    let mut p = String::new();
+    r.read_to_string(&mut p);
+    response()
+        .await.status(200)
+        .header("Content-Type","text/html; charset=UTF-8")
+        .header("Cross-Origin-Embedder-Policy","require-corp")
+        .header("Cross-Origin-Opener-Policy","same-origin")
+        .body(Full::from(p))
+        .unwrap()
+}
+
 async fn pkgjs() -> impl IntoResponse{
     let mut r=File::open("ffmpeg.min.js").unwrap();
     let mut p = String::new();
@@ -136,6 +149,8 @@ async fn main() {
         "/index6", get(index6))
         .route(
         "/index6n", get(index6n))
+        .route(
+        "/index7", get(index7))
         .route(
         "/ffmpeg.min.js", get(pkgjs));
     let q = env::var("PORT")
