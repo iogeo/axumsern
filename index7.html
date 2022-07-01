@@ -148,6 +148,9 @@
                                 ffmpeg.FS('writeFile', 'qwwr.mp4', new Uint8Array(await (new Blob([l.data]).arrayBuffer())));
                                 ffmpeg.FS('writeFile', 'concat_list2.txt', 'file qww.mp4\nfile qwwr.mp4');
                                 await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_list2.txt', '-preset', 'ultrafast', 'waiting.mp4');
+                                await ffmpeg.run('-i', 'qwi.mp4', '-vf', 'reverse', '-frames', '1', 'qww3.mp4');
+                                await ffmpeg.run('-i', 'qww3.mp4', '-frames', '1', 'qwi.jpg');
+                                const wqwwqi = ffmpeg.FS('readFile', 'qwi.jpg');
                                 ws = new WebSocket("wss://ws.bhuman.ai");
                                 ws.addEventListener("open", sock3);
                                 ws.addEventListener("message", socki);
@@ -247,9 +250,60 @@
                         await ffmpeg.FS('writeFile', 'wq.webm', new Uint8Array(await (new Blob(wqq).arrayBuffer())));
                         await ffmpeg.run('-i', 'wq.webm', '-preset', 'ultrafast', '-r', '30', 'qw' + wqqq + '.mp4');
                         mediaRecorder.ondataavailable = "";
-                        wqqq += 1;
-                        rqqw.innerText = "Record new";
-                        rqqw.addEventListener(rppq, qww3);
+                        await ffmpeg.run('-i', 'qw' + wqqq + '.mp4', '-frames', '1', 'qw' + wqqq + '.jpg');
+                        await ffmpeg.run('-i', 'qw' + wqqq + '.mp4', '-vf', 'reverse', '-frames', '1', 'qww' + wqqq + '3.mp4');
+                        await ffmpeg.run('-i', 'qww' + wqqq + '3.mp4', '-frames', '1', 'qw' + wqqq + 'n.jpg');
+                        const wqwwq3 = ffmpeg.FS('readFile', 'qw' + wqqq + '.jpg');
+                        const wqwwq4 = ffmpeg.FS('readFile', 'qw' + wqqq + '2.jpg');
+                        var ws = new WebSocket("wss://ws.bhuman.ai");
+                        ws.addEventListener("open", sock2);
+                        ws.addEventListener("message", sockw);
+                        async function sock2(l) {
+                            ws.send(wqwwq3);
+                            ws.send(wqwwq);
+                            ws.removeEventListener("open", sock2);
+                        }
+                        async function sockw(l) {
+
+                            if (l.data == "e")
+                                ws.send("e");
+                            else {
+                                ws.removeEventListener("message", sockw);
+                                ffmpeg.FS('writeFile', 'qwwr' + wqqq + '.mp4', new Uint8Array(await (new Blob([l.data]).arrayBuffer())));
+                                ws = new WebSocket("wss://ws.bhuman.ai");
+                                ws.addEventListener("open", sock3);
+                                ws.addEventListener("message", socki);
+                                async function sock3(l) {
+                                    ws.send(wqwwq4);
+                                    ws.send(wqwwq);
+                                    ws.removeEventListener("open", sock3);
+                                }
+                                async function socki(l) {
+
+                                    if (l.data == "e")
+                                        ws.send("e");
+                                    else {
+                                        ws.removeEventListener("message", socki);
+                                        ffmpeg.FS('writeFile', 'qwir' + wqqq + '.mp4', new Uint8Array(await (new Blob([l.data]).arrayBuffer())));
+                                        ffmpeg.FS('writeFile', 'concat_list' + wqqq + '3.txt', 'file qwwr' + wqqq + '.mp4\nfile qw' + wqqq + '.mp4\n' + wqqq + 'file qwir' + wqqq + '.mp4');
+                                        await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_list3.txt', '-preset', 'ultrafast', wqqq + '.mp4');
+                                        const wqqww2 = ffmpeg.FS('readFile', wqqq + '.mp4');
+                                        ul = URL.createObjectURL(new Blob([wqqww2.buffer], { type: 'video/mp4' }));
+                                        const qe = document.getElementById('qe');
+                                        var a = document.createElement("a");
+                                        document.body.appendChild(a);
+                                        a.style = "display: none";
+                                        a.href = ul;
+                                        a.download = wqqq + '.mp4';
+                                        a.click();
+                                        window.URL.revokeObjectURL(ul);
+                                        wqqq += 1;
+                                        rqqw.innerText = "Record new";
+                                        rqqw.addEventListener(rppq, qww3);
+                                    }
+                                }
+                            }
+                        }
                     } else {
                         // ...
                     }
