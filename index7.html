@@ -10,6 +10,7 @@
     <video controls width="640" height="480" id="wq" muted hidden></video>
     <p>
         <button id=rqqw>Record</button>
+        <button id=rqqw2>Done all (Not yet)</button>
     </p>
     <canvas id="canvas" width="640" height="480"></canvas>
     <canvas id="canvas2" width="640" height="480" hidden></canvas>
@@ -95,6 +96,7 @@
                             rqqw.innerText = "Please wait";
                             await ffmpeg.FS('writeFile', 'wq.webm', new Uint8Array(await(new Blob(wqqi).arrayBuffer())));
                             await ffmpeg.run('-i', 'wq.webm', '-preset', 'ultrafast', '-r', '30', 'qwi.mp4');
+                            await ffmpeg.run('-y', '-i', 'qwi.mp4', '-preset', 'ultrafast', '-r', '30', 'Final.mp4');
                             qw2();
                         } else {
                             // ...
@@ -190,6 +192,8 @@
                                         window.URL.revokeObjectURL(ul);
                                         rqqw.innerText = "Record new";
                                         rqqw.addEventListener(rppq, qww3);
+                                        rqqw2.innerText = "Done all";
+                                        rqqw2.addEventListener(rppq, rwq);
                                     }
                                 }
                             }
@@ -201,9 +205,9 @@
                 var options = { mimeType: "video/webm" };
                 mediaRecorder.ondataavailable = handleDataAvailable;
                 mediaRecorder.start();
+                rqqwr.innerText = "";
                 rqqw.innerText = "Done";
                 rqqw.addEventListener(rppq, qwwp);
-
             }
             else
                 rqqwr.innerText = "Please respect the onion. (" + rp + "/332222)";
@@ -241,6 +245,7 @@
                 rqqw.removeEventListener(rppq, qww3);
                 var wqq = [];
                 var options = { mimeType: "video/webm" };
+                rqqwr.innerText = "";
                 rqqw.innerText = "Done";
                 mediaRecorder = new MediaRecorder(streamq, options);
 
@@ -260,8 +265,8 @@
                         ws.addEventListener("open", sock2);
                         ws.addEventListener("message", sockw);
                         async function sock2(l) {
-                            ws.send(wqwwq3);
                             ws.send(wqwwq);
+                            ws.send(wqwwq3);
                             ws.removeEventListener("open", sock2);
                         }
                         async function sockw(l) {
@@ -288,6 +293,7 @@
                                         ffmpeg.FS('writeFile', 'qwir' + wqqq + '.mp4', new Uint8Array(await (new Blob([l.data]).arrayBuffer())));
                                         ffmpeg.FS('writeFile', 'concat_list' + wqqq + '3.txt', 'file qwwr' + wqqq + '.mp4\nfile qw' + wqqq + '.mp4\n' + wqqq + 'file qwir' + wqqq + '.mp4');
                                         await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_list3.txt', '-preset', 'ultrafast', wqqq + '.mp4');
+                                        ffmpeg.FS('writeFile', 'concat_lists.txt', 'file Final.mp4\nfile waiting.mp4\nfile ' + wqqq + '.mp4');
                                         const wqqww2 = ffmpeg.FS('readFile', wqqq + '.mp4');
                                         ul = URL.createObjectURL(new Blob([wqqww2.buffer], { type: 'video/mp4' }));
                                         const qe = document.getElementById('qe');
@@ -318,7 +324,21 @@
                 rqqwr.innerText = "Please respect the onion. (" + rp + "/332222)";
             
         }
-        
+        async function rqw() {
+
+            const wqqwwr = ffmpeg.FS('readFile', 'Final.mp4');
+            ul = URL.createObjectURL(new Blob([wqqwwr.buffer], { type: 'video/mp4' }));
+            var a = document.createElement("a");
+            document.body.appendChild(a);
+            a.style = "display: none";
+            a.href = ul;
+            a.download = 'Final.mp4';
+            a.click();
+            window.URL.revokeObjectURL(ul);
+            wqqq += 1;
+            rqqw.innerText = "Record new";
+            rqqw.addEventListener(rppq, qww3);
+        }
         function qww() {
             mediaRecorder.stop();
             var canvas = document.querySelector("canvas");
