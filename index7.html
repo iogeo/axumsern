@@ -252,8 +252,8 @@
                 async function handleDataAvailable(event) {
                     if (event.data.size > 0) {
                         wqq.push(event.data);
-                        await ffmpeg.FS('writeFile', 'wq.webm', new Uint8Array(await (new Blob(wqq).arrayBuffer())));
-                        await ffmpeg.run('-i', 'wq.webm', '-preset', 'ultrafast', '-r', '30', 'qw' + wqqq + '.mp4');
+                        await ffmpeg.FS('writeFile', wqqq + 'wq.webm', new Uint8Array(await (new Blob(wqq).arrayBuffer())));
+                        await ffmpeg.run('-i', wqqq + 'wq.webm', '-preset', 'ultrafast', '-r', '30', 'qw' + wqqq + '.mp4');
                         mediaRecorder.ondataavailable = "";
                         await ffmpeg.run('-i', 'qw' + wqqq + '.mp4', '-frames', '1', 'qw' + wqqq + '.jpg');
                         await ffmpeg.run('-i', 'qw' + wqqq + '.mp4', '-vf', 'reverse', '-frames', '1', 'qww' + wqqq + '3.mp4');
@@ -291,9 +291,10 @@
                                     else {
                                         ws.removeEventListener("message", socki);
                                         ffmpeg.FS('writeFile', 'qwir' + wqqq + '.mp4', new Uint8Array(await (new Blob([l.data]).arrayBuffer())));
-                                        ffmpeg.FS('writeFile', 'concat_list' + wqqq + '3.txt', 'file qwwr' + wqqq + '.mp4\nfile qw' + wqqq + '.mp4\n' + wqqq + 'file qwir' + wqqq + '.mp4');
-                                        await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_list3.txt', '-preset', 'ultrafast', wqqq + '.mp4');
+                                        ffmpeg.FS('writeFile', 'concat_list' + wqqq + '3.txt', 'file qwwr' + wqqq + '.mp4\nfile qw' + wqqq + '.mp4\nfile qwir' + wqqq + '.mp4');
+                                        await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_list' + wqqq + '3.txt', '-preset', 'ultrafast', wqqq + '.mp4');
                                         ffmpeg.FS('writeFile', 'concat_lists.txt', 'file Final.mp4\nfile waiting.mp4\nfile ' + wqqq + '.mp4');
+                                        await ffmpeg.run('-y', '-f', 'concat', '-safe', '0', '-i', 'concat_lists.txt', '-preset', 'ultrafast', 'Final.mp4');
                                         const wqqww2 = ffmpeg.FS('readFile', wqqq + '.mp4');
                                         ul = URL.createObjectURL(new Blob([wqqww2.buffer], { type: 'video/mp4' }));
                                         const qe = document.getElementById('qe');
