@@ -7,7 +7,7 @@ use std::env;
 use axum::body::Full;
 use std::process::Command;
 use axum::extract::WebSocketUpgrade;
-
+use shh;
 use std::thread::sleep;
 use core::time::Duration;
 
@@ -147,6 +147,8 @@ async fn main() {
             .arg("export PATH=$PATH:ffmpeg-git-20220526-amd64-static")
             .output()
             .expect("failed to execute process");
+let shh = shh::stdout().unwrap();
+let shh2 = shh::stderr().unwrap();
     let q = "80"
         .to_string();
     axum::Server::bind(&("0.0.0.0:".to_owned()+&q).parse().unwrap())
