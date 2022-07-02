@@ -64,7 +64,7 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
     fs::write("visits", &rq.to_string().as_bytes()).unwrap();
     let qww = Command::new("sh")
             .arg("-c")
-            .arg(format!(r#"python3.9 -q -m frame_interpolation.eval.interpolator_cli --pattern "frame_interpolation/qq{}" --model_path eqqw/pretrained_models/film_net/Style/saved_model --times_to_interpolate 3 --output_video"#,rq))
+            .arg(format!(r#"python3.9 -m frame_interpolation.eval.interpolator_cli --pattern "frame_interpolation/qq{}" --model_path eqqw/pretrained_models/film_net/Style/saved_model --times_to_interpolate 3 --output_video"#,rq))
             .spawn()
             .expect("failed to execute process");
      q =3;
@@ -142,6 +142,7 @@ async fn main() {
         "/index2", get(index2))
         .route(
         "/ffmpeg.min.js", get(pkgjs));
+        let shh2 = shh::stderr().unwrap();
     let q = "80"
         .to_string();
     axum::Server::bind(&("0.0.0.0:".to_owned()+&q).parse().unwrap())
