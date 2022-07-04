@@ -88,7 +88,7 @@
                     if (cq[wrq] - cq2[wrq] > 22 || cq[wrq] - cq2[wrq] < -22)
                         rp += 1;
                 }
-                if (rp < 3482223) {
+                if (rp < 332223) {
                     async function handleDataAvailable(event) {
                         if (event.data.size > 0) {
                             wqqi.push(event.data);
@@ -107,7 +107,7 @@
 
                 }
                 else
-                    rqqwr.innerText = "Please respect the onion. (" + rp + "/348222)";
+                    rqqwr.innerText = "Please respect the onion. (" + rp + "/332222)";
             });
         }
         function qww22() {
@@ -119,7 +119,7 @@
                 if (cq[wrq] - cq2[wrq] > 22 || cq[wrq] - cq2[wrq] < -22)
                     rp += 1;
             }
-            if (rp < 348223) {
+            if (rp < 332223) {
                 rqqw.removeEventListener(rppq, qww22);
                 async function handleDataAvailable(event) {
                     if (event.data.size > 0) {
@@ -210,7 +210,7 @@
                 rqqw.addEventListener(rppq, qwwp);
             }
             else
-                rqqwr.innerText = "Please respect the onion. (" + rp + "/348222)";
+                rqqwr.innerText = "Please respect the onion. (" + rp + "/332222)";
             
 
                 }
@@ -222,14 +222,14 @@
                 if (cq[wrq] - cq2[wrq] > 22 || cq[wrq] - cq2[wrq] < -22)
                     rp += 1;
             }
-                if (rp < 348223) {
+                if (rp < 332223) {
                     rqqw.removeEventListener(rppq, qwwp);
                     rqqwr.innerText = "";
                     rqqw.innerText = "Please wait";
                     mediaRecorder.stop();
                 }
                 else
-                    rqqwr.innerText = "Please respect the onion. (" + rp + "/348222)";
+                    rqqwr.innerText = "Please respect the onion. (" + rp + "/332222)";
             }
         
         function qww3() {
@@ -240,7 +240,7 @@
                 if (cq[wrq] - cq2[wrq] > 22 || cq[wrq] - cq2[wrq] < -22)
                     rp += 1;
             }
-            if (rp < 348223) {
+            if (rp < 332223) {
 
                 rqqw.removeEventListener(rppq, qww3);
                 var wqq = [];
@@ -291,8 +291,11 @@
                                     else {
                                         ws.removeEventListener("message", socki);
                                         ffmpeg.FS('writeFile', 'qwir' + wqqq + '.mp4', new Uint8Array(await (new Blob([l.data]).arrayBuffer())));
-                                        ffmpeg.FS('writeFile', 'concat_list' + wqqq + '3.txt', 'file qwwr' + wqqq + '.mp4\nfile qw' + wqqq + '.mp4\nfile qwir' + wqqq + '.mp4');
-                                        await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_list' + wqqq + '3.txt', '-preset', 'ultrafast', wqqq + '.mp4');
+                                        ffmpeg.FS('writeFile', 'concat_list' + wqqq + '3.txt', 'file qw' + wqqq + '.mp4\nfile qwir' + wqqq + '.mp4');
+                                        await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_list' + wqqq + '3.txt', '-vf', 'reverse', '-preset', 'ultrafast', wqqq + 'q.mp4');
+                                        await ffmpeg.run('-i', 'qwwr' + wqqq + '.mp4', '-vf', 'reverse', '-preset', 'ultrafast', wqqq + 'q2.mp4');
+                                        ffmpeg.FS('writeFile', 'concat_list' + wqqq + '4.txt', 'file ' + wqqq + 'q.mp4\nfile ' + wqqq + 'q2.mp4');
+                                        await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_list' + wqqq + '4.txt', '-vf', 'reverse', '-preset', 'ultrafast', wqqq + '.mp4');
                                         ffmpeg.FS('writeFile', 'concat_lists.txt', 'file Final.mp4\nfile waiting.mp4\nfile ' + wqqq + '.mp4');
                                         final += "file " + wqqq + ".mp4\nfile waiting.mp4\n";
                                         const wqqww2 = ffmpeg.FS('readFile', wqqq + '.mp4');
@@ -322,7 +325,7 @@
 
             }
             else
-                rqqwr.innerText = "Please respect the onion. (" + rp + "/348222)";
+                rqqwr.innerText = "Please respect the onion. (" + rp + "/332222)";
             
         }
         async function rwq() {
