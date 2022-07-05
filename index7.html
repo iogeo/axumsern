@@ -33,12 +33,16 @@
                     streamrq = setInterval(function () {
                         ctx.drawImage(wq, 0, 0, wq.width, wq.height);
                     }, 3);
+                    rqqw.addEventListener(rppq, qw);
                 }
             });
         var wqqq = 3;
         var wqqi = [];
         var wqq2 = [];
         var wqq3 = [];
+        var wqr;
+        var wqr2;
+        var options = { mimeType: "video/webm" };
         const rqqwr = document.getElementById('rqqwr');
         var rpqqw = performance.now();
         const rpqw = setInterval(function () {
@@ -62,10 +66,42 @@
             clearInterval(streamrq);
             ctx2.globalAlpha = 0.4;
             ctx2.drawImage(wq, 0, 0, wq.width, wq.height);
-            setInterval(function () {
+            function qwpr() {
                 ctx.drawImage(wq, 0, 0, wq.width, wq.height);
                 ctx.drawImage(canvas2, 0, 0, wq.width, wq.height);
-            }, 3);
+                ctx.fillStyle = 'green';
+                ctx.textAlign = 'right';
+                ctx.font = 'bold xx-large serif';
+                ctx.fillText("✓", canvas.width - 28, canvas.height - 28);
+            }
+            function qwpr2() {
+
+                ctx.drawImage(wq, 0, 0, wq.width, wq.height);
+                ctx.drawImage(canvas2, 0, 0, wq.width, wq.height);
+                ctx.fillStyle = 'red';
+                ctx.textAlign = 'right';
+                ctx.font = 'bold xx-large serif';
+                ctx.fillText("X", canvas.width - 28, canvas.height - 28);
+            }
+            wqr = setInterval(qwpr, 3);
+            setInterval(function () {
+                var rp = 0;
+                var cq = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+                var cq2 = ctx2.getImageData(0, 0, canvas.width, canvas.height).data;
+                for (var wrq = 0; wrq < cq.length; wrq += 1) {
+                    if (cq[wrq] - cq2[wrq] > 22 || cq[wrq] - cq2[wrq] < -22)
+                        rp += 1;
+                }
+                if (rp < 332223) {
+                    clearInterval(wqr);
+                    wqr = setInterval(qwpr, 3);
+                }
+                else {
+
+                    clearInterval(wqr);
+                    wqr = setInterval(qwpr2, 3);
+                }
+            }, 334);
             wq.onloadedmetadata = "";
         }
         async function qw2() {
@@ -76,7 +112,6 @@
             wq.onloadedmetadata = "";
         }
         ffmpeg.load();
-        rqqw.addEventListener(rppq, qw);
     </script>
     <script>
         function qww2() {
@@ -99,7 +134,9 @@
                             await ffmpeg.run('-i', 'wq.webm', '-preset', 'ultrafast', '-r', '30', 'qwi.mp4');
                             qw2();
                         } else {
-                            // ...
+
+                            mediaRecorder = new MediaRecorder(streamq, options);
+                            mediaRecorder.start();
                         }
                     }
                     mediaRecorder.ondataavailable = handleDataAvailable;
@@ -199,7 +236,9 @@
                             }
                         }
                     } else {
-                        // ...
+
+                        mediaRecorder = new MediaRecorder(streamq, options);
+                        mediaRecorder.start();
                     }
                 }
                 var options = { mimeType: "video/webm" };
@@ -316,7 +355,9 @@
                             }
                         }
                     } else {
-                        // ...
+
+                        mediaRecorder = new MediaRecorder(streamq, options);
+                        mediaRecorder.start();
                     }
                 }
                 rqqw.addEventListener(rppq, qwwp);
