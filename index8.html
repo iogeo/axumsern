@@ -1,0 +1,606 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+          "http://www.w3.org/TR/html4/loose.dtd">
+<head>
+    <script src='ffmpeg.min.js'></script>
+</head>
+<body>
+    <p>
+        <span id=rqqwr></span>
+    </p>
+    <video controls width="640" height="480" id="wq" muted hidden></video>
+    <p>
+        <button id=rqqw>Record</button>
+        <button id=rqqw2>Done all (Not yet)</button>
+    </p>
+    <canvas id="canvas" width="640" height="480" hidden></canvas>
+    <canvas id="canvasr" width="640" height="480"></canvas>
+    <canvas id="canvas2" width="640" height="480" hidden></canvas>
+    <canvas id="canvas3" width="640" height="480" hidden></canvas>
+    <canvas id="canvas4" width="640" height="480" hidden></canvas>
+    <script>
+        const { createFFmpeg, fetchFile } = FFmpeg;
+        const ffmpeg = createFFmpeg({ log: true });
+        var rp;
+        var rppq = "mousedown";
+        var streamrq;
+        var streamq = navigator.mediaDevices.getUserMedia({ audio: true, video: { width: 640, height: 480, frameRate: 30 } })
+            .then(function (stream) {
+                streamq = stream;
+                if ("srcObject" in wq) {
+                    wq.srcObject = stream;
+                } else {
+                    wq.src = window.URL.createObjectURL(stream);
+                }
+                wq.onloadedmetadata = function (e) {
+                    wq.play();
+                    streamrq = setInterval(function () {
+                        ctx.drawImage(wq, 0, 0, wq.width, wq.height);
+                        ctxr.drawImage(wq, 0, 0, wq.width, wq.height);
+                    }, 3);
+                    rqqw.addEventListener(rppq, qw);
+                }
+            });
+        var wqqq = 3;
+        var wqqi = [];
+        var wqq2 = [];
+        var wqq3 = [];
+        var wqr;
+        var wqr2;
+        var options = { mimeType: "video/webm" };
+        const rqqwr = document.getElementById('rqqwr');
+        var rpqqw = performance.now();
+        const rpqw = setInterval(function () {
+        }, 33);
+        const canvas = document.getElementById('canvas');
+        const canvas2 = document.getElementById('canvas2');
+        const ctx = canvas.getContext('2d');
+        const ctx2 = canvas2.getContext('2d');
+        const canvas3 = document.getElementById('canvas3');
+        const ctx3 = canvas3.getContext('2d');
+        const canvas4 = document.getElementById('canvas4');
+        const ctx4 = canvas4.getContext('2d');
+        const canvasr = document.getElementById('canvasr');
+        const ctxr = canvasr.getContext('2d');
+        const rqqw = document.getElementById('rqqw');
+        var mediaRecorder;
+        var final = "file intro.mp4\nfile waiting.mp4\n";
+        var wq = document.getElementById('wq');
+        async function qw() {
+            document.getElementById('rqqw').innerText = "End intro";
+            var options = { mimeType: "video/webm" };
+            mediaRecorder = new MediaRecorder(streamq, options);
+            mediaRecorder.start();
+            rqqw.removeEventListener(rppq, qw);
+            qww2();
+            wq.play();
+            clearInterval(streamrq);
+            ctx2.globalAlpha = 0.4;
+            ctx2.drawImage(wq, 0, 0, wq.width, wq.height);
+            ctx3.drawImage(wq, -4, -4, wq.width + 8, wq.height + 8);
+            var cq = ctx3.getImageData(0, 0, canvas.width, canvas.height).data;
+            var cq2 = ctx2.getImageData(0, 0, canvas.width, canvas.height).data;
+            var crqw = ctx4.createImageData(wq.width, wq.height);
+            for (var wrqr = 0; wrqr < cq.length; wrqr += 4) {
+                var rp = 0;
+                for (var wrqrr = wrqr; wrqrr < wrqr + 3; wrqrr += 1) {
+                    if (cq[wrqr] - cq2[wrqr] > 22 || cq[wrqr] - cq2[wrqr] < -22)
+                        rp += 1;
+                }
+                if (rp) {
+
+                    for (var wrqrr = wrqr; wrqrr < wrqr + 3; wrqrr += 1) {
+                        crqw.data[wrqrr] = 2;
+                    }
+                    crqw.data[wrqr + 3] = 92;
+                }
+            }
+            ctx4.putImageData(crqw, 0, 0);
+            function qwpr() {
+                ctx.drawImage(wq, 0, 0, wq.width, wq.height);
+                ctx.drawImage(canvas2, 0, 0, wq.width, wq.height);
+                ctx.fillStyle = 'green';
+                ctx.textAlign = 'right';
+                ctx.font = 'bold xxx-large serif';
+                ctx.fillText("✓", canvas.width - 28, canvas.height - 28);
+                ctxr.drawImage(canvas, 0, 0, wq.width, wq.height);
+                ctxr.drawImage(canvas4, 0, 0, wq.width, wq.height);
+            }
+            function qwpr2() {
+
+                ctx.drawImage(wq, 0, 0, wq.width, wq.height);
+                ctx.drawImage(canvas2, 0, 0, wq.width, wq.height);
+                ctx.fillStyle = 'red';
+                ctx.textAlign = 'right';
+                ctx.font = 'bold xxx-large serif';
+                ctx.fillText("X", canvas.width - 28, canvas.height - 28);
+                ctxr.drawImage(canvas, 0, 0, wq.width, wq.height);
+                ctxr.drawImage(canvas4, 0, 0, wq.width, wq.height);
+            }
+            wqr = setInterval(qwpr, 3);
+            setInterval(function () {
+                var rp = 0;
+                var cq = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+                var cq2 = ctx2.getImageData(0, 0, canvas.width, canvas.height).data;
+                for (var wrq = 0; wrq < cq.length; wrq += 1) {
+                    if (cq[wrq] - cq2[wrq] > 22 || cq[wrq] - cq2[wrq] < -22)
+                        rp += 1;
+                }
+                if (rp < 338223) {
+                    clearInterval(wqr);
+                    wqr = setInterval(qwpr, 3);
+                }
+                else {
+
+                    clearInterval(wqr);
+                    wqr = setInterval(qwpr2, 3);
+                }
+            }, 334);
+            wq.onloadedmetadata = "";
+        }
+        async function qw2() {
+            rqqw.innerText = "Record waiting";
+            rqqw.addEventListener(rppq, qww22);
+            rqqw.removeEventListener(rppq, qw2);
+            wq.play();
+            wq.onloadedmetadata = "";
+        }
+        ffmpeg.load();
+    </script>
+    <script>
+        function qww2() {
+            rqqw.addEventListener(rppq, async function w() {
+                var rp = 0;
+                var cq = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+                var cq2 = ctx2.getImageData(0, 0, canvas.width, canvas.height).data;
+                for (var wrq = 0; wrq < cq.length; wrq += 1) {
+                    if (cq[wrq] - cq2[wrq] > 22 || cq[wrq] - cq2[wrq] < -22)
+                        rp += 1;
+                }
+                if (rp < 338223) {
+                    async function handleDataAvailable(event) {
+                        if (event.data.size > 0) {
+                            wqqi.push(event.data);
+                            rqqw.removeEventListener(rppq, w);
+                            rqqwr.innerText = "";
+                            rqqw.innerText = "Please wait";
+                            await ffmpeg.FS('writeFile', 'wq.webm', new Uint8Array(await (new Blob(wqqi).arrayBuffer())));
+                            await ffmpeg.run('-i', 'wq.webm', '-preset', 'ultrafast', '-r', '30', 'qwi.mp4');
+                            qw2();
+                        } else {
+
+                            mediaRecorder = new MediaRecorder(streamq, options);
+                            mediaRecorder.start();
+                        }
+                    }
+                    mediaRecorder.ondataavailable = handleDataAvailable;
+                    mediaRecorder.stop();
+
+                }
+                else
+                    rqqwr.innerText = "Please respect the onion. (" + rp + "/338222)";
+            });
+        }
+        function qww22() {
+            mediaRecorder = new MediaRecorder(streamq, options);
+            var rp = 0;
+            var cq = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+            var cq2 = ctx2.getImageData(0, 0, canvas.width, canvas.height).data;
+            for (var wrq = 0; wrq < cq.length; wrq += 1) {
+                if (cq[wrq] - cq2[wrq] > 22 || cq[wrq] - cq2[wrq] < -22)
+                    rp += 1;
+            }
+            if (rp < 338223) {
+                rqqw.removeEventListener(rppq, qww22);
+                async function handleDataAvailable(event) {
+                    if (event.data.size > 0) {
+                        wqq2.push(event.data);
+                        rqqwr.innerText = "";
+                        rqqw.innerText = "Please wait";
+                        await ffmpeg.FS('writeFile', 'wq2.webm', new Uint8Array(await (new Blob(wqq2).arrayBuffer())));
+                        await ffmpeg.run('-i', 'wq2.webm', '-preset', 'ultrafast', '-r', '30', 'qww.mp4');
+                        await ffmpeg.run('-i', 'qww.mp4', '-frames', '1', 'qww2.jpg');
+                        await ffmpeg.run('-i', 'qww.mp4', '-vf', 'reverse', '-frames', '1', 'qww3.mp4');
+                        await ffmpeg.run('-i', 'qww3.mp4', '-frames', '1', 'qww3.jpg');
+                        const wqwwq = ffmpeg.FS('readFile', 'qww2.jpg');
+                        const wqwwq2 = ffmpeg.FS('readFile', 'qww3.jpg');
+                        var ws = new WebSocket("wss://ws.bhuman.ai");
+                        ws.addEventListener("open", sock2);
+                        ws.addEventListener("message", sockw);
+                        async function sock2(l) {
+                            ws.send(wqwwq2);
+                            ws.send(wqwwq);
+                            ws.removeEventListener("open", sock2);
+                        }
+                        async function sockw(l) {
+
+                            if (l.data == "e")
+                                ws.send("e");
+                            else {
+                                ws.removeEventListener("message", sockw);
+                                ffmpeg.FS('writeFile', 'qwwr.mp4', new Uint8Array(await (new Blob([l.data]).arrayBuffer())));
+                                ffmpeg.FS('writeFile', 'concat_list2.txt', 'file qww.mp4\nfile qwwr.mp4');
+                                await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_list2.txt', '-preset', 'ultrafast', 'waiting.mp4');
+                                await ffmpeg.run('-i', 'qwi.mp4', '-vf', 'reverse', '-frames', '1', 'qww3.mp4');
+                                await ffmpeg.run('-i', 'qww3.mp4', '-frames', '1', 'qwi.jpg');
+                                const wqwwqi = ffmpeg.FS('readFile', 'qwi.jpg');
+                                ws = new WebSocket("wss://ws.bhuman.ai");
+                                ws.addEventListener("open", sock3);
+                                ws.addEventListener("message", socki);
+                                async function sock3(l) {
+                                    ws.send(wqwwqi);
+                                    ws.send(wqwwq);
+                                    ws.removeEventListener("open", sock3);
+                                }
+                                const wqqww = ffmpeg.FS('readFile', 'waiting.mp4');
+                                ul = URL.createObjectURL(new Blob([wqqww.buffer], { type: 'video/mp4' }));
+                                const qe = document.getElementById('qe');
+                                var a = document.createElement("a");
+                                document.body.appendChild(a);
+                                a.style = "display: none";
+                                a.href = ul;
+                                a.download = "waiting.mp4";
+                                a.click();
+                                window.URL.revokeObjectURL(ul);
+                                async function socki(l) {
+
+                                    if (l.data == "e")
+                                        ws.send("e");
+                                    else {
+                                        ws.removeEventListener("message", socki);
+                                        ffmpeg.FS('writeFile', 'qwir.mp4', new Uint8Array(await (new Blob([l.data]).arrayBuffer())));
+                                        ffmpeg.FS('writeFile', 'concat_list3.txt', 'file qwi.mp4\nfile qwir.mp4');
+                                        await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_list3.txt', '-preset', 'ultrafast', 'intro.mp4');
+                                        const wqqww2 = ffmpeg.FS('readFile', 'intro.mp4');
+                                        ul = URL.createObjectURL(new Blob([wqqww2.buffer], { type: 'video/mp4' }));
+                                        const qe = document.getElementById('qe');
+                                        var a = document.createElement("a");
+                                        document.body.appendChild(a);
+                                        a.style = "display: none";
+                                        a.href = ul;
+                                        a.download = "intro.mp4";
+                                        a.click();
+                                        window.URL.revokeObjectURL(ul);
+                                        rqqw.innerText = "Record new";
+                                        rqqw.addEventListener(rppq, qww3);
+                                        rqqw2.innerText = "Done all";
+                                        rqqw2.addEventListener(rppq, rwq);
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+
+                        mediaRecorder = new MediaRecorder(streamq, options);
+                        mediaRecorder.start();
+                    }
+                }
+                var options = { mimeType: "video/webm" };
+                mediaRecorder.ondataavailable = handleDataAvailable;
+                mediaRecorder.start();
+                rqqwr.innerText = "";
+                rqqw.innerText = "Done";
+                rqqw.addEventListener(rppq, qwwp);
+            }
+            else
+                rqqwr.innerText = "Please respect the onion. (" + rp + "/338222)";
+
+
+        }
+        function qwwp() {
+            var rp = 0;
+            var cq = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+            var cq2 = ctx2.getImageData(0, 0, canvas.width, canvas.height).data;
+            for (var wrq = 0; wrq < cq.length; wrq += 1) {
+                if (cq[wrq] - cq2[wrq] > 22 || cq[wrq] - cq2[wrq] < -22)
+                    rp += 1;
+            }
+            if (rp < 338223) {
+                rqqw.removeEventListener(rppq, qwwp);
+                rqqwr.innerText = "";
+                rqqw.innerText = "Please wait";
+                mediaRecorder.stop();
+            }
+            else
+                rqqwr.innerText = "Please respect the onion. (" + rp + "/338222)";
+        }
+
+        function qww3() {
+            var rp = 0;
+            var cq = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+            var cq2 = ctx2.getImageData(0, 0, canvas.width, canvas.height).data;
+            for (var wrq = 0; wrq < cq.length; wrq += 1) {
+                if (cq[wrq] - cq2[wrq] > 22 || cq[wrq] - cq2[wrq] < -22)
+                    rp += 1;
+            }
+            if (rp < 338223) {
+
+                rqqw.removeEventListener(rppq, qww3);
+                var wqq = [];
+                var options = { mimeType: "video/webm" };
+                rqqwr.innerText = "";
+                rqqw.innerText = "Done";
+                mediaRecorder = new MediaRecorder(streamq, options);
+
+                async function handleDataAvailable(event) {
+                    if (event.data.size > 0) {
+                        wqq.push(event.data);
+                        await ffmpeg.FS('writeFile', wqqq + 'wq.webm', new Uint8Array(await (new Blob(wqq).arrayBuffer())));
+                        await ffmpeg.run('-i', wqqq + 'wq.webm', '-preset', 'ultrafast', '-r', '30', 'qw' + wqqq + '.mp4');
+                        mediaRecorder.ondataavailable = "";
+                        await ffmpeg.run('-i', 'qw' + wqqq + '.mp4', '-frames', '1', 'qw' + wqqq + '.jpg');
+                        await ffmpeg.run('-i', 'qw' + wqqq + '.mp4', '-vf', 'reverse', '-frames', '1', 'qww' + wqqq + '3.mp4');
+                        await ffmpeg.run('-i', 'qww' + wqqq + '3.mp4', '-frames', '1', 'qw' + wqqq + 'n.jpg');
+                        const wqwwq = ffmpeg.FS('readFile', 'qww2.jpg');
+                        const wqwwq3 = ffmpeg.FS('readFile', 'qw' + wqqq + '.jpg');
+                        const wqwwq4 = ffmpeg.FS('readFile', 'qw' + wqqq + 'n.jpg');
+                        var ws = new WebSocket("wss://ws.bhuman.ai");
+                        ws.addEventListener("open", sock2);
+                        ws.addEventListener("message", sockw);
+                        async function sock2(l) {
+                            ws.send(wqwwq);
+                            ws.send(wqwwq3);
+                            ws.removeEventListener("open", sock2);
+                        }
+                        async function sockw(l) {
+
+                            if (l.data == "e")
+                                ws.send("e");
+                            else {
+                                ws.removeEventListener("message", sockw);
+                                ffmpeg.FS('writeFile', 'qwwr' + wqqq + '.mp4', new Uint8Array(await (new Blob([l.data]).arrayBuffer())));
+                                ws = new WebSocket("wss://ws.bhuman.ai");
+                                ws.addEventListener("open", sock3);
+                                ws.addEventListener("message", socki);
+                                async function sock3(l) {
+                                    ws.send(wqwwq4);
+                                    ws.send(wqwwq);
+                                    ws.removeEventListener("open", sock3);
+                                }
+                                async function socki(l) {
+
+                                    if (l.data == "e")
+                                        ws.send("e");
+                                    else {
+                                        ws.removeEventListener("message", socki);
+                                        ffmpeg.FS('writeFile', 'qwir' + wqqq + '.mp4', new Uint8Array(await (new Blob([l.data]).arrayBuffer())));
+                                        ffmpeg.FS('writeFile', 'concat_list' + wqqq + '3.txt', 'file qw' + wqqq + '.mp4\nfile qwir' + wqqq + '.mp4');
+                                        await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_list' + wqqq + '3.txt', '-vf', 'reverse', '-preset', 'ultrafast', wqqq + 'q.mp4');
+                                        await ffmpeg.run('-i', 'qwwr' + wqqq + '.mp4', '-vf', 'reverse', '-preset', 'ultrafast', wqqq + 'q2.mp4');
+                                        ffmpeg.FS('writeFile', 'concat_list' + wqqq + '4.txt', 'file ' + wqqq + 'q.mp4\nfile ' + wqqq + 'q2.mp4');
+                                        await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_list' + wqqq + '4.txt', '-vf', 'reverse', '-preset', 'ultrafast', wqqq + '.mp4');
+                                        ffmpeg.FS('writeFile', 'concat_lists.txt', 'file Final.mp4\nfile waiting.mp4\nfile ' + wqqq + '.mp4');
+                                        final += "file " + wqqq + ".mp4\nfile waiting.mp4\n";
+                                        const wqqww2 = ffmpeg.FS('readFile', wqqq + '.mp4');
+                                        ul = URL.createObjectURL(new Blob([wqqww2.buffer], { type: 'video/mp4' }));
+                                        const qe = document.getElementById('qe');
+                                        var a = document.createElement("a");
+                                        document.body.appendChild(a);
+                                        a.style = "display: none";
+                                        a.href = ul;
+                                        a.download = wqqq + '.mp4';
+                                        a.click();
+                                        window.URL.revokeObjectURL(ul);
+                                        wqqq += 1;
+                                        rqqw.innerText = "Record new";
+                                        rqqw.addEventListener(rppq, qww3);
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+
+                        mediaRecorder = new MediaRecorder(streamq, options);
+                        mediaRecorder.start();
+                    }
+                }
+                rqqw.addEventListener(rppq, qwwp);
+                mediaRecorder.ondataavailable = handleDataAvailable;
+                mediaRecorder.start();
+
+            }
+            else
+                rqqwr.innerText = "Please respect the onion. (" + rp + "/338222)";
+
+        }
+        async function rwq() {
+            rqqw2.removeEventListener(rppq, rwq);
+            ffmpeg.FS('writeFile', 'concat_lists.txt', final);
+            await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_lists.txt', '-preset', 'ultrafast', 'Final.mp4');
+
+            const wqqwwr = ffmpeg.FS('readFile', 'Final.mp4');
+            ul = URL.createObjectURL(new Blob([wqqwwr.buffer], { type: 'video/mp4' }));
+            var a = document.createElement("a");
+            document.body.appendChild(a);
+            a.style = "display: none";
+            a.href = ul;
+            a.download = 'Final.mp4';
+            a.click();
+            window.URL.revokeObjectURL(ul);
+            wqqq += 1;
+            rqqw.innerText = "Record new";
+            rqqw.addEventListener(rppq, qww3);
+        }
+        function qww() {
+            mediaRecorder.stop();
+            var canvas = document.querySelector("canvas");
+
+            // Optional frames per second argument.
+            var wqq = [];
+
+            console.log(streamq);
+            var options = { mimeType: "video/webm" };
+            mediaRecorder = new MediaRecorder(streamq, options);
+
+            mediaRecorder.ondataavailable = handleDataAvailable;
+            mediaRecorder.start();
+
+            function handleDataAvailable(event) {
+                console.log("data-available");
+                if (event.data.size > 0) {
+                    wqq.push(event.data);
+                    console.log(wqq);
+                    download();
+                } else {
+                    // ...
+                }
+            }
+            async function download() {
+                var blob = new Blob(wqq, {
+                    type: "video/webm"
+                });
+                const name = 'wq.webm';
+                await ffmpeg.load();
+                ffmpeg.FS('writeFile', 'concat_list.txt', 'file wq.webm');
+                ffmpeg.FS('writeFile', 'wqi.webm', new Uint8Array(await (new Blob(wqqi).arrayBuffer())));
+                ffmpeg.FS('writeFile', 'wq2.webm', new Uint8Array(await (new Blob(wqq2).arrayBuffer())));
+                ffmpeg.FS('writeFile', 'wq3.webm', new Uint8Array(await (new Blob(wqq3).arrayBuffer())));
+                ffmpeg.FS('writeFile', name, new Uint8Array(await (new Blob(wqq).arrayBuffer())));
+                rqqwr.innerText = "Please wait.";//minterpolate=75:mci
+                await ffmpeg.run('-i', 'wq.webm', '-preset', 'ultrafast', '-r', '30', 'qw3.mp4');
+                await ffmpeg.run('-i', 'wqi.webm', '-preset', 'ultrafast', '-r', '30', 'qwi.mp4');
+                await ffmpeg.run('-i', 'wq2.webm', '-preset', 'ultrafast', '-r', '30', 'qww.mp4');
+                await ffmpeg.run('-i', 'wq3.webm', '-preset', 'ultrafast', '-r', '30', 'qw2.mp4');
+                await ffmpeg.run('-i', 'qww.mp4', '-frames', '1', 'qww2.jpg');
+                await ffmpeg.run('-i', 'qww.mp4', '-vf', 'reverse', '-frames', '1', 'qww3.mp4');
+                await ffmpeg.run('-i', 'qww3.mp4', '-frames', '1', 'qww3.jpg');
+                await ffmpeg.run('-i', 'qw2.mp4', '-frames', '1', 'qw22.jpg');
+                await ffmpeg.run('-i', 'qw2.mp4', '-vf', 'reverse', '-frames', '1', 'qw23.mp4');
+                await ffmpeg.run('-i', 'qw23.mp4', '-frames', '1', 'qw23.jpg');
+                await ffmpeg.run('-i', 'qw3.mp4', '-frames', '1', 'qw32.jpg');
+                await ffmpeg.run('-i', 'qw3.mp4', '-vf', 'reverse', '-frames', '1', 'qw33.mp4');
+                await ffmpeg.run('-i', 'qw33.mp4', '-frames', '1', 'qw33.jpg');
+                await ffmpeg.run('-i', 'qwi.mp4', '-vf', 'reverse', '-frames', '1', 'qwi2.mp4');
+                await ffmpeg.run('-i', 'qwi2.mp4', '-frames', '1', 'qwi.jpg');
+                const wqwwq = ffmpeg.FS('readFile', 'qww2.jpg');
+                const wqwwq2 = ffmpeg.FS('readFile', 'qww3.jpg');
+                const wqwwqi = ffmpeg.FS('readFile', 'qwi.jpg');
+                const wqwwq22 = ffmpeg.FS('readFile', 'qw22.jpg');
+                const wqwwq23 = ffmpeg.FS('readFile', 'qw23.jpg');
+                const wqwwq32 = ffmpeg.FS('readFile', 'qw32.jpg');
+                const wqwwq33 = ffmpeg.FS('readFile', 'qw33.jpg');
+                var ws = new WebSocket("wss://ws.bhuman.ai");
+                ws.addEventListener("open", sock2);
+                ws.addEventListener("message", sockw);
+                async function sock2(l) {
+                    ws.send(wqwwq2);
+                    ws.send(wqwwq);
+                    ws.removeEventListener("open", sock2);
+                }
+                var ul;
+                async function sockw(l) {
+
+                    if (l.data == "e")
+                        ws.send("e");
+                    else {
+                        ws.removeEventListener("message", sockw);
+                        ffmpeg.FS('writeFile', 'qwwr.mp4', new Uint8Array(await (new Blob([l.data]).arrayBuffer())));
+                        ffmpeg.FS('writeFile', 'concat_list2.txt', 'file qww.mp4\nfile qwwr.mp4');
+                        await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_list2.txt', '-preset', 'ultrafast', 'qwwn.mp4');
+                        ws = new WebSocket("wss://ws.bhuman.ai");
+                        ws.addEventListener("open", sock3);
+                        ws.addEventListener("message", socki);
+                        async function sock3(l) {
+                            ws.send(wqwwqi);
+                            ws.send(wqwwq);
+                            ws.removeEventListener("open", sock3);
+                        }
+                        async function socki(l) {
+
+                            if (l.data == "e")
+                                ws.send("e");
+                            else {
+                                ws.removeEventListener("message", socki);
+                                ffmpeg.FS('writeFile', 'qwir.mp4', new Uint8Array(await (new Blob([l.data]).arrayBuffer())));
+                                ws = new WebSocket("wss://ws.bhuman.ai");
+                                ws.addEventListener("open", sock4);
+                                ws.addEventListener("message", sockr2);
+                                async function sock4(l) {
+                                    ws.send(wqwwq2);
+                                    ws.send(wqwwq22);
+                                    ws.removeEventListener("open", sock4);
+                                }
+                                async function sockr2(l) {
+
+                                    if (l.data == "e")
+                                        ws.send("e");
+                                    else {
+                                        ws.removeEventListener("message", sockr2);
+                                        ffmpeg.FS('writeFile', 'qw2r.mp4', new Uint8Array(await (new Blob([l.data]).arrayBuffer())));
+                                        ws = new WebSocket("wss://ws.bhuman.ai");
+                                        ws.addEventListener("open", sock4);
+                                        ws.addEventListener("message", sockr3);
+                                        async function sock4(l) {
+                                            ws.send(wqwwq23);
+                                            ws.send(wqwwq);
+                                            ws.removeEventListener("open", sock4);
+                                        }
+                                        async function sockr3(l) {
+
+                                            if (l.data == "e")
+                                                ws.send("e");
+                                            else {
+                                                ws.removeEventListener("message", sockr3);
+                                                ffmpeg.FS('writeFile', 'qw2r2.mp4', new Uint8Array(await (new Blob([l.data]).arrayBuffer())));
+                                                ws = new WebSocket("wss://ws.bhuman.ai");
+                                                ws.addEventListener("open", sock5);
+                                                ws.addEventListener("message", sock);
+                                                async function sock5(l) {
+                                                    ws.send(wqwwq2);
+                                                    ws.send(wqwwq32);
+                                                    ws.removeEventListener("open", sock5);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                async function sock(l) {
+                    {
+                        if (l.data == "e")
+                            ws.send("e");
+                        else {
+                            ws.removeEventListener("message", sock);
+                            ffmpeg.FS('writeFile', 'qw3r.mp4', new Uint8Array(await (new Blob([l.data]).arrayBuffer())));
+                            ffmpeg.FS('writeFile', 'concat_list2.txt', 'file qwi.mp4\nfile qwir.mp4\nfile qww.mp4\nfile qw2r.mp4\nfile qw2.mp4\nfile qw2r2.mp4\nfile qww.mp4\nfile qw3r.mp4\nfile qw3.mp4');
+                            await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_list2.txt', '-preset', 'ultrafast', 'qw743.mp4');
+                            rqqwr.innerText = "";
+                            const wqqww = ffmpeg.FS('readFile', 'qw743.mp4');
+                            ul = URL.createObjectURL(new Blob([wqqww.buffer], { type: 'video/mp4' }));
+                            const qe = document.getElementById('qe');
+                            var a = document.createElement("a");
+                            document.body.appendChild(a);
+                            a.style = "display: none";
+                            a.href = ul;
+                            a.download = "qw.mp4";
+                            a.click();
+                            window.URL.revokeObjectURL(ul);
+                        }
+                    }
+                };
+            }
+
+            rqqw.addEventListener(rppq, async function w() {
+                var rp = 0;
+                var cq = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+                var cq2 = ctx2.getImageData(0, 0, canvas.width, canvas.height).data;
+                for (var wrq = 0; wrq < cq.length; wrq += 1) {
+                    if (cq[wrq] - cq2[wrq] > 49 || cq[wrq] - cq2[wrq] < -49)
+                        rp += 1;
+                    wrq += 1;
+                }
+                if (rp < 2348) {
+                    console.log("stopping");
+                    mediaRecorder.stop();
+                    rqqw.removeEventListener(rppq, w);
+                    rqqwr.innerText = "";
+                }
+                else
+                    rqqwr.innerText = "Please respect the onion.";
+            });
+        }
+    </script>
+</body>
+</html>
