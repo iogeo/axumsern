@@ -1,0 +1,15 @@
+{
+  "name": "cqw",
+  "collaborators": [
+    ""
+  ],
+  "version": "0.1.0",
+  "files": [
+    "cqw_bg.wasm",
+    "cqw.js",
+    "cqw.d.ts"
+  ],
+  "module": "cqw.js",
+  "types": "cqw.d.ts",
+  "sideEffects": false
+}
