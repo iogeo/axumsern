@@ -17,7 +17,8 @@
     <canvas id="canvas2" width="640" height="480" hidden></canvas>
     <canvas id="canvas3" width="640" height="480" hidden></canvas>
     <canvas id="canvas4" width="640" height="480" hidden></canvas>
-    <script>
+        <script type="module">
+            import rust, { cqwr } from './pkg';
         const { createFFmpeg, fetchFile } = FFmpeg;
         const ffmpeg = createFFmpeg({ log: true });
         var rp;
@@ -66,6 +67,8 @@
         var final = "file intro.mp4\nfile waiting.mp4\n";
         var wq = document.getElementById('wq');
         async function qw() {
+            await ffmpeg.load();
+            await rust();
             document.getElementById('rqqw').innerText = "End intro";
             var options = { mimeType: "video/webm" };
             mediaRecorder = new MediaRecorder(streamq, options);
@@ -76,7 +79,7 @@
             clearInterval(streamrq);
             ctx2.globalAlpha = 0.4;
             ctx2.drawImage(wq, 0, 0, wq.width, wq.height);
-            ctx3.drawImage(wq, -4, -4, wq.width + 8, wq.height + 8);
+            ctx3.drawImage(wq, -9, -4, wq.width + 18, wq.height + 8);
             var cq = ctx3.getImageData(0, 0, canvas.width, canvas.height).data;
             var cq2 = ctx2.getImageData(0, 0, canvas.width, canvas.height).data;
             var crqw = ctx4.createImageData(wq.width, wq.height);
@@ -89,10 +92,13 @@
                 if (rp) {
 
                     for (var wrqrr = wrqr; wrqrr < wrqr + 3; wrqrr += 1) {
-                        crqw.data[wrqrr] = 2;
+                        crqw.data[wrqrr] = 182;
                     }
-                    crqw.data[wrqr + 3] = 92;
                 }
+            }
+            for (var wrqr = 4; wrqr < cq.length; wrqr += 4) {
+                if (!(crqw.data[wrqr - 2] == 182) && crqw.data[wrqr + 2] == 182)
+                    crqw.data[wrqr + 3] = 244;
             }
             ctx4.putImageData(crqw, 0, 0);
             function qwpr() {
@@ -144,18 +150,12 @@
             wq.play();
             wq.onloadedmetadata = "";
         }
-        ffmpeg.load();
-    </script>
-    <script>
         function qww2() {
             rqqw.addEventListener(rppq, async function w() {
                 var rp = 0;
                 var cq = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
                 var cq2 = ctx2.getImageData(0, 0, canvas.width, canvas.height).data;
-                for (var wrq = 0; wrq < cq.length; wrq += 1) {
-                    if (cq[wrq] - cq2[wrq] > 22 || cq[wrq] - cq2[wrq] < -22)
-                        rp += 1;
-                }
+                rp = cqwr(cq, cq2);
                 if (rp < 338223) {
                     async function handleDataAvailable(event) {
                         if (event.data.size > 0) {
@@ -185,10 +185,7 @@
             var rp = 0;
             var cq = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
             var cq2 = ctx2.getImageData(0, 0, canvas.width, canvas.height).data;
-            for (var wrq = 0; wrq < cq.length; wrq += 1) {
-                if (cq[wrq] - cq2[wrq] > 22 || cq[wrq] - cq2[wrq] < -22)
-                    rp += 1;
-            }
+            rp = cqwr(cq, cq2);
             if (rp < 338223) {
                 rqqw.removeEventListener(rppq, qww22);
                 async function handleDataAvailable(event) {
@@ -290,10 +287,7 @@
             var rp = 0;
             var cq = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
             var cq2 = ctx2.getImageData(0, 0, canvas.width, canvas.height).data;
-            for (var wrq = 0; wrq < cq.length; wrq += 1) {
-                if (cq[wrq] - cq2[wrq] > 22 || cq[wrq] - cq2[wrq] < -22)
-                    rp += 1;
-            }
+            rp = cqwr(cq, cq2);
             if (rp < 338223) {
                 rqqw.removeEventListener(rppq, qwwp);
                 rqqwr.innerText = "";
@@ -308,10 +302,7 @@
             var rp = 0;
             var cq = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
             var cq2 = ctx2.getImageData(0, 0, canvas.width, canvas.height).data;
-            for (var wrq = 0; wrq < cq.length; wrq += 1) {
-                if (cq[wrq] - cq2[wrq] > 22 || cq[wrq] - cq2[wrq] < -22)
-                    rp += 1;
-            }
+            rp = cqwr(cq, cq2);
             if (rp < 338223) {
 
                 rqqw.removeEventListener(rppq, qww3);
