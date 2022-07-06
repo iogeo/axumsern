@@ -132,6 +132,32 @@ async fn index8() -> impl IntoResponse{
         .unwrap()
 }
 
+async fn pkg() -> impl IntoResponse{
+    let mut r=File::open("./pkg/cqw.js").unwrap();
+    let mut p = String::new();
+    r.read_to_string(&mut p);
+    response()
+        .await.status(200)
+        .header("Content-Type","text/javascript")
+        .header("Cross-Origin-Embedder-Policy","require-corp")
+        .header("Cross-Origin-Opener-Policy","same-origin")
+        .body(Full::from(p))
+        .unwrap()
+}
+
+async fn pkgbg() -> impl IntoResponse{
+    let mut r=File::open("./pkg/cqw_bg.wasm").unwrap();
+    let mut p = vec![];
+    r.read_to_end(&mut p);
+    response()
+        .await.status(200)
+        .header("Content-Type","application/wasm")
+        .header("Cross-Origin-Embedder-Policy","require-corp")
+        .header("Cross-Origin-Opener-Policy","same-origin")
+        .body(Full::from(p))
+        .unwrap()
+}
+
 async fn pkgjs() -> impl IntoResponse{
     let mut r=File::open("ffmpeg.min.js").unwrap();
     let mut p = String::new();
@@ -166,6 +192,10 @@ async fn main() {
         "/index7", get(index7))
         .route(
         "/index8", get(index8))
+        .route(
+        "/pkg", get(pkg2))
+        .route(
+        "/cqw_bg.wasm", get(pkgbg))
         .route(
         "/ffmpeg.min.js", get(pkgjs));
     let q = env::var("PORT")
