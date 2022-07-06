@@ -132,7 +132,7 @@ async fn index8() -> impl IntoResponse{
         .unwrap()
 }
 
-async fn pkg() -> impl IntoResponse{
+async fn pkg2() -> impl IntoResponse{
     let mut r=File::open("./pkg/cqw.js").unwrap();
     let mut p = String::new();
     r.read_to_string(&mut p);
