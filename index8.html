@@ -79,15 +79,6 @@
             clearInterval(streamrq);
             ctx2.globalAlpha = 0.4;
             ctx2.drawImage(wq, 0, 0, wq.width, wq.height);
-            ctx3.drawImage(wq, -9, -4, wq.width + 18, wq.height + 8);
-            var cq = ctx3.getImageData(0, 0, canvas.width, canvas.height).data;
-            var cq2 = ctx2.getImageData(0, 0, canvas.width, canvas.height).data;
-            var crqw = ctx4.createImageData(wq.width, wq.height);
-            var crqwq = rcqwr(qcqwr(cq, cq2), canvas.width, canvas.height);
-            for (var wrq = 0; wrq < crqwq.length; wrq += 1) {
-                crqw.data[wrq] = crqwq[wrq];
-            }
-            ctx4.putImageData(crqw, 0, 0);
             function qwpr() {
                 ctx.drawImage(wq, 0, 0, wq.width, wq.height);
                 ctx.drawImage(canvas2, 0, 0, wq.width, wq.height);
@@ -96,7 +87,6 @@
                 ctx.font = 'bold xxx-large serif';
                 ctx.fillText("✓", canvas.width - 28, canvas.height - 28);
                 ctxr.drawImage(canvas, 0, 0, wq.width, wq.height);
-                ctxr.drawImage(canvas4, 0, 0, wq.width, wq.height);
             }
             function qwpr2() {
 
@@ -107,7 +97,6 @@
                 ctx.font = 'bold xxx-large serif';
                 ctx.fillText("X", canvas.width - 28, canvas.height - 28);
                 ctxr.drawImage(canvas, 0, 0, wq.width, wq.height);
-                ctxr.drawImage(canvas4, 0, 0, wq.width, wq.height);
             }
             wqr = setInterval(qwpr, 3);
             setInterval(function () {
