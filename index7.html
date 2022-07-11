@@ -334,7 +334,8 @@
                                         await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_list' + wqqq + '3.txt', '-vf', 'reverse', '-preset', 'ultrafast', wqqq + 'q.mp4');
                                         await ffmpeg.run('-i', 'qwwr' + wqqq + '.mp4', '-vf', 'reverse', '-preset', 'ultrafast', wqqq + 'q2.mp4');
                                         ffmpeg.FS('writeFile', 'concat_list' + wqqq + '4.txt', 'file ' + wqqq + 'q.mp4\nfile ' + wqqq + 'q2.mp4');
-                                        await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_list' + wqqq + '4.txt', '-vf', 'reverse', '-preset', 'ultrafast', wqqq + '.mp4');
+                                        await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_list' + wqqq + '4.txt', '-vf', 'reverse', '-preset', 'ultrafast', wqqq + 'w.mp4');
+                                        await ffmpeg.run('-i', wqqq + 'w.mp4', '-af', 'asetpts=PTS+0.3/TB', '-preset', 'ultrafast', wqqq + '.mp4');
                                         ffmpeg.FS('writeFile', 'concat_lists.txt', 'file Final.mp4\nfile waiting.mp4\nfile ' + wqqq + '.mp4');
                                         final += "file " + wqqq + ".mp4\nfile waiting.mp4\n";
                                         const wqqww2 = ffmpeg.FS('readFile', wqqq + '.mp4');
