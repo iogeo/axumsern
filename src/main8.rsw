@@ -1,1 +1,98 @@
+use std::io::prelude::*;
+use axum::{Json, response::{Html, IntoResponse, Response},routing::get,Router,http::{Uri, header::{self, HeaderMap, HeaderName}},};
+use std::fs::File;
+use std::fs;
+use std::str::FromStr;
+use std::env;
+use axum::body::Full;
+use std::process::Command;
+use axum::extract::WebSocketUpgrade;
+use std::thread::sleep;
+use core::time::Duration;
+use hyper::{Body, Method, Client, Request};
+use aws_sdk_s3::types::ByteStream;
+use aws_smithy_http::body::SdkBody;
 
+struct js
+{
+    String:String
+}
+
+async fn response() -> axum::http::response::Builder {
+    Response::builder()
+}
+
+async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
+    ws.on_upgrade(move |mut sock| async move{
+    let qw=sock.recv().await.unwrap().unwrap().into_text().unwrap();
+    if qw=="intro"
+    {
+        let qw=sock.recv().await.unwrap().unwrap().into_data();
+        let shared_config = aws_config::load_from_env().await;
+        let client = aws_sdk_s3::Client::new(&shared_config);
+        let rq = client.put_object().bucket("axumserws").key("intro/intro.mp4").body(ByteStream::new(SdkBody::from(qw))).send().await.unwrap();
+    }
+    else if qw=="waiting"
+    {
+        let qw=sock.recv().await.unwrap().unwrap().into_data();
+        let shared_config = aws_config::load_from_env().await;
+        let client = aws_sdk_s3::Client::new(&shared_config);
+        let rq = client.put_object().bucket("axumserws").key("waiting/waiting.mp4").body(ByteStream::new(SdkBody::from(qw))).send().await.unwrap();
+    }
+    else
+    {
+        let we=qw;
+        let qw=sock.recv().await.unwrap().unwrap().into_data();
+        let shared_config = aws_config::load_from_env().await;
+        let client = aws_sdk_s3::Client::new(&shared_config);
+        let rq = client.put_object().bucket("axumserws").key("qw/".to_string()+&we+".mp4").body(ByteStream::new(SdkBody::from(qw))).send().await.unwrap();
+    }
+    })
+}
+
+async fn index2() -> impl IntoResponse{
+    let mut r=File::open("index2.html").unwrap();
+    let mut p = String::new();
+    r.read_to_string(&mut p);
+    response()
+        .await.status(200)
+        .header("Content-Type","text/html; charset=UTF-8")
+        .header("Cross-Origin-Embedder-Policy","require-corp")
+        .header("Cross-Origin-Opener-Policy","same-origin")
+        .body(Full::from(p))
+        .unwrap()
+}
+
+async fn pkgjs() -> impl IntoResponse{
+    let mut r=File::open("ffmpeg.min.js").unwrap();
+    let mut p = String::new();
+    r.read_to_string(&mut p);
+    response()
+        .await.status(200)
+        .header("Content-Type","text/javascript; charset=UTF-8")
+        .header("Cross-Origin-Embedder-Policy","require-corp")
+        .header("Cross-Origin-Opener-Policy","same-origin")
+        .body(Full::from(p))
+        .unwrap()
+}
+
+#[tokio::main]
+async fn main() {
+    let app = Router::new()
+        .route(
+        "/", get(root))
+        .route(
+        "/index2", get(index2))
+        .route(
+        "/ffmpeg.min.js", get(pkgjs));
+    //SBo/yDb9UAYUfmjzJu/atm/g7QtxYgCoKDpOESyd
+    let shared_config = aws_config::load_from_env().await;
+    let client = aws_sdk_s3::Client::new(&shared_config);
+    let rq = client.put_object().bucket("axumserws").key("deqw/qw.html").body(ByteStream::new(SdkBody::from("qw"))).send().await.unwrap();
+    let q = "8484"
+        .to_string();
+    axum::Server::bind(&("0.0.0.0:".to_owned()+&q).parse().unwrap())
+        .serve(app.into_make_service())
+        .await
+        .unwrap();
+}
