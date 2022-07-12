@@ -221,6 +221,8 @@ async fn main() {
         .route(
         "/index9", get(index9))
         .route(
+        "/index9", get(index9n))
+        .route(
         "/pkg", get(pkg2))
         .route(
         "/cqw_bg.wasm", get(pkgbg))
