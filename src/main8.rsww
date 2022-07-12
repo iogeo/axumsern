@@ -57,7 +57,6 @@ async fn qw(ws: WebSocketUpgrade) -> impl IntoResponse{
     let qw=sock.recv().await.unwrap().unwrap().into_text().unwrap();
     if qw=="intro"
     {
-        let qw=sock.recv().await.unwrap().unwrap().into_data();
         let shared_config = aws_config::load_from_env().await;
         let client = aws_sdk_s3::Client::new(&shared_config);
         let rq = client.get_object().bucket("axumserws").key(rqw+"intro/intro.mp4").send().await.unwrap().body.collect().await.unwrap().into_bytes().to_vec();
@@ -65,7 +64,6 @@ async fn qw(ws: WebSocketUpgrade) -> impl IntoResponse{
     }
     else if qw=="waiting"
     {
-        let qw=sock.recv().await.unwrap().unwrap().into_data();
         let shared_config = aws_config::load_from_env().await;
         let client = aws_sdk_s3::Client::new(&shared_config);
         let rq = client.get_object().bucket("axumserws").key(rqw+"waiting/waiting.mp4").send().await.unwrap().body.collect().await.unwrap().into_bytes().to_vec();
@@ -74,7 +72,6 @@ async fn qw(ws: WebSocketUpgrade) -> impl IntoResponse{
     else
     {
         let we=qw;
-        let qw=sock.recv().await.unwrap().unwrap().into_data();
         let shared_config = aws_config::load_from_env().await;
         let client = aws_sdk_s3::Client::new(&shared_config);
         let rq = client.get_object().bucket("axumserws").key(rqw+"qw/"+&we+".mp4").send().await.unwrap().body.collect().await.unwrap().into_bytes().to_vec();
