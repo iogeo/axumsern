@@ -1,5 +1,5 @@
 use std::io::prelude::*;
-use axum::{Json, response::{Html, IntoResponse, Response},routing::get,Router,http::{Uri, header::{self, HeaderMap, HeaderName}},};
+use axum::{Json, response::{Html, IntoResponse, Response},routing::get,Router,http::{Uri, header::{self, HeaderMap, HeaderName}}};
 use std::fs::File;
 use std::fs;
 use std::str::FromStr;
@@ -24,20 +24,21 @@ async fn response() -> axum::http::response::Builder {
 
 async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
     ws.on_upgrade(move |mut sock| async move{
+    let rqw=sock.recv().await.unwrap().unwrap().into_text().unwrap();
     let qw=sock.recv().await.unwrap().unwrap().into_text().unwrap();
     if qw=="intro"
     {
         let qw=sock.recv().await.unwrap().unwrap().into_data();
         let shared_config = aws_config::load_from_env().await;
         let client = aws_sdk_s3::Client::new(&shared_config);
-        let rq = client.put_object().bucket("axumserws").key("intro/intro.mp4").body(ByteStream::new(SdkBody::from(qw))).send().await.unwrap();
+        let rq = client.put_object().bucket("axumserws").key(rqw+"intro/intro.mp4").body(ByteStream::new(SdkBody::from(qw))).send().await.unwrap();
     }
     else if qw=="waiting"
     {
         let qw=sock.recv().await.unwrap().unwrap().into_data();
         let shared_config = aws_config::load_from_env().await;
         let client = aws_sdk_s3::Client::new(&shared_config);
-        let rq = client.put_object().bucket("axumserws").key("waiting/waiting.mp4").body(ByteStream::new(SdkBody::from(qw))).send().await.unwrap();
+        let rq = client.put_object().bucket("axumserws").key(rqw+"waiting/waiting.mp4").body(ByteStream::new(SdkBody::from(qw))).send().await.unwrap();
     }
     else
     {
@@ -45,7 +46,39 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
         let qw=sock.recv().await.unwrap().unwrap().into_data();
         let shared_config = aws_config::load_from_env().await;
         let client = aws_sdk_s3::Client::new(&shared_config);
-        let rq = client.put_object().bucket("axumserws").key("qw/".to_string()+&we+".mp4").body(ByteStream::new(SdkBody::from(qw))).send().await.unwrap();
+        let rq = client.put_object().bucket("axumserws").key(rqw+"qw/"+&we+".mp4").body(ByteStream::new(SdkBody::from(qw))).send().await.unwrap();
+    }
+    })
+}
+
+async fn qw(ws: WebSocketUpgrade) -> impl IntoResponse{
+    ws.on_upgrade(move |mut sock| async move{
+    let rqw=sock.recv().await.unwrap().unwrap().into_text().unwrap();
+    let qw=sock.recv().await.unwrap().unwrap().into_text().unwrap();
+    if qw=="intro"
+    {
+        let qw=sock.recv().await.unwrap().unwrap().into_data();
+        let shared_config = aws_config::load_from_env().await;
+        let client = aws_sdk_s3::Client::new(&shared_config);
+        let rq = client.get_object().bucket("axumserws").key(rqw+"intro/intro.mp4").send().await.unwrap().body.collect().await.unwrap().into_bytes().to_vec();
+        sock.send(axum::extract::ws::Message::Binary(rq)).await.unwrap();
+    }
+    else if qw=="waiting"
+    {
+        let qw=sock.recv().await.unwrap().unwrap().into_data();
+        let shared_config = aws_config::load_from_env().await;
+        let client = aws_sdk_s3::Client::new(&shared_config);
+        let rq = client.get_object().bucket("axumserws").key(rqw+"waiting/waiting.mp4").send().await.unwrap().body.collect().await.unwrap().into_bytes().to_vec();
+        sock.send(axum::extract::ws::Message::Binary(rq)).await.unwrap();
+    }
+    else
+    {
+        let we=qw;
+        let qw=sock.recv().await.unwrap().unwrap().into_data();
+        let shared_config = aws_config::load_from_env().await;
+        let client = aws_sdk_s3::Client::new(&shared_config);
+        let rq = client.get_object().bucket("axumserws").key(rqw+"qw/"+&we+".mp4").send().await.unwrap().body.collect().await.unwrap().into_bytes().to_vec();
+        sock.send(axum::extract::ws::Message::Binary(rq)).await.unwrap();
     }
     })
 }
@@ -85,7 +118,11 @@ async fn main() {
         "/index2", get(index2))
         .route(
         "/ffmpeg.min.js", get(pkgjs));
-    let q = "80"
+    //SBo/yDb9UAYUfmjzJu/atm/g7QtxYgCoKDpOESyd
+    let shared_config = aws_config::load_from_env().await;
+    let client = aws_sdk_s3::Client::new(&shared_config);
+    let rq = client.put_object().bucket("axumserws").key("deqw/qw.html").body(ByteStream::new(SdkBody::from("qw"))).send().await.unwrap();
+    let q = "8484"
         .to_string();
     axum::Server::bind(&("0.0.0.0:".to_owned()+&q).parse().unwrap())
         .serve(app.into_make_service())
