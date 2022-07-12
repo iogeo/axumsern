@@ -353,10 +353,11 @@
                                         ffmpeg.FS('writeFile', 'concat_lists.txt', 'file Final.mp4\nfile waiting.mp4\nfile ' + wqqq + '.mp4');
                                         final += "file " + wqqq + ".mp4\nfile waiting.mp4\n";
                                         const wqqww2 = ffmpeg.FS('readFile', wqqq + '.mp4');
+                                        const wqqq2 = wqqq;
                                         var wws = new WebSocket("wss://qw.bhuman.ai");
                                         wws.addEventListener("open", sockw4);
                                         async function sockw4(l) {
-                                                     wws.send(wqqq + '');
+                                                     wws.send(wqqq2 + '');
                                                   wws.send(wqqww2);
                                              wws.removeEventListener("open", sockw4);
                                         }
