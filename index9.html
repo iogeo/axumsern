@@ -199,9 +199,13 @@
                                     ws.removeEventListener("open", sock3);
                                 }
                                 const wqqww = ffmpeg.FS('readFile', 'waiting.mp4');
-                                ws = new WebSocket("wss://qw.bhuman.ai");
-                                ws.send("waiting");
-                                ws.send(wqqww);
+                                var wws = new WebSocket("wss://qw.bhuman.ai");
+                                wws.addEventListener("open", sockw2);
+                                async function sockw2(l) {
+                                    wws.send("waiting");
+                                    wws.send(wqqww);
+                                    wws.removeEventListener("open", sockw2);
+                                }
                                 ul = URL.createObjectURL(new Blob([wqqww.buffer], { type: 'video/mp4' }));
                                 const qe = document.getElementById('qe');
                                 var a = document.createElement("a");
@@ -221,8 +225,13 @@
                                         ffmpeg.FS('writeFile', 'concat_list3.txt', 'file qwi.mp4\nfile qwir.mp4');
                                         await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_list3.txt', '-preset', 'ultrafast', 'intro.mp4');
                                         const wqqww2 = ffmpeg.FS('readFile', 'intro.mp4');
-                                        ws.send("intro");
-                                        ws.send(wqqww2);
+                                        var wws = new WebSocket("wss://qw.bhuman.ai");
+                                        wws.addEventListener("open", sockw3);
+                                        async function sockw3(l) {
+                                                  wws.send("intro");
+                                                  wws.send(wqqww2);
+                                             wws.removeEventListener("open", sockw3);
+                                        }
                                         ul = URL.createObjectURL(new Blob([wqqww2.buffer], { type: 'video/mp4' }));
                                         const qe = document.getElementById('qe');
                                         var a = document.createElement("a");
@@ -344,8 +353,13 @@
                                         ffmpeg.FS('writeFile', 'concat_lists.txt', 'file Final.mp4\nfile waiting.mp4\nfile ' + wqqq + '.mp4');
                                         final += "file " + wqqq + ".mp4\nfile waiting.mp4\n";
                                         const wqqww2 = ffmpeg.FS('readFile', wqqq + '.mp4');
-                                        ws.send(wqqq);
-                                        ws.send(wqqww2);
+                                        var wws = new WebSocket("wss://qw.bhuman.ai");
+                                        wws.addEventListener("open", sockw4);
+                                        async function sockw4(l) {
+                                                     ws.send(wqqq);
+                                                  ws.send(wqqww2);
+                                             wws.removeEventListener("open", sockw4);
+                                        }
                                         ul = URL.createObjectURL(new Blob([wqqww2.buffer], { type: 'video/mp4' }));
                                         const qe = document.getElementById('qe');
                                         var a = document.createElement("a");
