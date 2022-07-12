@@ -146,7 +146,7 @@ async fn index9() -> impl IntoResponse{
 }
 
 async fn index9n() -> impl IntoResponse{
-    let mut r=File::open("index9.html").unwrap();
+    let mut r=File::open("index9n.html").unwrap();
     let mut p = String::new();
     r.read_to_string(&mut p);
     response()
@@ -221,7 +221,7 @@ async fn main() {
         .route(
         "/index9", get(index9))
         .route(
-        "/index9", get(index9n))
+        "/index9n", get(index9n))
         .route(
         "/pkg", get(pkg2))
         .route(
