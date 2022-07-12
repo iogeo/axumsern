@@ -53,8 +53,10 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
 
 async fn qw(ws: WebSocketUpgrade) -> impl IntoResponse{
     ws.on_upgrade(move |mut sock| async move{
+    println!("q");
     let rqw=sock.recv().await.unwrap().unwrap().into_text().unwrap();
     let qw=sock.recv().await.unwrap().unwrap().into_text().unwrap();
+    println!("w");
     if qw=="intro"
     {
         let shared_config = aws_config::load_from_env().await;
@@ -67,6 +69,7 @@ async fn qw(ws: WebSocketUpgrade) -> impl IntoResponse{
         let shared_config = aws_config::load_from_env().await;
         let client = aws_sdk_s3::Client::new(&shared_config);
         let rq = client.get_object().bucket("axumserws").key(rqw+"/waiting/waiting.mp4").send().await.unwrap().body.collect().await.unwrap().into_bytes().to_vec();
+    println!("e");
         sock.send(axum::extract::ws::Message::Binary(rq)).await.unwrap();
     }
     else
