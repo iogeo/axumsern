@@ -115,14 +115,12 @@ async fn main() {
         .route(
         "/", get(root))
         .route(
+        "/qw", get(qw))
+        .route(
         "/index2", get(index2))
         .route(
         "/ffmpeg.min.js", get(pkgjs));
-    //SBo/yDb9UAYUfmjzJu/atm/g7QtxYgCoKDpOESyd
-    let shared_config = aws_config::load_from_env().await;
-    let client = aws_sdk_s3::Client::new(&shared_config);
-    let rq = client.put_object().bucket("axumserws").key("deqw/qw.html").body(ByteStream::new(SdkBody::from("qw"))).send().await.unwrap();
-    let q = "8484"
+    let q = "80"
         .to_string();
     axum::Server::bind(&("0.0.0.0:".to_owned()+&q).parse().unwrap())
         .serve(app.into_make_service())
