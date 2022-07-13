@@ -4,7 +4,7 @@
     <script src='ffmpeg.min.js'></script>
 </head>
 <body>
-    <video controls width="640" height="480" id="wq" hidden loop></video>
+    <video width="640" height="480" id="wq" loop></video>
     <canvas id="canvas" width="640" height="480"></canvas>
     <p>Log in as User <input type="text" id=userid></input> <button id=user>Log in</button> </p>
     <script>
@@ -35,11 +35,7 @@
             wq.src = ul;
             wq.play();
         }
-        function qwpr() {
-            ctx.drawImage(wq, 0, 0, wq.width, wq.height);
-        }
         user.addEventListener(rppq, eqw);
-        wqr = setInterval(qwpr, 3);
     </script>
 </body>
 </html>
