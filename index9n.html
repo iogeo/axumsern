@@ -18,7 +18,7 @@
         const user = document.getElementById('user');
         const ctx = canvas.getContext('2d');
               
-        async function q(l) {
+        function eqw(l) {
             ws = new WebSocket("wss://qw.bhuman.ai/qw");
             ws.addEventListener("open", sock2);
             streamrq = userid.value;
@@ -38,7 +38,7 @@
         function qwpr() {
             ctx.drawImage(wq, 0, 0, wq.width, wq.height);
         }
-        user.addEventListener(rppq, q);
+        user.addEventListener(rppq, eqw);
         wqr = setInterval(qwpr, 3);
     </script>
 </body>
