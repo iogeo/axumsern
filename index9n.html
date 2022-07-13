@@ -25,7 +25,7 @@
             ws.addEventListener("message", sockw);
         }
         async function sock2(l) {
-            ws.send("qw");
+            ws.send(streamrq);
             ws.send("waiting");
             ws.removeEventListener("open", sock2);
         }
