@@ -6,14 +6,24 @@
 <body>
     <video controls width="640" height="480" id="wq" hidden loop></video>
     <canvas id="canvas" width="640" height="480"></canvas>
+    <p>Log in as User <input type="text" id=userid></input> <button id=user>Log in</button> </p>
     <script>
-        var ws = new WebSocket("wss://qw.bhuman.ai/qw");
+        var rppq = "mousedown";
+        var streamrq;
+        var ws;
         var wq = document.getElementById("wq");
         var q = "";
         const canvas = document.getElementById('canvas');
+        const userid = document.getElementById('userid');
+        const user = document.getElementById('user');
         const ctx = canvas.getContext('2d');
-        ws.addEventListener("open", sock2);
-        ws.addEventListener("message", sockw);
+              
+        async function q(l) {
+            ws = new WebSocket("wss://qw.bhuman.ai/qw");
+            ws.addEventListener("open", sock2);
+            streamrq = userid.value;
+            ws.addEventListener("message", sockw);
+        }
         async function sock2(l) {
             ws.send("qw");
             ws.send("waiting");
@@ -28,6 +38,7 @@
         function qwpr() {
             ctx.drawImage(wq, 0, 0, wq.width, wq.height);
         }
+        user.addEventListener(rppq, q);
         wqr = setInterval(qwpr, 3);
     </script>
 </body>
