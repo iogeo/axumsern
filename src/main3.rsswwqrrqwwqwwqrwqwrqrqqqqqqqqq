@@ -22,6 +22,7 @@ async fn response() -> axum::http::response::Builder {
 
 async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
     ws.on_upgrade(move |mut sock| async move{
+    println!("q");
     sock.send(axum::extract::ws::Message::Text("e".to_string())).await.unwrap();
     let mut q =3;
     let mut rq =2;
@@ -37,6 +38,7 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
     rq+=1;fs::write("visits", rq.to_string().as_bytes()).unwrap();q =2;}}}
     let qw=sock.recv().await.unwrap().unwrap().into_data();
     let qwp=sock.recv().await.unwrap().unwrap().into_data();
+    println!("e");
     if qw.len()>= 9984894 || qwp.len()>= 9984894
     {panic!();}
     Command::new("sh")
@@ -67,6 +69,7 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
             .arg(format!(r#"python3.9 -m frame_interpolation.eval.interpolator_cli --pattern "frame_interpolation/qq{}" --model_path eqqw/pretrained_models/film_net/Style/saved_model --times_to_interpolate 3 --output_video"#,rq))
             .spawn()
             .expect("failed to execute process");
+    println!("w");
      q =3;
     let mut e =3;
     let mut r;
@@ -97,6 +100,7 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
         sock.send(axum::extract::ws::Message::Text("e".to_string())).await.unwrap();
         sock.recv().await.unwrap().unwrap().into_data();},
         _ => {
+    println!("qq");
     fs::write("qw", "".to_string().as_bytes()).unwrap();q =2;}}}e =2;
     sleep(Duration::from_millis(222));
             r=File::open(format!("./frame_interpolation/qq{}/interpolated.mp4",rq)).unwrap();
@@ -144,7 +148,6 @@ async fn main() {
         "/ffmpeg.min.js", get(pkgjs));
     let q = "80"
         .to_string();
-let shh2 = shh::stderr().unwrap();
     axum::Server::bind(&("0.0.0.0:".to_owned()+&q).parse().unwrap())
         .serve(app.into_make_service())
         .await
