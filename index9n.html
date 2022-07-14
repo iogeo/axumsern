@@ -51,7 +51,7 @@
                 }
                 rq.push(rp);
                 rqw += 1;
-                while (q[rqw] != "\n" && rqw < q.length) {
+                while (q[rqw + 1] != "\n" && rqw < q.length) {
                     rp2 += q[rqw];
                     rqw += 1;
                 }
@@ -160,6 +160,7 @@
                     document.getElementById("waiting").play();
                 }
                 else {
+                    document.getElementById("q").innerHTML = rw[rqw];
                     wrpqw = rw[rqw];
                     document.getElementById(rw[rqw]).removeAttribute("hidden");
                     document.getElementById(rw[rqw]).play();
