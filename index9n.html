@@ -1,51 +1,56 @@
-﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+﻿
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
           "http://www.w3.org/TR/html4/loose.dtd">
 <head>
     <script src='ffmpeg.min.js'></script>
 </head>
 <body>
-    <video width="640" height="480" id="wq" loop></video>
-    <canvas id="canvas" width="640" height="480"></canvas>
-    <p>Log in as User <input type="text" id=userid></input> <button id=user>Log in</button> </p>
+    <p id=q>Log in as User <input type="text" id=userid></input> <button id=user>Log in</button> </p>
     <script>
         var rppq = "mousedown";
         var streamrq;
         var ws;
-        var wq = document.getElementById("wq");
-        var q = "";
-        const canvas = document.getElementById('canvas');
+        var q = "aqqw";
         const userid = document.getElementById('userid');
         const user = document.getElementById('user');
-        const ctx = canvas.getContext('2d');
+
+        var rq = [];
+        var rw = [];
+        var rpw = [];
+        var rpi = 1;
+        var rpqi = 4;
+        var rpqw = 2;
+        var wrpqw = "";
         async function sock2(l) {
-            ws.removeEventListener("message", sockw2);
-            ws.addEventListener("message", sockw);
             ws.send(streamrq);
             ws.send("cs");
-            ws.send(streamrq);
-            ws.send("waiting");
             ws.removeEventListener("open", sock2);
         }
         async function sockw2(l) {
-            q = l.data;
+            ws.removeEventListener("message", sockw2);
+            ws = new WebSocket("wss://qw.bhuman.ai/qw");
+            ws.addEventListener("open", sock3);
+            ws.addEventListener("message", sockw);
+            async function sock3(l) {
+                ws.send(streamrq);
+                ws.send("intro");
+                ws.removeEventListener("open", sock3);
+            }
+            var q = await l.data.text();
             var rqw = 0;
-            while (q[rqw] != "\n")
-            {
+            while (q[rqw] != "\n") {
                 rqw += 1;
             }
             rqw += 1;
-            while (rqw < q.length)
-            {
+            while (rqw < q.length) {
                 var rp = "";
                 var rp2 = "";
-                while (q[rqw] != ",")
-                {
+                while (q[rqw] != ",") {
                     rp += q[rqw];
                     rqw += 1;
                 }
                 rq.push(rp);
-                while (q[rqw] != "\n")
-                {
+                while (q[rqw] != "\n" && rqw < q.length) {
                     rp2 += q[rqw];
                     rqw += 1;
                 }
@@ -55,20 +60,113 @@
         }
         function eqw(l) {
             ws = new WebSocket("wss://qw.bhuman.ai/qw");
-            ws.addEventListener("open", sock2);
             streamrq = userid.value;
+            ws.addEventListener("open", sock2);
             ws.addEventListener("message", sockw2);
-        }
-        async function sock2(l) {
-            ws.send(streamrq);
-            ws.send("waiting");
-            ws.removeEventListener("open", sock2);
         }
         async function sockw(l) {
             q = l.data;
             var ul = URL.createObjectURL(new Blob([q], { type: 'video/mp4' }));
-            wq.src = ul;
-            wq.play();
+            var a = document.createElement("video");
+            document.body.appendChild(a);
+            a.hidden = "hidden";
+            a.src = ul;
+            a.id = "intro";
+            document.getElementById("intro").addEventListener("ended", sockwprqr);
+            ws.removeEventListener("message", sockw2);
+            ws = new WebSocket("wss://qw.bhuman.ai/qw");
+            ws.addEventListener("message", sockwp);
+            ws.addEventListener("open", sock4);
+            async function sock4(l) {
+                ws.send(streamrq);
+                ws.send("waiting");
+                ws.removeEventListener("open", sock4);
+            }
+        }
+        async function sockwp(l) {
+            q = l.data;
+            var ul = URL.createObjectURL(new Blob([q], { type: 'video/mp4' }));
+            var a = document.createElement("video");
+            document.body.appendChild(a);
+            a.hidden = "hidden";
+            a.src = ul;
+            a.id = "waiting";
+            document.getElementById("waiting").addEventListener("ended", sockwprqr2);
+            ws.removeEventListener("message", sockwp);
+            ws = new WebSocket("wss://qw.bhuman.ai/qw");
+            ws.addEventListener("message", sockwpr);
+            ws.addEventListener("open", sock5);
+            async function sock5(l) {
+                ws.send(streamrq);
+                ws.send("3");
+                ws.removeEventListener("open", sock5);
+            }
+        }
+        async function sockwpr(l) {
+            q = l.data;
+                var ul = URL.createObjectURL(new Blob([q], { type: 'video/mp4' }));
+                var a = document.createElement("video");
+                document.body.appendChild(a);
+                a.hidden = "hidden";
+                a.src = ul;
+            a.id = "Template " + rpi;
+            document.getElementById("Template " + rpi).addEventListener("ended", sockwprqr2);
+                rpi += 1;
+                ws = new WebSocket("wss://qw.bhuman.ai/qw");
+            ws.addEventListener("open", sock7);
+            ws.addEventListener("message", sockwpr);
+            ws.addEventListener("close", sockwprq);
+            ws.addEventListener("error", sockwprq);
+                async function sock7(l) {
+                    ws.send(streamrq);
+                    ws.send(rpqi + "");
+                    rpqi += 1;
+                    ws.removeEventListener("open", sockwprq);
+                }
+        }
+        async function sockwprq(l) {
+            document.getElementById("intro").removeAttribute("hidden");
+            document.getElementById("q").hidden = "hidden";
+            user.removeEventListener(rppq, eqw);
+            user.addEventListener(rppq, eqw);
+            document.getElementById("intro").play();
+        }
+        async function sockwprqr(l) {
+            document.getElementById("intro").setAttribute("hidden", "");
+            document.getElementById("waiting").removeAttribute("hidden");
+            document.getElementById("waiting").play();
+        }
+        async function sockwprqr2(l) {
+            document.getElementById("waiting").setAttribute("hidden", "");
+            document.getElementById(wrpqw).setAttribute("hidden", "");
+            if (rpqw == 2) {
+                document.getElementById("waiting").removeAttribute("hidden");
+                document.getElementById("waiting").play();
+            }
+            else {
+
+                rpqw = 2;
+                streamrq = userid.value;
+                userid.value = "";
+                var rqw = 0;
+                while (rqw < rq.length && streamrq != rq[rqw]) {
+                    rqw += 1;
+                }
+                if (rqw == rq.length) {
+
+                    document.getElementById("waiting").removeAttribute("hidden");
+                    document.getElementById("waiting").play();
+                }
+                else {
+                    wrpqw = streamrq;
+                    document.getElementById(rw[rqw]).removeAttribute("hidden");
+                    document.getElementById(rw[rqw]).play();
+                }
+            }
+        }
+        async function reqw(l) {
+            rpqw = 3;
+
         }
         user.addEventListener(rppq, eqw);
     </script>
