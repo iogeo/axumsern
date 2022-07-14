@@ -5,7 +5,7 @@
     <script src='ffmpeg.min.js'></script>
 </head>
 <body>
-    <p id=q>Log in as User <input type="text" id=userid></input> <button id=user>Log in</button> </p>
+    <p><span id=q>Log in as User </span><input type="text" id=userid></input> <button id=user>Log in</button> </p>
     <script>
         var rppq = "mousedown";
         var streamrq;
@@ -20,7 +20,7 @@
         var rpi = 1;
         var rpqi = 4;
         var rpqw = 2;
-        var wrpqw = "";
+        var wrpqw = "waiting";
         async function sock2(l) {
             ws.send(streamrq);
             ws.send("cs");
@@ -50,6 +50,7 @@
                     rqw += 1;
                 }
                 rq.push(rp);
+                rqw += 1;
                 while (q[rqw] != "\n" && rqw < q.length) {
                     rp2 += q[rqw];
                     rqw += 1;
@@ -126,9 +127,10 @@
         }
         async function sockwprq(l) {
             document.getElementById("intro").removeAttribute("hidden");
-            document.getElementById("q").hidden = "hidden";
+            document.getElementById("q").innerHTML = "";
+            document.getElementById("user").innerHTML = "Ask";
             user.removeEventListener(rppq, eqw);
-            user.addEventListener(rppq, eqw);
+            user.addEventListener(rppq, reqw);
             document.getElementById("intro").play();
         }
         async function sockwprqr(l) {
@@ -158,7 +160,7 @@
                     document.getElementById("waiting").play();
                 }
                 else {
-                    wrpqw = streamrq;
+                    wrpqw = rw[rqw];
                     document.getElementById(rw[rqw]).removeAttribute("hidden");
                     document.getElementById(rw[rqw]).play();
                 }
