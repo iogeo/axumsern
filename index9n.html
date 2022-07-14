@@ -17,12 +17,47 @@
         const userid = document.getElementById('userid');
         const user = document.getElementById('user');
         const ctx = canvas.getContext('2d');
-              
+        async function sock2(l) {
+            ws.removeEventListener("message", sockw2);
+            ws.addEventListener("message", sockw);
+            ws.send(streamrq);
+            ws.send("cs");
+            ws.send(streamrq);
+            ws.send("waiting");
+            ws.removeEventListener("open", sock2);
+        }
+        async function sockw2(l) {
+            q = l.data;
+            var rqw = 0;
+            while (q[rqw] != "\n")
+            {
+                rqw += 1;
+            }
+            rqw += 1;
+            while (rqw < q.length)
+            {
+                var rp = "";
+                var rp2 = "";
+                while (q[rqw] != ",")
+                {
+                    rp += q[rqw];
+                    rqw += 1;
+                }
+                rq.push(rp);
+                while (q[rqw] != "\n")
+                {
+                    rp2 += q[rqw];
+                    rqw += 1;
+                }
+                rw.push(rp2);
+                rqw += 1;
+            }
+        }
         function eqw(l) {
             ws = new WebSocket("wss://qw.bhuman.ai/qw");
             ws.addEventListener("open", sock2);
             streamrq = userid.value;
-            ws.addEventListener("message", sockw);
+            ws.addEventListener("message", sockw2);
         }
         async function sock2(l) {
             ws.send(streamrq);
