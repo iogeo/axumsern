@@ -76,9 +76,9 @@ async fn qw(ws: WebSocketUpgrade) -> impl IntoResponse{
     {
         let shared_config = aws_config::load_from_env().await;
         let client = aws_sdk_s3::Client::new(&shared_config);
-        let rq = client.get_object().bucket("axumserws").key(rqw+"/waiting/waiting.mp4").send().await.unwrap().body.collect().await.unwrap().into_bytes().to_vec();
+        let rq = &client.get_object().bucket("axumserws").key(rqw+"/waiting/waiting.mp4").send().await.unwrap().body.collect().await.unwrap().into_bytes();
     println!("e");
-        sock.send(axum::extract::ws::Message::Text(rq.to_string())).await.unwrap();
+        sock.send(axum::extract::ws::Message::Text(String::from_utf8_lossy(rq).to_string())).await.unwrap();
     }
     else
     {
