@@ -1,35 +1,19 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
-* @param {Int32Array} cq
-* @param {Int32Array} cq2
+* @param {string} rq
+* @param {string} cq
 * @returns {number}
 */
-export function cqwr(cq: Int32Array, cq2: Int32Array): number;
-/**
-* @param {Int32Array} cq
-* @param {Int32Array} cq2
-* @returns {Int32Array}
-*/
-export function qcqwr(cq: Int32Array, cq2: Int32Array): Int32Array;
-/**
-* @param {Int32Array} crqw
-* @param {number} q
-* @param {number} w
-* @returns {Int32Array}
-*/
-export function rcqwr(crqw: Int32Array, q: number, w: number): Int32Array;
+export function cqwr(rq: string, cq: string): number;
 
 export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
 
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
   readonly cqwr: (a: number, b: number, c: number, d: number) => number;
-  readonly qcqwr: (a: number, b: number, c: number, d: number, e: number) => void;
-  readonly rcqwr: (a: number, b: number, c: number, d: number, e: number) => void;
   readonly __wbindgen_malloc: (a: number) => number;
-  readonly __wbindgen_add_to_stack_pointer: (a: number) => number;
-  readonly __wbindgen_free: (a: number, b: number) => void;
+  readonly __wbindgen_realloc: (a: number, b: number, c: number) => number;
 }
 
 /**
