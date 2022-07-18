@@ -6,7 +6,8 @@
 </head>
 <body>
     <p><span id=q>Log in as User </span><input type="text" id=userid></input> <button id=user>Log in</button> </p>
-    <script>
+    <script type="module">
+        import init, { cqwr } from "/pkg";
         var rppq = "mousedown";
         var streamrq;
         var ws;
@@ -14,13 +15,14 @@
         const userid = document.getElementById('userid');
         const user = document.getElementById('user');
 
-        var rq = [];
+        var rq = "";
         var rw = [];
         var rpw = [];
         var rpi = 1;
         var rpqi = 4;
         var rpqw = 2;
         var wrpqw = "waiting";
+        init();
         async function sock2(l) {
             ws.send(streamrq);
             ws.send("cs");
@@ -49,7 +51,25 @@
                     rp += q[rqw];
                     rqw += 1;
                 }
-                rq.push(rp);
+                var rwq = 0;
+                var rpr = "";
+                while (rwq < rp.length) {
+                    if (rp[rwq] <= "Z" && rp[rwq] >= "A") {
+                        rpr += rp[rwq].toLowerCase();
+                    }
+                    else if (rp[rwq] <= "z" && rp[rwq] >= "a") {
+                        rpr += rp[rwq];
+                    }
+                    else if (rp[rwq - 1] == "'" && (rp[rwq] == "s" || rp[rwq] == "S")) {
+                        rpr += " is";
+                    }
+                    else if (rp[rwq] == " ") {
+                        rpr += " ";
+                    }
+                    rwq += 1;
+                }
+                rq += rpr;
+                rq += "\n";
                 rqw += 1;
                 while (q[rqw + 1] != "\n" && rqw < q.length) {
                     rp2 += q[rqw];
@@ -141,6 +161,7 @@
             document.getElementById("waiting").removeAttribute("hidden");
             document.getElementById("waiting").play();
         }
+        var rwqp = "";
         async function sockwprqr2(l) {
             document.getElementById("waiting").setAttribute("hidden", "");
             document.getElementById(wrpqw).setAttribute("hidden", "");
@@ -151,19 +172,17 @@
             else {
 
                 rpqw = 2;
-                streamrq = userid.value;
+                rwqp = userid.value;
                 userid.value = "";
                 var rqw = 0;
-                while (rqw < rq.length && streamrq != rq[rqw]) {
-                    rqw += 1;
-                }
+                rqw = cqwr(rq, rwqp);
                 if (rqw == rq.length) {
 
                     document.getElementById("waiting").removeAttribute("hidden");
                     document.getElementById("waiting").play();
                 }
                 else {
-                    document.getElementById("q").innerHTML = rw[rqw];
+                    document.getElementById("q").innerHTML = rqw;
                     wrpqw = rw[rqw];
                     document.getElementById(rw[rqw]).removeAttribute("hidden");
                     document.getElementById(rw[rqw]).play();
