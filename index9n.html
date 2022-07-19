@@ -126,6 +126,8 @@
             }
         }
         async function sockwpr(l) {
+            ws.removeEventListener("close", sockwprq);
+            ws.removeEventListener("error", sockwprq);
             q = l.data;
             var ul = URL.createObjectURL(new Blob([q], { type: 'video/mp4' }));
             var a = document.createElement("video");
@@ -145,7 +147,7 @@
                 ws.send(streamrq);
                 ws.send(rpqi + "");
                 rpqi += 1;
-                ws.removeEventListener("open", sockwprq);
+                ws.removeEventListener("open", sock7);
             }
         }
         async function sockwprq(l) {
