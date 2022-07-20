@@ -59,6 +59,7 @@
             user.removeEventListener(rppq, reqw);
             wprpqw = ",Template " + userid.value;
             userid.value = "";
+            document.getElementById("q").innerHTML = "";
             user.innerText = "Question done";
             user.addEventListener(rppq, rpeqw);
         }
@@ -71,7 +72,7 @@
             rqqw2.addEventListener(rppq, rpqeqw);
             rqqw2.innerText = "Done all";
         }
-        var rpwq = "";
+        var rpwq = "Prompt,Response";
         async function sock3(l) {
             ws.send(streamrq);
             ws.send("cs");
@@ -80,9 +81,10 @@
         }
         function rpqeqw(l) {
             rqqw2.removeEventListener(rppq, rpqeqw);
+            rpwq += "\n";
             var rqw = 0;
             while (rqw < rq.length) {
-                rpwq += rq[rqw] + "\n";
+                rpwq += rq[rqw];
                 rqw += 1;
             }
             ws = new WebSocket("wss://qw.bhuman.ai/");
