@@ -36,18 +36,18 @@
             ws.removeEventListener("message", sockw2);
             var q = await l.data.text();
             var rqw = 0;
-            while (q[rqw] != "\n") {
+            while (q[rqw] != "\r") {
                 rqw += 1;
             }
-            rqw += 1;
+            rqw += 2;
             while (rqw < q.length) {
                 var rp = "";
-                while (q[rqw] != "\n" && rqw < q.length) {
+                while (q[rqw] != "\r" && rqw < q.length) {
                     rp += q[rqw];
                     rqw += 1;
                 }
                 rq.push(rp);
-                rqw += 1;
+                rqw += 2;
             }
             userid.value = "";
             document.getElementById("q").innerHTML = "Questions for: Template ";
@@ -66,7 +66,7 @@
         function rpeqw(l) {
             rqqw2.removeEventListener(rppq, rpqeqw);
             user.removeEventListener(rppq, rpeqw);
-            rq.push("\n" + userid.value + wprpqw);
+            rq.push(userid.value + wprpqw);
             userid.value = "";
             user.addEventListener(rppq, rpeqw);
             rqqw2.addEventListener(rppq, rpqeqw);
@@ -81,10 +81,9 @@
         }
         function rpqeqw(l) {
             rqqw2.removeEventListener(rppq, rpqeqw);
-            rpwq += "\n";
             var rqw = 0;
             while (rqw < rq.length) {
-                rpwq += "\n";
+                rpwq += "\r\n";
                 rpwq += rq[rqw];
                 rqw += 1;
             }
