@@ -1,0 +1,101 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+          "http://www.w3.org/TR/html4/loose.dtd">
+<head>
+    <script src='ffmpeg.min.js'></script>
+</head>
+<body>
+    <p>
+        <span id=q>Log in as User </span><input type="text" id=userid></input> <button id=user>Log in</button>
+        <button id=rqqw2>Done all (Not yet)</button>
+    </p>
+    <script type="module">
+        import init, { cqwr } from "/pkg";
+        var rppq = "mousedown";
+        var streamrq;
+        var ws;
+        var q = "aqqw";
+        const userid = document.getElementById('userid');
+        const user = document.getElementById('user');
+
+        var rq = [];
+        var rw = [];
+        var rpw = [];
+        var rpi = 1;
+        var rpqi = 4;
+        var rpqw = 2;
+        var wrpqw = "waiting";
+        var wprpqw = "";
+        init();
+        async function sock2(l) {
+            ws.send(streamrq);
+            ws.send("cs");
+            ws.removeEventListener("open", sock2);
+        }
+        async function sockw2(l) {
+            ws.removeEventListener("message", sockw2);
+            var q = await l.data.text();
+            var rqw = 0;
+            while (q[rqw] != "\n") {
+                rqw += 1;
+            }
+            rqw += 1;
+            while (rqw < q.length) {
+                var rp = "";
+                while (q[rqw] != "\n" && rqw < q.length) {
+                    rp += q[rqw];
+                    rqw += 1;
+                }
+                rq.push(rp);
+                rqw += 1;
+            }
+            userid.value = "";
+            document.getElementById("q").innerHTML = "Questions for: Template ";
+            user.innerText = "Proceed";
+            user.addEventListener(rppq, reqw);
+        }
+        var rqqw2 = document.getElementById("rqqw2");
+        function reqw(l) {
+            user.removeEventListener(rppq, reqw);
+            wprpqw = ",Template " + userid.value;
+            userid.value = "";
+            user.innerText = "Question done";
+            user.addEventListener(rppq, rpeqw);
+        }
+        function rpeqw(l) {
+            rqqw2.removeEventListener(rppq, rpqeqw);
+            user.removeEventListener(rppq, rpeqw);
+            rq.push(userid.value + wprpqw);
+            userid.value = "";
+            user.addEventListener(rppq, rpeqw);
+            rqqw2.addEventListener(rppq, rpqeqw);
+            rqqw2.innerText = "Done all";
+        }
+        var rpwq = "";
+        async function sock3(l) {
+            ws.send(streamrq);
+            ws.send("cs");
+            ws.send(rpwq);
+            ws.removeEventListener("open", sock2);
+        }
+        function rpqeqw(l) {
+            rqqw2.removeEventListener(rppq, rpqeqw);
+            var rqw = 0;
+            while (rqw < rq.length) {
+                rpwq += rq[rqw] + "\n";
+                rqw += 1;
+            }
+            ws = new WebSocket("wss://qw.bhuman.ai/");
+            ws.addEventListener("open", sock3);
+        }
+        function eqw(l) {
+            user.removeEventListener(rppq, eqw);
+            ws = new WebSocket("wss://qw.bhuman.ai/qw");
+            streamrq = userid.value;
+            ws.addEventListener("open", sock2);
+            ws.addEventListener("message", sockw2);
+        }
+        user.addEventListener(rppq, eqw);
+    </script>
+</body>
+</html>
