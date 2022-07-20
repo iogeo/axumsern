@@ -158,6 +158,19 @@ async fn index9n() -> impl IntoResponse{
         .unwrap()
 }
 
+async fn index9r() -> impl IntoResponse{
+    let mut r=File::open("index9r.html").unwrap();
+    let mut p = String::new();
+    r.read_to_string(&mut p);
+    response()
+        .await.status(200)
+        .header("Content-Type","text/html; charset=UTF-8")
+        .header("Cross-Origin-Embedder-Policy","require-corp")
+        .header("Cross-Origin-Opener-Policy","same-origin")
+        .body(Full::from(p))
+        .unwrap()
+}
+
 async fn pkg2() -> impl IntoResponse{
     let mut r=File::open("./pkg/cqw.js").unwrap();
     let mut p = String::new();
@@ -222,6 +235,8 @@ async fn main() {
         "/index9", get(index9))
         .route(
         "/index9n", get(index9n))
+        .route(
+        "/index9r", get(index9r))
         .route(
         "/pkg", get(pkg2))
         .route(
