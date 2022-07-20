@@ -40,6 +40,13 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
         let client = aws_sdk_s3::Client::new(&shared_config);
         let rq = client.put_object().bucket("axumserws").key(rqw+"/waiting/waiting.mp4").body(ByteStream::new(SdkBody::from(qw))).send().await.unwrap();
     }
+    else if qw=="cs"
+    {
+        let qw=sock.recv().await.unwrap().unwrap().into_data();
+        let shared_config = aws_config::load_from_env().await;
+        let client = aws_sdk_s3::Client::new(&shared_config);
+        let rq = client.put_object().bucket("axumserws").key(rqw+"/cs/cs.csv").body(ByteStream::new(SdkBody::from(qw))).send().await.unwrap();
+    }
     else
     {
         let we=qw;
@@ -69,15 +76,13 @@ async fn qw(ws: WebSocketUpgrade) -> impl IntoResponse{
         let shared_config = aws_config::load_from_env().await;
         let client = aws_sdk_s3::Client::new(&shared_config);
         let rq = client.get_object().bucket("axumserws").key(rqw+"/waiting/waiting.mp4").send().await.unwrap().body.collect().await.unwrap().into_bytes().to_vec();
-    println!("e");
         sock.send(axum::extract::ws::Message::Binary(rq)).await.unwrap();
     }
     else if qw=="cs"
     {
         let shared_config = aws_config::load_from_env().await;
         let client = aws_sdk_s3::Client::new(&shared_config);
-        let rq = client.get_object().bucket("axumserws").key("cs.csv").send().await.unwrap().body.collect().await.unwrap().into_bytes().to_vec();
-    println!("e");
+        let rq = client.get_object().bucket("axumserws").key(rqw+"/cs/cs.csv").send().await.unwrap().body.collect().await.unwrap().into_bytes().to_vec();
         sock.send(axum::extract::ws::Message::Binary(rq)).await.unwrap();
     }
     else
