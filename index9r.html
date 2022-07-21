@@ -24,6 +24,7 @@
         var rpi = 1;
         var rpqi = 4;
         var rpqw = 2;
+        var rpwqw = 0;
         var wrpqw = "waiting";
         var wprpqw = "";
         init();
@@ -34,8 +35,17 @@
         }
         async function sockw2(l) {
             ws.removeEventListener("message", sockw2);
+            ws.removeEventListener("close", sockw3);
+            ws.removeEventListener("error", sockw3);
             var q = await l.data.text();
             var rqw = 0;
+            var qwprpqw = "";
+            while (q[rqw] != "\r") {
+                qwprpqw += q[rqw];
+                rqw += 1;
+            }
+            rqw += 2;
+            rpwqw = qwprpqw;
             while (q[rqw] != "\r") {
                 rqw += 1;
             }
@@ -49,6 +59,9 @@
                 rq.push(rp);
                 rqw += 2;
             }
+            sockw3();
+        }
+        async function sockw3(l) {
             userid.value = "";
             document.getElementById("q").innerHTML = "Questions for: Template ";
             user.innerText = "Proceed";
@@ -56,7 +69,12 @@
         }
         var rqqw2 = document.getElementById("rqqw2");
         function reqw(l) {
+            ws.removeEventListener("close", reqw);
+            ws.removeEventListener("error", reqw);
             user.removeEventListener(rppq, reqw);
+            if (userid.value > rpwqw) {
+                rpwqw = userid.value;
+            }
             wprpqw = ",Template " + userid.value;
             userid.value = "";
             document.getElementById("q").innerHTML = "";
@@ -72,7 +90,7 @@
             rqqw2.addEventListener(rppq, rpqeqw);
             rqqw2.innerText = "Done all";
         }
-        var rpwq = "Prompt,Response";
+        var rpwq = "";
         async function sock3(l) {
             ws.send(streamrq);
             ws.send("cs");
@@ -82,6 +100,7 @@
         function rpqeqw(l) {
             rqqw2.removeEventListener(rppq, rpqeqw);
             var rqw = 0;
+            rpwq += rpwqw + "\r\nPrompt,Response";
             while (rqw < rq.length) {
                 rpwq += "\r\n";
                 rpwq += rq[rqw];
@@ -96,6 +115,8 @@
             streamrq = userid.value;
             ws.addEventListener("open", sock2);
             ws.addEventListener("message", sockw2);
+            ws.addEventListener("close", sockw3);
+            ws.addEventListener("error", sockw3);
         }
         user.addEventListener(rppq, eqw);
     </script>
