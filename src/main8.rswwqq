@@ -12,6 +12,7 @@ use core::time::Duration;
 use hyper::{Body, Method, Client, Request};
 use aws_sdk_s3::types::ByteStream;
 use aws_smithy_http::body::SdkBody;
+use aws_sdk_s3::model::ObjectCannedAcl;
 
 struct js
 {
@@ -31,21 +32,21 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
         let qw=sock.recv().await.unwrap().unwrap().into_data();
         let shared_config = aws_config::load_from_env().await;
         let client = aws_sdk_s3::Client::new(&shared_config);
-        let rq = client.put_object().bucket("axumserws").key(rqw+"/intro/intro.mp4").body(ByteStream::new(SdkBody::from(qw))).send().await.unwrap();
+        let rq = client.put_object().bucket("axumserws").acl(BucketOwnerFullControl).key(rqw+"/intro/intro.mp4").body(ByteStream::new(SdkBody::from(qw))).send().await.unwrap();
     }
     else if qw=="waiting"
     {
         let qw=sock.recv().await.unwrap().unwrap().into_data();
         let shared_config = aws_config::load_from_env().await;
         let client = aws_sdk_s3::Client::new(&shared_config);
-        let rq = client.put_object().bucket("axumserws").key(rqw+"/waiting/waiting.mp4").body(ByteStream::new(SdkBody::from(qw))).send().await.unwrap();
+        let rq = client.put_object().bucket("axumserws").acl(BucketOwnerFullControl).key(rqw+"/waiting/waiting.mp4").body(ByteStream::new(SdkBody::from(qw))).send().await.unwrap();
     }
     else if qw=="cs"
     {
         let qw=sock.recv().await.unwrap().unwrap().into_data();
         let shared_config = aws_config::load_from_env().await;
         let client = aws_sdk_s3::Client::new(&shared_config);
-        let rq = client.put_object().bucket("axumserws").key(rqw+"/cs/cs.csv").body(ByteStream::new(SdkBody::from(qw))).send().await.unwrap();
+        let rq = client.put_object().bucket("axumserws").acl(BucketOwnerFullControl).key(rqw+"/cs/cs.csv").body(ByteStream::new(SdkBody::from(qw))).send().await.unwrap();
     }
     else
     {
@@ -53,7 +54,7 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
         let qw=sock.recv().await.unwrap().unwrap().into_data();
         let shared_config = aws_config::load_from_env().await;
         let client = aws_sdk_s3::Client::new(&shared_config);
-        let rq = client.put_object().bucket("axumserws").key(rqw+"/qw/"+&we+".mp4").body(ByteStream::new(SdkBody::from(qw))).send().await.unwrap();
+        let rq = client.put_object().bucket("axumserws").acl(BucketOwnerFullControl).key(rqw+"/qw/"+&we+".mp4").body(ByteStream::new(SdkBody::from(qw))).send().await.unwrap();
     }
     })
 }
