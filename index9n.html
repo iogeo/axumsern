@@ -99,6 +99,8 @@
             a.id = "intro";
             a.preload = "auto";
             document.getElementById("intro").addEventListener("ended", sockwprqr);
+            user.removeEventListener(rppq, eqw);
+            user.addEventListener(rppq, reqw);
             sockwp();
         }
         async function sockwp(l) {
@@ -136,8 +138,6 @@
             document.getElementById("intro").removeAttribute("hidden");
             document.getElementById("q").innerHTML = "";
             document.getElementById("user").innerHTML = "Ask";
-            user.removeEventListener(rppq, eqw);
-            user.addEventListener(rppq, reqw);
             document.getElementById("intro").play();
         }
         async function sockwprqr(l) {
