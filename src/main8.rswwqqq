@@ -12,7 +12,7 @@ use core::time::Duration;
 use hyper::{Body, Method, Client, Request};
 use aws_sdk_s3::types::ByteStream;
 use aws_smithy_http::body::SdkBody;
-use aws_sdk_s3::model::ObjectCannedAcl;
+use aws_sdk_s3::model::ObjectCannedAcl::BucketOwnerFullControl;
 
 struct js
 {
