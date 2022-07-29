@@ -41,6 +41,27 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
         let client = aws_sdk_s3::Client::new(&shared_config);
         let rq = client.put_object().bucket("axumserws").acl(PublicRead).key(rqw+"/waiting/waiting.mp4").body(ByteStream::new(SdkBody::from(qw))).send().await.unwrap();
     }
+    else if qw=="noreply"
+    {
+        let qw=sock.recv().await.unwrap().unwrap().into_data();
+        let shared_config = aws_config::load_from_env().await;
+        let client = aws_sdk_s3::Client::new(&shared_config);
+        let rq = client.put_object().bucket("axumserws").acl(PublicRead).key(rqw+"/noreply/noreply.mp4").body(ByteStream::new(SdkBody::from(qw))).send().await.unwrap();
+    }
+    else if qw=="endwarn"
+    {
+        let qw=sock.recv().await.unwrap().unwrap().into_data();
+        let shared_config = aws_config::load_from_env().await;
+        let client = aws_sdk_s3::Client::new(&shared_config);
+        let rq = client.put_object().bucket("axumserws").acl(PublicRead).key(rqw+"/endwarn/endwarn.mp4").body(ByteStream::new(SdkBody::from(qw))).send().await.unwrap();
+    }
+    else if qw=="end"
+    {
+        let qw=sock.recv().await.unwrap().unwrap().into_data();
+        let shared_config = aws_config::load_from_env().await;
+        let client = aws_sdk_s3::Client::new(&shared_config);
+        let rq = client.put_object().bucket("axumserws").acl(PublicRead).key(rqw+"/end/end.mp4").body(ByteStream::new(SdkBody::from(qw))).send().await.unwrap();
+    }
     else if qw=="cs"
     {
         let qw=sock.recv().await.unwrap().unwrap().into_data();
