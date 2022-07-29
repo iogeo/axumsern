@@ -253,6 +253,312 @@
                                         a.download = "intro.mp4";
                                         a.click();
                                         window.URL.revokeObjectURL(ul);
+                                        rqqw.innerText = "Record noreply";
+                                        rqqw.addEventListener(rppq, qww23);
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+
+                        mediaRecorder = new MediaRecorder(streamq, options);
+                        mediaRecorder.start();
+                    }
+                }
+                var options = { mimeType: "video/webm" };
+                mediaRecorder.ondataavailable = handleDataAvailable;
+                mediaRecorder.start();
+                rqqwr.innerText = "";
+                rqqw.innerText = "Done";
+                rqqw.addEventListener(rppq, qwwp);
+            }
+            else
+                rqqwr.innerText = "Please respect the onion. (" + rp + "/338222)";
+
+
+        }
+        function qww23() {
+            mediaRecorder = new MediaRecorder(streamq, options);
+            var rp = 0;
+            var cq = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+            var cq2 = ctx2.getImageData(0, 0, canvas.width, canvas.height).data;
+            for (var wrq = 0; wrq < cq.length; wrq += 1) {
+                if (cq[wrq] - cq2[wrq] > 22 || cq[wrq] - cq2[wrq] < -22)
+                    rp += 1;
+            }
+            if (rp < 338223) {
+                rqqw.removeEventListener(rppq, qww23);
+                async function handleDataAvailable(event) {
+                    if (event.data.size > 0) {
+                        wqq2.push(event.data);
+                        rqqwr.innerText = "";
+                        rqqw.innerText = "Please wait";
+                        await ffmpeg.FS('writeFile', 'noreply.webm', new Uint8Array(await (new Blob(wqq2).arrayBuffer())));
+                        await ffmpeg.run('-i', 'noreply.webm', '-preset', 'ultrafast', '-r', '30', 'noreply.mp4');
+                        await ffmpeg.run('-i', 'noreply.mp4', '-frames', '1', 'noreply.jpg');
+                        await ffmpeg.run('-i', 'noreply.mp4', '-vf', 'reverse', '-frames', '1', 'noreply2.mp4');
+                        await ffmpeg.run('-i', 'noreply2.mp4', '-frames', '1', 'noreply2.jpg');
+                        const wqwwq = ffmpeg.FS('readFile', 'noreply.jpg');
+                        const wqwwq2 = ffmpeg.FS('readFile', 'qww3.jpg');
+                        var ws = new WebSocket("wss://ws.bhuman.ai");
+                        ws.addEventListener("open", sock2);
+                        ws.addEventListener("message", sockw);
+                        async function sock2(l) {
+                            ws.send(wqwwq2);
+                            ws.send(wqwwq);
+                            ws.removeEventListener("open", sock2);
+                        }
+                        async function sockw(l) {
+
+                            if (l.data == "e")
+                                ws.send("e");
+                            else {
+                                ws.removeEventListener("message", sockw);
+                                ffmpeg.FS('writeFile', 'noreplyq.mp4', new Uint8Array(await (new Blob([l.data]).arrayBuffer())));
+                                const wqwwqi = ffmpeg.FS('readFile', 'noreply2.jpg');
+                                ws = new WebSocket("wss://ws.bhuman.ai");
+                                ws.addEventListener("open", sock3);
+                                ws.addEventListener("message", socki);
+                                async function sock3(l) {
+                                    ws.send(wqwwqi);
+                                    ws.send(wqwwq);
+                                    ws.removeEventListener("open", sock3);
+                                }
+                                async function socki(l) {
+
+                                    if (l.data == "e")
+                                        ws.send("e");
+                                    else {
+                                        ws.removeEventListener("message", socki);
+                                        ffmpeg.FS('writeFile', 'noreplyw.mp4', new Uint8Array(await (new Blob([l.data]).arrayBuffer())));
+                                        ffmpeg.FS('writeFile', 'concat_listno2.txt', 'file noreply.mp4\nfile noreplyw.mp4');
+                                        await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_listno2.txt', '-vf', 'reverse', '-preset', 'ultrafast', 'noq.mp4');
+                                        await ffmpeg.run('-i', 'noreplyq.mp4', '-vf', 'reverse', '-preset', 'ultrafast', 'noreplyq2.mp4');
+                                        ffmpeg.FS('writeFile', 'concat_listno3.txt', 'file noq.mp4\nfile noreplyq2.mp4');
+                                        await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_listno3.txt', '-vf', 'reverse', '-preset', 'ultrafast', 'now.mp4');
+                                        await ffmpeg.run('-i', 'now.mp4', '-af', 'asetpts=PTS+0.3/TB', '-preset', 'ultrafast', 'noreplyi.mp4');
+                                        var wws = new WebSocket("wss://qw.bhuman.ai");
+                                        const wqqww2 = ffmpeg.FS('readFile', 'noreplyi.mp4');
+                                        wws.addEventListener("open", sockw3);
+                                        async function sockw3(l) {
+                                            wws.send(eqwq + "");
+                                            wws.send("noreply");
+                                            wws.send(wqqww2);
+                                            wws.removeEventListener("open", sockw3);
+                                        }
+                                        ul = URL.createObjectURL(new Blob([wqqww2.buffer], { type: 'video/mp4' }));
+                                        const qe = document.getElementById('qe');
+                                        var a = document.createElement("a");
+                                        document.body.appendChild(a);
+                                        a.style = "display: none";
+                                        a.href = ul;
+                                        a.download = "noreply.mp4";
+                                        a.click();
+                                        window.URL.revokeObjectURL(ul);
+                                        rqqw.innerText = "Record endwarn";
+                                        rqqw.addEventListener(rppq, qww24);
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+
+                        mediaRecorder = new MediaRecorder(streamq, options);
+                        mediaRecorder.start();
+                    }
+                }
+                var options = { mimeType: "video/webm" };
+                mediaRecorder.ondataavailable = handleDataAvailable;
+                mediaRecorder.start();
+                rqqwr.innerText = "";
+                rqqw.innerText = "Done";
+                rqqw.addEventListener(rppq, qwwp);
+            }
+            else
+                rqqwr.innerText = "Please respect the onion. (" + rp + "/338222)";
+
+
+        }
+        function qww24() {
+            mediaRecorder = new MediaRecorder(streamq, options);
+            var rp = 0;
+            var cq = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+            var cq2 = ctx2.getImageData(0, 0, canvas.width, canvas.height).data;
+            for (var wrq = 0; wrq < cq.length; wrq += 1) {
+                if (cq[wrq] - cq2[wrq] > 22 || cq[wrq] - cq2[wrq] < -22)
+                    rp += 1;
+            }
+            if (rp < 338223) {
+                rqqw.removeEventListener(rppq, qww24);
+                async function handleDataAvailable(event) {
+                    if (event.data.size > 0) {
+                        wqq2.push(event.data);
+                        rqqwr.innerText = "";
+                        rqqw.innerText = "Please wait";
+                        await ffmpeg.FS('writeFile', 'endwarn.webm', new Uint8Array(await (new Blob(wqq2).arrayBuffer())));
+                        await ffmpeg.run('-i', 'endwarn.webm', '-preset', 'ultrafast', '-r', '30', 'endwarn.mp4');
+                        await ffmpeg.run('-i', 'endwarn.mp4', '-frames', '1', 'endwarn.jpg');
+                        await ffmpeg.run('-i', 'endwarn.mp4', '-vf', 'reverse', '-frames', '1', 'endwarn2.mp4');
+                        await ffmpeg.run('-i', 'endwarn2.mp4', '-frames', '1', 'endwarn2.jpg');
+                        const wqwwq = ffmpeg.FS('readFile', 'endwarn.jpg');
+                        const wqwwq2 = ffmpeg.FS('readFile', 'qww3.jpg');
+                        var ws = new WebSocket("wss://ws.bhuman.ai");
+                        ws.addEventListener("open", sock2);
+                        ws.addEventListener("message", sockw);
+                        async function sock2(l) {
+                            ws.send(wqwwq2);
+                            ws.send(wqwwq);
+                            ws.removeEventListener("open", sock2);
+                        }
+                        async function sockw(l) {
+
+                            if (l.data == "e")
+                                ws.send("e");
+                            else {
+                                ws.removeEventListener("message", sockw);
+                                ffmpeg.FS('writeFile', 'endwarnq.mp4', new Uint8Array(await (new Blob([l.data]).arrayBuffer())));
+                                const wqwwqi = ffmpeg.FS('readFile', 'endwarn2.jpg');
+                                ws = new WebSocket("wss://ws.bhuman.ai");
+                                ws.addEventListener("open", sock3);
+                                ws.addEventListener("message", socki);
+                                async function sock3(l) {
+                                    ws.send(wqwwqi);
+                                    ws.send(wqwwq);
+                                    ws.removeEventListener("open", sock3);
+                                }
+                                async function socki(l) {
+
+                                    if (l.data == "e")
+                                        ws.send("e");
+                                    else {
+                                        ws.removeEventListener("message", socki);
+                                        ffmpeg.FS('writeFile', 'endwarnw.mp4', new Uint8Array(await (new Blob([l.data]).arrayBuffer())));
+                                        ffmpeg.FS('writeFile', 'concat_listew2.txt', 'file endwarn.mp4\nfile endwarnw.mp4');
+                                        await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_listew2.txt', '-vf', 'reverse', '-preset', 'ultrafast', 'ewq.mp4');
+                                        await ffmpeg.run('-i', 'endwarnq.mp4', '-vf', 'reverse', '-preset', 'ultrafast', 'endwarnq2.mp4');
+                                        ffmpeg.FS('writeFile', 'concat_listew3.txt', 'file ewq.mp4\nfile endwarnq2.mp4');
+                                        await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_listew3.txt', '-vf', 'reverse', '-preset', 'ultrafast', 'eww.mp4');
+                                        await ffmpeg.run('-i', 'eww.mp4', '-af', 'asetpts=PTS+0.3/TB', '-preset', 'ultrafast', 'endwarni.mp4');
+                                        var wws = new WebSocket("wss://qw.bhuman.ai");
+                                        const wqqww2 = ffmpeg.FS('readFile', 'endwarni.mp4');
+                                        wws.addEventListener("open", sockw3);
+                                        async function sockw3(l) {
+                                            wws.send(eqwq + "");
+                                            wws.send("endwarn");
+                                            wws.send(wqqww2);
+                                            wws.removeEventListener("open", sockw3);
+                                        }
+                                        ul = URL.createObjectURL(new Blob([wqqww2.buffer], { type: 'video/mp4' }));
+                                        const qe = document.getElementById('qe');
+                                        var a = document.createElement("a");
+                                        document.body.appendChild(a);
+                                        a.style = "display: none";
+                                        a.href = ul;
+                                        a.download = "endwarn.mp4";
+                                        a.click();
+                                        window.URL.revokeObjectURL(ul);
+                                        rqqw.innerText = "Record end";
+                                        rqqw.addEventListener(rppq, qww242);
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+
+                        mediaRecorder = new MediaRecorder(streamq, options);
+                        mediaRecorder.start();
+                    }
+                }
+                var options = { mimeType: "video/webm" };
+                mediaRecorder.ondataavailable = handleDataAvailable;
+                mediaRecorder.start();
+                rqqwr.innerText = "";
+                rqqw.innerText = "Done";
+                rqqw.addEventListener(rppq, qwwp);
+            }
+            else
+                rqqwr.innerText = "Please respect the onion. (" + rp + "/338222)";
+
+
+        }
+        function qww242() {
+            mediaRecorder = new MediaRecorder(streamq, options);
+            var rp = 0;
+            var cq = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+            var cq2 = ctx2.getImageData(0, 0, canvas.width, canvas.height).data;
+            for (var wrq = 0; wrq < cq.length; wrq += 1) {
+                if (cq[wrq] - cq2[wrq] > 22 || cq[wrq] - cq2[wrq] < -22)
+                    rp += 1;
+            }
+            if (rp < 338223) {
+                rqqw.removeEventListener(rppq, qww242);
+                async function handleDataAvailable(event) {
+                    if (event.data.size > 0) {
+                        wqq2.push(event.data);
+                        rqqwr.innerText = "";
+                        rqqw.innerText = "Please wait";
+                        await ffmpeg.FS('writeFile', 'end.webm', new Uint8Array(await (new Blob(wqq2).arrayBuffer())));
+                        await ffmpeg.run('-i', 'end.webm', '-preset', 'ultrafast', '-r', '30', 'end.mp4');
+                        await ffmpeg.run('-i', 'end.mp4', '-frames', '1', 'end.jpg');
+                        await ffmpeg.run('-i', 'end.mp4', '-vf', 'reverse', '-frames', '1', 'end2.mp4');
+                        await ffmpeg.run('-i', 'end2.mp4', '-frames', '1', 'end2.jpg');
+                        const wqwwq = ffmpeg.FS('readFile', 'end.jpg');
+                        const wqwwq2 = ffmpeg.FS('readFile', 'qww3.jpg');
+                        var ws = new WebSocket("wss://ws.bhuman.ai");
+                        ws.addEventListener("open", sock2);
+                        ws.addEventListener("message", sockw);
+                        async function sock2(l) {
+                            ws.send(wqwwq2);
+                            ws.send(wqwwq);
+                            ws.removeEventListener("open", sock2);
+                        }
+                        async function sockw(l) {
+
+                            if (l.data == "e")
+                                ws.send("e");
+                            else {
+                                ws.removeEventListener("message", sockw);
+                                ffmpeg.FS('writeFile', 'endq.mp4', new Uint8Array(await (new Blob([l.data]).arrayBuffer())));
+                                const wqwwqi = ffmpeg.FS('readFile', 'end2.jpg');
+                                ws = new WebSocket("wss://ws.bhuman.ai");
+                                ws.addEventListener("open", sock3);
+                                ws.addEventListener("message", socki);
+                                async function sock3(l) {
+                                    ws.send(wqwwqi);
+                                    ws.send(wqwwq);
+                                    ws.removeEventListener("open", sock3);
+                                }
+                                async function socki(l) {
+
+                                    if (l.data == "e")
+                                        ws.send("e");
+                                    else {
+                                        ws.removeEventListener("message", socki);
+                                        ffmpeg.FS('writeFile', 'endw.mp4', new Uint8Array(await (new Blob([l.data]).arrayBuffer())));
+                                        ffmpeg.FS('writeFile', 'concat_liste2.txt', 'file end.mp4\nfile endw.mp4');
+                                        await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_liste2.txt', '-vf', 'reverse', '-preset', 'ultrafast', 'eq.mp4');
+                                        await ffmpeg.run('-i', 'endq.mp4', '-vf', 'reverse', '-preset', 'ultrafast', 'endq2.mp4');
+                                        ffmpeg.FS('writeFile', 'concat_liste3.txt', 'file eq.mp4\nfile endq2.mp4');
+                                        await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_liste3.txt', '-vf', 'reverse', '-preset', 'ultrafast', 'ew.mp4');
+                                        await ffmpeg.run('-i', 'ew.mp4', '-af', 'asetpts=PTS+0.3/TB', '-preset', 'ultrafast', 'endi.mp4');
+                                        var wws = new WebSocket("wss://qw.bhuman.ai");
+                                        const wqqww2 = ffmpeg.FS('readFile', 'endi.mp4');
+                                        wws.addEventListener("open", sockw3);
+                                        async function sockw3(l) {
+                                            wws.send(eqwq + "");
+                                            wws.send("end");
+                                            wws.send(wqqww2);
+                                            wws.removeEventListener("open", sockw3);
+                                        }
+                                        ul = URL.createObjectURL(new Blob([wqqww2.buffer], { type: 'video/mp4' }));
+                                        const qe = document.getElementById('qe');
+                                        var a = document.createElement("a");
+                                        document.body.appendChild(a);
+                                        a.style = "display: none";
+                                        a.href = ul;
+                                        a.download = "end.mp4";
+                                        a.click();
+                                        window.URL.revokeObjectURL(ul);
                                         rqqw.innerText = "Record new";
                                         rqqw.addEventListener(rppq, qww3);
                                         rqqw2.innerText = "Done all";
