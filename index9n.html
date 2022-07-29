@@ -22,6 +22,7 @@
         var rpqi = 4;
         var rpqw = 2;
         var prpqw = 3;
+        var qprpqw = 24;
         var wrpqw = "waiting";
         init();
         async function sock2(l) {
@@ -99,8 +100,6 @@
             a.id = "intro";
             a.preload = "auto";
             document.getElementById("intro").addEventListener("ended", sockwprqr);
-            user.removeEventListener(rppq, eqw);
-            user.addEventListener(rppq, reqw);
             sockwp();
         }
         async function sockwp(l) {
@@ -113,6 +112,42 @@
             a.id = "waiting";
             a.preload = "auto";
             document.getElementById("waiting").addEventListener("ended", sockwprqr2);
+            sockwp2();
+        }
+        async function sockwp2(l) {
+            var ul = URL.createObjectURL(new Blob([q], { type: 'video/mp4' }));
+            var a = document.createElement("video");
+            document.body.appendChild(a);
+            a.hidden = "hidden";
+            a.crossOrigin = "anonymous";
+            a.src = "https://axumserws.s3.amazonaws.com/" + streamrq + "/noreply/noreply.mp4";
+            a.id = "noreply";
+            a.preload = "auto";
+            document.getElementById("noreply").addEventListener("ended", sockwprqr2);
+            sockwp3();
+        }
+        async function sockwp3(l) {
+            var ul = URL.createObjectURL(new Blob([q], { type: 'video/mp4' }));
+            var a = document.createElement("video");
+            document.body.appendChild(a);
+            a.hidden = "hidden";
+            a.crossOrigin = "anonymous";
+            a.src = "https://axumserws.s3.amazonaws.com/" + streamrq + "/endwarn/endwarn.mp4";
+            a.id = "endwarn";
+            a.preload = "auto";
+            document.getElementById("endwarn").addEventListener("ended", sockwprqr2);
+            sockwp4();
+        }
+        async function sockwp4(l) {
+            var ul = URL.createObjectURL(new Blob([q], { type: 'video/mp4' }));
+            var a = document.createElement("video");
+            document.body.appendChild(a);
+            a.hidden = "hidden";
+            a.crossOrigin = "anonymous";
+            a.src = "https://axumserws.s3.amazonaws.com/" + streamrq + "/end/end.mp4";
+            a.id = "noreply";
+            a.preload = "auto";
+            document.getElementById("end").addEventListener("ended", sockwprqr3);
             sockwpr();
         }
         async function sockwpr(l) {
@@ -138,6 +173,8 @@
             document.getElementById("intro").removeAttribute("hidden");
             document.getElementById("q").innerHTML = "";
             document.getElementById("user").innerHTML = "Ask";
+            user.removeEventListener(rppq, eqw);
+            user.addEventListener(rppq, reqw);
             document.getElementById("intro").play();
         }
         async function sockwprqr(l) {
@@ -147,24 +184,41 @@
         }
         var rwqp = "";
         async function sockwprqr2(l) {
-            document.getElementById("waiting").setAttribute("hidden", "");
-            document.getElementById(wrpqw).setAttribute("hidden", "");
             if (rpqw == 2) {
-                document.getElementById("waiting").removeAttribute("hidden");
-                document.getElementById("waiting").play();
+                if (qprpqw == 8) {
+                    document.getElementById("waiting").setAttribute("hidden", "");
+                    document.getElementById(wrpqw).setAttribute("hidden", "");
+                    document.getElementById("endwarn").removeAttribute("hidden");
+                    document.getElementById("endwarn").play();
+                }
+                if (qprpqw == 2) {
+                    document.getElementById("waiting").setAttribute("hidden", "");
+                    document.getElementById(wrpqw).setAttribute("hidden", "");
+                    document.getElementById("end").removeAttribute("hidden");
+                    document.getElementById("end").play();
+                }
+                else {
+                    document.getElementById("endwarn").setAttribute("hidden", "");
+                    document.getElementById("waiting").setAttribute("hidden", "");
+                    document.getElementById(wrpqw).setAttribute("hidden", "");
+                    document.getElementById("waiting").removeAttribute("hidden");
+                    document.getElementById("waiting").play();
+                }
+                qprpqw -= 2;
             }
             else {
-
+                qprpqw = 24;
                 rpqw = 2;
                 rwqp = userid.value;
                 userid.value = "";
                 var rqw = "";
                 rqw = cqwr(rq, rwqp);
-                document.getElementById("q").innerHTML = rqw;
+                document.getElementById("waiting").setAttribute("hidden", "");
+                document.getElementById("endwarn").setAttribute("hidden", "");
+                document.getElementById(wrpqw).setAttribute("hidden", "");
                 if (rqw == rq.length) {
-
-                    document.getElementById("waiting").removeAttribute("hidden");
-                    document.getElementById("waiting").play();
+                    document.getElementById("noreply").removeAttribute("hidden");
+                    document.getElementById("noreply").play();
                 }
                 else {
                     wrpqw = rw[rqw];
@@ -172,6 +226,9 @@
                     document.getElementById(rw[rqw]).play();
                 }
             }
+        }
+        async function sockwprqr3(l) {
+            document.getElementById("end").setAttribute("hidden", "");
         }
         async function reqw(l) {
             rpqw = 3;
