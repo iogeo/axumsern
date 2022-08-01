@@ -300,14 +300,14 @@
                         await ffmpeg.run('-i', 'noreply.mp4', '-frames', '1', 'noreply.jpg');
                         await ffmpeg.run('-i', 'noreply.mp4', '-vf', 'reverse', '-frames', '1', 'noreply2.mp4');
                         await ffmpeg.run('-i', 'noreply2.mp4', '-frames', '1', 'noreply2.jpg');
-                        const wqwwq = ffmpeg.FS('readFile', 'noreply.jpg');
-                        const wqwwq2 = ffmpeg.FS('readFile', 'qww3.jpg');
+                        const wqwwq = ffmpeg.FS('readFile', 'qww2.jpg');
+                        const wqwwq2 = ffmpeg.FS('readFile', 'noreply.jpg');
                         var ws = new WebSocket("wss://ws.bhuman.ai");
                         ws.addEventListener("open", sock2);
                         ws.addEventListener("message", sockw);
                         async function sock2(l) {
-                            ws.send(wqwwq2);
                             ws.send(wqwwq);
+                            ws.send(wqwwq2);
                             ws.removeEventListener("open", sock2);
                         }
                         async function sockw(l) {
@@ -402,14 +402,14 @@
                         await ffmpeg.run('-i', 'endwarn.mp4', '-frames', '1', 'endwarn.jpg');
                         await ffmpeg.run('-i', 'endwarn.mp4', '-vf', 'reverse', '-frames', '1', 'endwarn2.mp4');
                         await ffmpeg.run('-i', 'endwarn2.mp4', '-frames', '1', 'endwarn2.jpg');
-                        const wqwwq = ffmpeg.FS('readFile', 'endwarn.jpg');
-                        const wqwwq2 = ffmpeg.FS('readFile', 'qww3.jpg');
+                        const wqwwq = ffmpeg.FS('readFile', 'qww2.jpg');
+                        const wqwwq2 = ffmpeg.FS('readFile', 'endwarn.jpg');
                         var ws = new WebSocket("wss://ws.bhuman.ai");
                         ws.addEventListener("open", sock2);
                         ws.addEventListener("message", sockw);
                         async function sock2(l) {
-                            ws.send(wqwwq2);
                             ws.send(wqwwq);
+                            ws.send(wqwwq2);
                             ws.removeEventListener("open", sock2);
                         }
                         async function sockw(l) {
@@ -504,14 +504,14 @@
                         await ffmpeg.run('-i', 'end.mp4', '-frames', '1', 'end.jpg');
                         await ffmpeg.run('-i', 'end.mp4', '-vf', 'reverse', '-frames', '1', 'end2.mp4');
                         await ffmpeg.run('-i', 'end2.mp4', '-frames', '1', 'end2.jpg');
-                        const wqwwq = ffmpeg.FS('readFile', 'end.jpg');
-                        const wqwwq2 = ffmpeg.FS('readFile', 'qww3.jpg');
+                        const wqwwq = ffmpeg.FS('readFile', 'qww2.jpg');
+                        const wqwwq2 = ffmpeg.FS('readFile', 'end.jpg');
                         var ws = new WebSocket("wss://ws.bhuman.ai");
                         ws.addEventListener("open", sock2);
                         ws.addEventListener("message", sockw);
                         async function sock2(l) {
-                            ws.send(wqwwq2);
                             ws.send(wqwwq);
+                            ws.send(wqwwq2);
                             ws.removeEventListener("open", sock2);
                         }
                         async function sockw(l) {
