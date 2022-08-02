@@ -7,6 +7,9 @@
 <body>
     <p>
         <span id=q>Log in as User </span><input type="text" id=userid></input> <button id=user>Log in</button>
+    </p>
+    <p>
+        <span id=q2></span><input type="text" id=userid2 disabled></input> <button id=user2 hidden>Question done</button>
         <button id=rqqw2>Done all (Not yet)</button>
     </p>
     <script type="module">
@@ -64,30 +67,32 @@
         async function sockw3(l) {
             userid.value = "";
             document.getElementById("q").innerHTML = "Questions for: Template ";
-            user.innerText = "Proceed";
-            user.addEventListener(rppq, reqw);
+            document.getElementById("q2").innerHTML = "Question: ";
+            document.getElementById("userid2").removeAttribute("disabled");
+            document.getElementById("user2").removeAttribute("hidden");
+            user.removeEventListener(rppq, reqw);
+            user.setAttribute("hidden", "");
+            reqw();
         }
         var rqqw2 = document.getElementById("rqqw2");
         function reqw(l) {
             ws.removeEventListener("close", reqw);
             ws.removeEventListener("error", reqw);
             user.removeEventListener(rppq, reqw);
+            user.setAttribute("hidden", "");
+            user2.addEventListener(rppq, rpeqw);
+        }
+        function rpeqw(l) {
+            wprpqw = "\tTemplate " + userid.value;
+            rqqw2.removeEventListener(rppq, rpqeqw);
+            user2.removeEventListener(rppq, rpeqw);
+            rq.push(userid2.value + wprpqw);
+            userid2.value = "";
+            user2.addEventListener(rppq, rpeqw);
+            rqqw2.addEventListener(rppq, rpqeqw);
             if (userid.value > rpwqw) {
                 rpwqw = userid.value;
             }
-            wprpqw = "\tTemplate " + userid.value;
-            userid.value = "";
-            document.getElementById("q").innerHTML = "";
-            user.innerText = "Question done";
-            user.addEventListener(rppq, rpeqw);
-        }
-        function rpeqw(l) {
-            rqqw2.removeEventListener(rppq, rpqeqw);
-            user.removeEventListener(rppq, rpeqw);
-            rq.push(userid.value + wprpqw);
-            userid.value = "";
-            user.addEventListener(rppq, rpeqw);
-            rqqw2.addEventListener(rppq, rpqeqw);
             rqqw2.innerText = "Done all";
         }
         var rpwq = "";
