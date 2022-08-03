@@ -12,6 +12,9 @@
         <span id=q2></span><input type="text" id=userid2 disabled></input> <button id=user2 hidden>Question done</button>
         <button id=rqqw2>Done all (Not yet)</button>
     </p>
+    <p>
+        <span id=q3></span><input type="text" id=userid3 disabled></input> <button id=user3 hidden>Delete question</button>
+    </p>
     <script type="module">
         import init, { cqwr } from "/pkg";
         var rppq = "mousedown";
@@ -60,6 +63,17 @@
                     rqw += 1;
                 }
                 rq.push(rp);
+                var a = document.createElement("p");
+                document.body.appendChild(a);
+                var aq = document.createElement("span");
+                var aw = document.createElement("span");
+                a.appendChild(aq);
+                a.appendChild(aw);
+                a.id = rq.length;
+                aq.id = rq.length + "q";
+                aw.id = rq.length + "w";
+                aq.innerText = rq.length;
+                aw.innerText = ". " + rq[rq.length - 1];
                 rqw += 2;
             }
             sockw3();
@@ -68,8 +82,11 @@
             userid.value = "";
             document.getElementById("q").innerHTML = "Questions for: Template ";
             document.getElementById("q2").innerHTML = "Question: ";
+            document.getElementById("q3").innerHTML = "Delete question: ";
             document.getElementById("userid2").removeAttribute("disabled");
             document.getElementById("user2").removeAttribute("hidden");
+            document.getElementById("userid3").removeAttribute("disabled");
+            document.getElementById("user3").removeAttribute("hidden");
             user.removeEventListener(rppq, reqw);
             user.setAttribute("hidden", "");
             reqw();
@@ -81,12 +98,24 @@
             user.removeEventListener(rppq, reqw);
             user.setAttribute("hidden", "");
             user2.addEventListener(rppq, rpeqw);
+            user3.addEventListener(rppq, rpeqw2);
         }
         function rpeqw(l) {
             wprpqw = "\tTemplate " + userid.value;
             rqqw2.removeEventListener(rppq, rpqeqw);
             user2.removeEventListener(rppq, rpeqw);
             rq.push(userid2.value + wprpqw);
+            var a = document.createElement("p");
+            document.body.appendChild(a);
+            var aq = document.createElement("span");
+            var aw = document.createElement("span");
+            a.appendChild(aq);
+            a.appendChild(aw);
+            a.id = rq.length;
+            aq.id = rq.length + "q";
+            aw.id = rq.length + "w";
+            aq.innerText = rq.length;
+            aw.innerText = ". " + rq[rq.length - 1];
             userid2.value = "";
             user2.addEventListener(rppq, rpeqw);
             rqqw2.addEventListener(rppq, rpqeqw);
@@ -94,6 +123,23 @@
                 rpwqw = userid.value;
             }
             rqqw2.innerText = "Done all";
+        }
+        function rpeqw2(l) {
+            if (userid3.value <= rq.length) {
+                var r = userid3.value;
+                r -= -1;
+                while (r <= rq.length) {
+                    document.getElementById(r + "q").innerHTML -= 1;
+                    document.getElementById(r).id -= 1;
+                    document.getElementById(r + "w").id = document.getElementById(r + "q").innerHTML + "w";
+                    document.getElementById(r + "q").id = document.getElementById(r + "q").innerHTML + "q";
+                    r += 1;
+                }
+                document.getElementById(userid3.value).remove();
+                rqqw2.addEventListener(rppq, rpqeqw);
+                rqqw2.innerText = "Done all";
+                rq.splice(userid3.value - 1, 1);
+            }
         }
         var rpwq = "";
         async function sock3(l) {
