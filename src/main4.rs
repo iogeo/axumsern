@@ -76,7 +76,7 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
             fs::write(qw.clone()+".mp4", &rwq).unwrap();
             q += "file ";
             q += &qw;
-            q += "\n";
+            q += ".mp4\n";
             qw = sock.recv().await.unwrap().unwrap().into_text().unwrap();
         }
         q += "file end.mp4\n";
