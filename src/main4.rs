@@ -73,7 +73,7 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
                 pq = pqp;
             }
             let rwq = client.get_object().bucket("axumserws").key(rqw.clone()+&pq).send().await.unwrap().body.collect().await.unwrap().into_bytes().to_vec();
-            fs::write(&qw+".mp4", &rwq).unwrap();
+            fs::write(qw.clone()+".mp4", &rwq).unwrap();
             q += "file ";
             q += &qw;
             q += "\n";
@@ -83,15 +83,15 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
         fs::write("concat", &q.to_string().as_bytes()).unwrap();
         let qww = Command::new("sh")
             .arg("-c")
-            .arg(format!("ffmpeg -f concat -safe 0 -i ./qw{}/concat -preset ultrafast final.mp4", rq, rq))
+            .arg(format!("ffmpeg -f concat -safe 0 -i concat -preset ultrafast final.mp4"))
             .output()
             .unwrap();
-        let mut r = File::open(final.mp4").unwrap();
+        let mut r = File::open("final.mp4").unwrap();
         let mut p = vec![];
         r.read_to_end(&mut p);
         let qww2 = Command::new("sh")
             .arg("-c")
-            .arg(format!("rm -r ./qw{}/concat\n", rq))
+            .arg(format!("rm -r concat\n"))
             .output()
             .unwrap();
         let rq = client.put_object().bucket("axumserws").key(rqw+"/final/"+&rq.to_string()+".mp4").body(ByteStream::new(SdkBody::from(p))).send().await.unwrap();
