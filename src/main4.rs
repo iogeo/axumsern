@@ -71,7 +71,7 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
             {
                 pq = &("/qw/".to_string()+&qw+".mp4");
             }
-            let rwq = client.get_object().bucket("axumserws").key(rqw.clone()+&qw).send().await.unwrap().body.collect().await.unwrap().into_bytes().to_vec();
+            let rwq = client.get_object().bucket("axumserws").key(rqw.clone()+"/"+&pq).send().await.unwrap().body.collect().await.unwrap().into_bytes().to_vec();
             fs::write(format!("./qw{}/", rq)+&qw+".mp4", &rwq).unwrap();
             q += "file ";
             q += &qw;
@@ -90,7 +90,7 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
         r.read_to_end(&mut p);
         let qww2 = Command::new("sh")
             .arg("-c")
-            .arg(format!("rm -r -y ./qw{}/concat\n", rq))
+            .arg(format!("rm -r ./qw{}/concat\n", rq))
             .output()
             .unwrap();
         let rq = client.put_object().bucket("axumserws").key(rqw+"/final/"+&rq.to_string()+".mp4").body(ByteStream::new(SdkBody::from(p))).send().await.unwrap();
