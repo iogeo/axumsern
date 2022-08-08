@@ -47,6 +47,7 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
         }}}
         while qw != "w"{
             let pq;
+            let pqp = &("/qw/".to_string()+&qw+".mp4");
             if qw == "intro"
             {
                 pq = "/intro/intro.mp4";
@@ -69,7 +70,7 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
             }
             else
             {
-                pq = &("/qw/".to_string()+&qw+".mp4");
+                pq = pqp;
             }
             let rwq = client.get_object().bucket("axumserws").key(rqw.clone()+"/"+&pq).send().await.unwrap().body.collect().await.unwrap().into_bytes().to_vec();
             fs::write(format!("./qw{}/", rq)+&qw+".mp4", &rwq).unwrap();
