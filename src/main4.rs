@@ -98,9 +98,7 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
 }
 
 async fn index2() -> impl IntoResponse{
-    let mut r=File::open("index2.html").unwrap();
-    let mut p = String::new();
-    r.read_to_string(&mut p);
+    fs::write("visits", "2").unwrap();
     response()
         .await.status(200)
         .header("Content-Type","text/html; charset=UTF-8")
