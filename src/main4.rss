@@ -72,7 +72,7 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
             {
                 pq = pqp;
             }
-            let rwq = client.get_object().bucket("axumserws").key(rqw.clone()+"/"+&pq).send().await.unwrap().body.collect().await.unwrap().into_bytes().to_vec();
+            let rwq = client.get_object().bucket("axumserws").key(rqw.clone()+&pq).send().await.unwrap().body.collect().await.unwrap().into_bytes().to_vec();
             fs::write(format!("./qw{}/", rq)+&qw+".mp4", &rwq).unwrap();
             q += "file ";
             q += &qw;
