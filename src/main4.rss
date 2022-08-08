@@ -39,7 +39,7 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
                 _ => {
             let mut r=File::open("visits").unwrap();
             r.read_to_string(&mut e);
-                    println!(&e);
+                    println!("{}", &e);
             rq = i32::from_str(&e).unwrap();
             rq += 1;
             fs::write("visits", rq.to_string().as_bytes()).unwrap();
