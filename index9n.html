@@ -1,242 +1,263 @@
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-          "http://www.w3.org/TR/html4/loose.dtd">
+"http://www.w3.org/TR/html4/loose.dtd">
 <head>
-    <script src='ffmpeg.min.js'></script>
+<script src='ffmpeg.min.js'></script>
 </head>
 <body>
-    <p><span id=q>Log in as User </span><input type="text" id=userid></input> <button id=user>Log in</button> </p>
-    <script type="module">
-        import init, { cqwr } from "/pkg";
-        var rppq = "mousedown";
-        var streamrq;
-        var ws;
-        var q = "aqqw";
-        const userid = document.getElementById('userid');
-        const user = document.getElementById('user');
+<p><span id=q>Log in as User </span><input type="text" id=userid></input> <button id=user>Log in</button> </p>
+<script type="module">
+import init, { cqwr } from "/pkg";
+var rppq = "mousedown";
+var streamrq;
+var ws;
+var q = "aqqw";
+const userid = document.getElementById('userid');
+const user = document.getElementById('user');
 
-        var rq = "";
-        var rw = [];
-        var rpw = [];
-        var rpi = 1;
-        var rpqi = 4;
-        var rpqw = 2;
-        var prpqw = 3;
-        var qprpqw = 24;
-        var wrpqw = "waiting";
-        init();
-        async function sock2(l) {
-            ws.send(streamrq);
-            ws.send("cs");
-            ws.removeEventListener("open", sock2);
-        }
-        var wrpqwp = "";
-        async function sockw2(l) {
-            ws.removeEventListener("message", sockw2);
-            var q = await l.data.text();
-            var rqw = 0;
-            while (q[rqw] != "\r") {
-                wrpqwp += q[rqw];
-                rqw += 1;
-            }
-            rqw += 2;
-            while (q[rqw] != "\n") {
-                rqw += 1;
-            }
-            rqw += 1;
-            while (rqw < q.length) {
-                var rp = "";
-                var rp2 = "";
-                while (q[rqw] != "\t") {
-                    rp += q[rqw];
-                    rqw += 1;
-                }
-                var rwq = 0;
-                var rpr = "";
-                while (rwq < rp.length) {
-                    if (rp[rwq - 1] == "'" && (rp[rwq] == "s" || rp[rwq] == "S")) {
-                        rpr += " is";
-                    }
-                    else if (rp[rwq] <= "z" && rp[rwq] >= "a") {
-                        rpr += rp[rwq];
-                    }
-                    else if (rp[rwq] <= "Z" && rp[rwq] >= "A") {
-                        rpr += rp[rwq].toLowerCase();
-                    }
-                    else if (rp[rwq] <= "9" && rp[rwq] >= "0") {
-                        rpr += rp[rwq];
-                    }
-                    else if (rp[rwq] == " ") {
-                        rpr += " ";
-                    }
-                    rwq += 1;
-                }
-                rq += rpr;
-                rq += "\n";
-                rqw += 1;
-                while (q[rqw + 1] != "\n" && rqw < q.length) {
-                    rp2 += q[rqw];
-                    rqw += 1;
-                }
-                rw.push(rp2);
-                rqw += 2;
-            }
-            sockw();
-        }
-        function eqw(l) {
-            user.removeEventListener(rppq, eqw);
-            ws = new WebSocket("wss://qw.bhuman.ai/qw");
-            streamrq = userid.value;
-            ws.addEventListener("open", sock2);
-            ws.addEventListener("message", sockw2);
-        }
-        async function sockw(l) {
-            var ul = URL.createObjectURL(new Blob([q], { type: 'video/mp4' }));
-            var a = document.createElement("video");
-            document.body.appendChild(a);
-            a.hidden = "hidden";
-            a.crossOrigin = "anonymous";
-            a.src = "https://axumserws.s3.amazonaws.com/" + streamrq + "/intro/intro.mp4";
-            a.id = "intro";
-            a.preload = "auto";
-            document.getElementById("intro").addEventListener("ended", sockwprqr);
-            sockwp();
-        }
-        async function sockwp(l) {
-            var ul = URL.createObjectURL(new Blob([q], { type: 'video/mp4' }));
-            var a = document.createElement("video");
-            document.body.appendChild(a);
-            a.hidden = "hidden";
-            a.crossOrigin = "anonymous";
-            a.src = "https://axumserws.s3.amazonaws.com/" + streamrq + "/waiting/waiting.mp4";
-            a.id = "waiting";
-            a.preload = "auto";
-            document.getElementById("waiting").addEventListener("ended", sockwprqr2);
-            sockwp2();
-        }
-        async function sockwp2(l) {
-            var ul = URL.createObjectURL(new Blob([q], { type: 'video/mp4' }));
-            var a = document.createElement("video");
-            document.body.appendChild(a);
-            a.hidden = "hidden";
-            a.crossOrigin = "anonymous";
-            a.src = "https://axumserws.s3.amazonaws.com/" + streamrq + "/noreply/noreply.mp4";
-            a.id = "noreply";
-            a.preload = "auto";
-            document.getElementById("noreply").addEventListener("ended", sockwprqr2);
-            sockwp3();
-        }
-        async function sockwp3(l) {
-            var ul = URL.createObjectURL(new Blob([q], { type: 'video/mp4' }));
-            var a = document.createElement("video");
-            document.body.appendChild(a);
-            a.hidden = "hidden";
-            a.crossOrigin = "anonymous";
-            a.src = "https://axumserws.s3.amazonaws.com/" + streamrq + "/endwarn/endwarn.mp4";
-            a.id = "endwarn";
-            a.preload = "auto";
-            document.getElementById("endwarn").addEventListener("ended", sockwprqr2);
-            sockwp4();
-        }
-        async function sockwp4(l) {
-            var ul = URL.createObjectURL(new Blob([q], { type: 'video/mp4' }));
-            var a = document.createElement("video");
-            document.body.appendChild(a);
-            a.hidden = "hidden";
-            a.crossOrigin = "anonymous";
-            a.src = "https://axumserws.s3.amazonaws.com/" + streamrq + "/end/end.mp4";
-            a.id = "end";
-            a.preload = "auto";
-            document.getElementById("end").addEventListener("ended", sockwprqr3);
-            sockwpr();
-        }
-        async function sockwpr(l) {
-            if (wrpqwp > 0) {
-                var a = document.createElement("video");
-                document.body.appendChild(a);
-                a.hidden = "hidden";
-                a.crossOrigin = "anonymous";
-                a.src = "https://axumserws.s3.amazonaws.com/" + streamrq + "/qw/" + prpqw + ".mp4";
-                a.id = "Template " + rpi;
-                a.preload = "auto";
-                document.getElementById("Template " + rpi).addEventListener("ended", sockwprqr2);
-                rpi += 1;
-                prpqw += 1;
-                wrpqwp -= 1;
-                sockwpr();
-            }
-            else {
-                sockwprq();
-            }
-        }
-        async function sockwprq(l) {
-            document.getElementById("intro").removeAttribute("hidden");
-            document.getElementById("q").innerHTML = "";
-            document.getElementById("user").innerHTML = "Ask";
-            user.removeEventListener(rppq, eqw);
-            user.addEventListener(rppq, reqw);
-            document.getElementById("intro").play();
-        }
-        async function sockwprqr(l) {
-            document.getElementById("intro").setAttribute("hidden", "");
-            document.getElementById("waiting").removeAttribute("hidden");
-            document.getElementById("waiting").play();
-        }
-        var rwqp = "";
-        async function sockwprqr2(l) {
-            if (rpqw == 2) {
-                     document.getElementById("noreply").setAttribute("hidden", "");
-                if (qprpqw == 8) {
-                    document.getElementById("waiting").setAttribute("hidden", "");
-                    document.getElementById(wrpqw).setAttribute("hidden", "");
-                    document.getElementById("endwarn").removeAttribute("hidden");
-                    document.getElementById("endwarn").play();
-                }
-                else if (qprpqw == 2) {
-                    document.getElementById("waiting").setAttribute("hidden", "");
-                    document.getElementById(wrpqw).setAttribute("hidden", "");
-                    document.getElementById("end").removeAttribute("hidden");
-                    document.getElementById("end").play();
-                }
-                else {
-                    document.getElementById("endwarn").setAttribute("hidden", "");
-                    document.getElementById("waiting").setAttribute("hidden", "");
-                    document.getElementById(wrpqw).setAttribute("hidden", "");
-                    document.getElementById("waiting").removeAttribute("hidden");
-                    document.getElementById("waiting").play();
-                }
-                qprpqw -= 2;
-            }
-            else {
-                qprpqw = 24;
-                rpqw = 2;
-                rwqp = userid.value;
-                userid.value = "";
-                var rqw = "";
-                rqw = cqwr(rq, rwqp);
-                document.getElementById("waiting").setAttribute("hidden", "");
-                document.getElementById("endwarn").setAttribute("hidden", "");
-                document.getElementById(wrpqw).setAttribute("hidden", "");
-                if (rqw == rw.length) {
-                    document.getElementById("noreply").removeAttribute("hidden");
-                    document.getElementById("noreply").play();
-                }
-                else {
-                    wrpqw = rw[rqw];
-                    document.getElementById(rw[rqw]).removeAttribute("hidden");
-                    document.getElementById(rw[rqw]).play();
-                }
-            }
-        }
-        async function sockwprqr3(l) {
-            document.getElementById("end").setAttribute("hidden", "");
-            user.removeEventListener(rppq, reqw);
-        }
-        async function reqw(l) {
-            rpqw = 3;
+var rq = "";
+var rw = [];
+var rpw = [];
+var rpi = 1;
+var rpqi = 4;
+var rpqw = 2;
+var prpqw = 3;
+var qprpqw = 24;
+var wrpqw = "waiting";
+var ws2;
+init();
+async function sock2(l) {
+  ws.send(streamrq);
+  ws.send("cs");
+  ws.removeEventListener("open", sock2);
+}
+var wrpqwp = "";
+async function sockw2(l) {
+  ws.removeEventListener("message", sockw2);
+  ws2 = new WebSocket("wss://ws2.bhuman.ai/");
+  ws2.addEventListener("open", sock32);
+  ws2.addEventListener("open", sockw);
+  async function sock32(l) {
+      ws2.send(streamrq + "");
+      ws2.removeEventListener("open", sock32);
+  }
+  var q = await l.data.text();
+  var rqw = 0;
+  while (q[rqw] != "\r") {
+      wrpqwp += q[rqw];
+      rqw += 1;
+  }
+  rqw += 2;
+  while (q[rqw] != "\n") {
+      rqw += 1;
+  }
+  rqw += 1;
+  while (rqw < q.length) {
+      var rp = "";
+      var rp2 = "";
+      var rp22 = "";
+      while (q[rqw] != "\t") {
+          rp += q[rqw];
+          rqw += 1;
+      }
+      var rwq = 0;
+      var rpr = "";
+      while (rwq < rp.length) {
+          if (rp[rwq - 1] == "'" && (rp[rwq] == "s" || rp[rwq] == "S")) {
+              rpr += " is";
+          }
+          else if (rp[rwq] <= "z" && rp[rwq] >= "a") {
+              rpr += rp[rwq];
+          }
+          else if (rp[rwq] <= "Z" && rp[rwq] >= "A") {
+              rpr += rp[rwq].toLowerCase();
+          }
+          else if (rp[rwq] <= "9" && rp[rwq] >= "0") {
+              rpr += rp[rwq];
+          }
+          else if (rp[rwq] == " ") {
+              rpr += " ";
+          }
+          rwq += 1;
+      }
+      rq += rpr;
+      rq += "\n";
+      rqw += 1;
+      var rqw2 = rqw + 9;
+      while (q[rqw + 1] != "\n" && rqw < q.length) {
+          rp2 += q[rqw];
+          rqw += 1;
+      }
+      while (q[rqw2 + 1] != "\n" && rqw2 < q.length) {
+          rp22 += q[rqw2];
+          rqw2 += 1;
+      }
+      rw.push(rp2);
+      rpw.push(rp22 - -2);
+      rqw += 2;
+  }
+}
+function eqw(l) {
+  user.removeEventListener(rppq, eqw);
+  ws = new WebSocket("wss://qw.bhuman.ai/qw");
+  streamrq = userid.value;
+  ws.addEventListener("open", sock2);
+  ws.addEventListener("message", sockw2);
+}
+async function sockw(l) {
+  var ul = URL.createObjectURL(new Blob([q], { type: 'video/mp4' }));
+  var a = document.createElement("video");
+  document.body.appendChild(a);
+  a.hidden = "hidden";
+  a.crossOrigin = "anonymous";
+  a.src = "https://axumserws.s3.amazonaws.com/" + streamrq + "/intro/intro.mp4";
+  a.id = "intro";
+  a.preload = "auto";
+  document.getElementById("intro").addEventListener("ended", sockwprqr);
+  sockwp();
+}
+async function sockwp(l) {
+  var ul = URL.createObjectURL(new Blob([q], { type: 'video/mp4' }));
+  var a = document.createElement("video");
+  document.body.appendChild(a);
+  a.hidden = "hidden";
+  a.crossOrigin = "anonymous";
+  a.src = "https://axumserws.s3.amazonaws.com/" + streamrq + "/waiting/waiting.mp4";
+  a.id = "waiting";
+  a.preload = "auto";
+  document.getElementById("waiting").addEventListener("ended", sockwprqr2);
+  sockwp2();
+}
+async function sockwp2(l) {
+  var ul = URL.createObjectURL(new Blob([q], { type: 'video/mp4' }));
+  var a = document.createElement("video");
+  document.body.appendChild(a);
+  a.hidden = "hidden";
+  a.crossOrigin = "anonymous";
+  a.src = "https://axumserws.s3.amazonaws.com/" + streamrq + "/noreply/noreply.mp4";
+  a.id = "noreply";
+  a.preload = "auto";
+  document.getElementById("noreply").addEventListener("ended", sockwprqr2);
+  sockwp3();
+}
+async function sockwp3(l) {
+  var ul = URL.createObjectURL(new Blob([q], { type: 'video/mp4' }));
+  var a = document.createElement("video");
+  document.body.appendChild(a);
+  a.hidden = "hidden";
+  a.crossOrigin = "anonymous";
+  a.src = "https://axumserws.s3.amazonaws.com/" + streamrq + "/endwarn/endwarn.mp4";
+  a.id = "endwarn";
+  a.preload = "auto";
+  document.getElementById("endwarn").addEventListener("ended", sockwprqr2);
+  sockwp4();
+}
+async function sockwp4(l) {
+  var ul = URL.createObjectURL(new Blob([q], { type: 'video/mp4' }));
+  var a = document.createElement("video");
+  document.body.appendChild(a);
+  a.hidden = "hidden";
+  a.crossOrigin = "anonymous";
+  a.src = "https://axumserws.s3.amazonaws.com/" + streamrq + "/end/end.mp4";
+  a.id = "end";
+  a.preload = "auto";
+  document.getElementById("end").addEventListener("ended", sockwprqr3);
+  sockwpr();
+}
+async function sockwpr(l) {
+  if (wrpqwp > 0) {
+      var a = document.createElement("video");
+      document.body.appendChild(a);
+      a.hidden = "hidden";
+      a.crossOrigin = "anonymous";
+      a.src = "https://axumserws.s3.amazonaws.com/" + streamrq + "/qw/" + prpqw + ".mp4";
+      a.id = "Template " + rpi;
+      a.preload = "auto";
+      document.getElementById("Template " + rpi).addEventListener("ended", sockwprqr2);
+      rpi += 1;
+      prpqw += 1;
+      wrpqwp -= 1;
+      sockwpr();
+  }
+  else {
+      sockwprq();
+  }
+}
+async function sockwprq(l) {
+  document.getElementById("intro").removeAttribute("hidden");
+  document.getElementById("q").innerHTML = "";
+  document.getElementById("user").innerHTML = "Ask";
+  user.removeEventListener(rppq, eqw);
+  user.addEventListener(rppq, reqw);
+  document.getElementById("intro").play();
+  ws2.send("intro");
+}
+async function sockwprqr(l) {
+  document.getElementById("intro").setAttribute("hidden", "");
+  document.getElementById("waiting").removeAttribute("hidden");
+  document.getElementById("waiting").play();
+  ws2.send("waiting");
+}
+var rwqp = "";
+async function sockwprqr2(l) {
+  if (rpqw == 2) {
+      document.getElementById("noreply").setAttribute("hidden", "");
+      if (qprpqw == 8) {
+          document.getElementById("waiting").setAttribute("hidden", "");
+          document.getElementById(wrpqw).setAttribute("hidden", "");
+          document.getElementById("endwarn").removeAttribute("hidden");
+          document.getElementById("endwarn").play();
+          ws2.send("endwarn");
+      }
+      else if (qprpqw == 2) {
+          document.getElementById("waiting").setAttribute("hidden", "");
+          document.getElementById(wrpqw).setAttribute("hidden", "");
+          document.getElementById("end").removeAttribute("hidden");
+          document.getElementById("end").play();
+          ws2.send("w");
+      }
+      else {
+          document.getElementById("endwarn").setAttribute("hidden", "");
+          document.getElementById("waiting").setAttribute("hidden", "");
+          document.getElementById(wrpqw).setAttribute("hidden", "");
+          document.getElementById("waiting").removeAttribute("hidden");
+          document.getElementById("waiting").play();
+          ws2.send("waiting");
+      }
+      qprpqw -= 2;
+  }
+  else {
+      qprpqw = 24;
+      rpqw = 2;
+      rwqp = userid.value;
+      userid.value = "";
+      var rqw = "";
+      rqw = cqwr(rq, rwqp);
+      document.getElementById("waiting").setAttribute("hidden", "");
+      document.getElementById("endwarn").setAttribute("hidden", "");
+      document.getElementById(wrpqw).setAttribute("hidden", "");
+      if (rqw == rw.length) {
+          document.getElementById("noreply").removeAttribute("hidden");
+          document.getElementById("noreply").play();
+          ws2.send("noreply");
+      }
+      else {
+          wrpqw = rw[rqw];
+          document.getElementById(rw[rqw]).removeAttribute("hidden");
+          document.getElementById(rw[rqw]).play();
+          ws2.send(rpw[rqw] + "");
+      }
+  }
+}
+async function sockwprqr3(l) {
+  document.getElementById("end").setAttribute("hidden", "");
+  user.removeEventListener(rppq, reqw);
+}
+async function reqw(l) {
+  rpqw = 3;
 
-        }
-        user.addEventListener(rppq, eqw);
-    </script>
+}
+user.addEventListener(rppq, eqw);
+</script>
 </body>
 </html>
