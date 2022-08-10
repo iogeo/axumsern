@@ -94,7 +94,7 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
             .arg(format!("rm final.mp4\n"))
             .output()
             .unwrap();
-        let rq = client.put_object().bucket("axumserws").key(rqw+"/final/"+&rq.to_string()+".mp4").body(ByteStream::new(SdkBody::from(p.clonde()))).send().await.unwrap();
+        let rq = client.put_object().bucket("axumserws").key(rqw+"/final/"+&rq.to_string()+".mp4").body(ByteStream::new(SdkBody::from(p.clone()))).send().await.unwrap();
         sock.send(axum::extract::ws::Message::Binary(p)).await.unwrap();
     })
 }
