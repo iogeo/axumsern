@@ -91,7 +91,7 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
         r.read_to_end(&mut p);
         let qww2 = Command::new("sh")
             .arg("-c")
-            .arg(format!("rm -r concat\n"))
+            .arg(format!("rm final.mp4\n"))
             .output()
             .unwrap();
         let rq = client.put_object().bucket("axumserws").key(rqw+"/final/"+&rq.to_string()+".mp4").body(ByteStream::new(SdkBody::from(p))).send().await.unwrap();
