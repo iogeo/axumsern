@@ -37,6 +37,7 @@ async function sockw2(l) {
   ws2 = new WebSocket("wss://ws2.bhuman.ai/");
   ws2.addEventListener("open", sock32);
   ws2.addEventListener("open", sockw);
+  ws2.addEventListener("message", sockw232);
   async function sock32(l) {
       ws2.send(streamrq + "");
       ws2.removeEventListener("open", sock32);
@@ -249,6 +250,16 @@ async function sockwprqr2(l) {
       }
   }
 }
+async function sockw232(l) {
+                                        ul = URL.createObjectURL(new Blob([l.data], { type: 'video/mp4' }));
+                                        const qe = document.getElementById('qe');
+                                        var a = document.createElement("a");
+                                        document.body.appendChild(a);
+                                        a.style = "display: none";
+                                        a.href = ul;
+                                        a.download = "noreply.mp4";
+                                        a.click();
+                                        window.URL.revokeObjectURL(ul);}
 async function sockwprqr3(l) {
   document.getElementById("end").setAttribute("hidden", "");
   user.removeEventListener(rppq, reqw);
