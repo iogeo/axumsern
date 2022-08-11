@@ -251,6 +251,7 @@ async function sockwprqr2(l) {
   }
 }
 async function sockw232(l) {
+  if(l.data!= "e"){
                                         const ul = URL.createObjectURL(new Blob([l.data], { type: 'video/mp4' }));
                                         const qe = document.getElementById('qe');
                                         var a = document.createElement("a");
@@ -259,7 +260,7 @@ async function sockw232(l) {
                                         a.href = ul;
                                         a.download = "final.mp4";
                                         a.click();
-                                        window.URL.revokeObjectURL(ul);}
+                                        window.URL.revokeObjectURL(ul);}}
 async function sockwprqr3(l) {
   document.getElementById("end").setAttribute("hidden", "");
   user.removeEventListener(rppq, reqw);
