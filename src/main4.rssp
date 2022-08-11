@@ -50,9 +50,9 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
             .arg(format!("mkdir q{}", rq))
             .output()
             .unwrap();
-        let rwq = client.get_object().bucket("axumserws").key(rqw.clone()+"waiting/waiting.mp4").send().await.unwrap().body.collect().await.unwrap().into_bytes().to_vec();
+        let rwq = client.get_object().bucket("axumserws").key(rqw.clone()+"/waiting/waiting.mp4").send().await.unwrap().body.collect().await.unwrap().into_bytes().to_vec();
         fs::write(format!("./q{}/waiting.mp4", rq), &rwq).unwrap();
-        let rwq = client.get_object().bucket("axumserws").key(rqw.clone()+"end/end.mp4").send().await.unwrap().body.collect().await.unwrap().into_bytes().to_vec();
+        let rwq = client.get_object().bucket("axumserws").key(rqw.clone()+"/end/end.mp4").send().await.unwrap().body.collect().await.unwrap().into_bytes().to_vec();
         fs::write(format!("./q{}/end.mp4", rq), &rwq).unwrap();
         while qw != "w"{
             let pq;
