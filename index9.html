@@ -197,7 +197,7 @@
                                 ws.removeEventListener("message", sockw);
                                 ffmpeg.FS('writeFile', 'qwwr.mp4', new Uint8Array(await (new Blob([l.data]).arrayBuffer())));
                                 ffmpeg.FS('writeFile', 'concat_list2.txt', 'file qww.mp4\nfile qwwr.mp4');
-                                await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_list2.txt', '-preset', 'ultrafast', 'waiting.mp4');
+                                await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_list2.txt', '-af', 'apad', '-shortest', '-preset', 'ultrafast', 'waiting.mp4');
                                 await ffmpeg.run('-i', 'qwi.mp4', '-vf', 'reverse', '-frames', '1', 'qww3.mp4');
                                 await ffmpeg.run('-i', 'qww3.mp4', '-frames', '1', 'qwi.jpg');
                                 const wqwwqi = ffmpeg.FS('readFile', 'qwi.jpg');
@@ -235,7 +235,7 @@
                                         ws.removeEventListener("message", socki);
                                         ffmpeg.FS('writeFile', 'qwir.mp4', new Uint8Array(await (new Blob([l.data]).arrayBuffer())));
                                         ffmpeg.FS('writeFile', 'concat_list3.txt', 'file qwi.mp4\nfile qwir.mp4');
-                                        await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_list3.txt', '-preset', 'ultrafast', 'intro.mp4');
+                                        await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_list3.txt', '-af', 'apad', '-shortest','-preset', 'ultrafast', 'intro.mp4');
                                         const wqqww2 = ffmpeg.FS('readFile', 'intro.mp4');
                                         var wws = new WebSocket("wss://qw.bhuman.ai");
                                         wws.addEventListener("open", sockw3);
@@ -338,7 +338,11 @@
                                         await ffmpeg.run('-i', 'noreplyq.mp4', '-vf', 'reverse', '-preset', 'ultrafast', 'noreplyq2.mp4');
                                         ffmpeg.FS('writeFile', 'concat_listno3.txt', 'file noq.mp4\nfile noreplyq2.mp4');
                                         await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_listno3.txt', '-vf', 'reverse', '-preset', 'ultrafast', 'now.mp4');
-                                        await ffmpeg.run('-i', 'now.mp4', '-af', 'asetpts=PTS+0.3/TB', '-preset', 'ultrafast', 'noreplyi.mp4');
+                                        await ffmpeg.run('-i', 'now.mp4', '-af', 'asetpts=PTS+0.3/TB', '-preset', 'ultrafast', 'noreplyi2.mp4');
+                                        await ffmpeg.run('-i', 'noreplyi2.mp4', '-af', 'apad', '-preset', 'ultrafast', '-shortest', 'noreplyi3.mp4');
+                                        await ffmpeg.run('-i', 'noreplyi3.mp4', '-af', 'areverse', '-preset', 'ultrafast', 'noreplyi4.mp4');
+                                        await ffmpeg.run('-i', 'noreplyi4.mp4', '-af', 'apad', '-preset', 'ultrafast', '-shortest', 'noreplyi7.mp4');
+                                        await ffmpeg.run('-i', 'noreplyi7.mp4', '-af', 'areverse', '-preset', 'ultrafast', 'noreplyi.mp4');
                                         var wws = new WebSocket("wss://qw.bhuman.ai");
                                         const wqqww2 = ffmpeg.FS('readFile', 'noreplyi.mp4');
                                         wws.addEventListener("open", sockw3);
@@ -440,7 +444,11 @@
                                         await ffmpeg.run('-i', 'endwarnq.mp4', '-vf', 'reverse', '-preset', 'ultrafast', 'endwarnq2.mp4');
                                         ffmpeg.FS('writeFile', 'concat_listew3.txt', 'file ewq.mp4\nfile endwarnq2.mp4');
                                         await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_listew3.txt', '-vf', 'reverse', '-preset', 'ultrafast', 'eww.mp4');
-                                        await ffmpeg.run('-i', 'eww.mp4', '-af', 'asetpts=PTS+0.3/TB', '-preset', 'ultrafast', 'endwarni.mp4');
+                                        await ffmpeg.run('-i', 'eww.mp4', '-af', 'asetpts=PTS+0.3/TB', '-preset', 'ultrafast', 'endwarni2.mp4');
+                                        await ffmpeg.run('-i', 'endwarni2.mp4', '-af', 'apad', '-preset', 'ultrafast', '-shortest', 'endwarni3.mp4');
+                                        await ffmpeg.run('-i', 'endwarni3.mp4', '-af', 'areverse', '-preset', 'ultrafast', 'endwarni4.mp4');
+                                        await ffmpeg.run('-i', 'endwarni4.mp4', '-af', 'apad', '-preset', 'ultrafast', '-shortest', 'endwarni7.mp4');
+                                        await ffmpeg.run('-i', 'endwarni7.mp4', '-af', 'areverse', '-preset', 'ultrafast', 'endwarni.mp4');
                                         var wws = new WebSocket("wss://qw.bhuman.ai");
                                         const wqqww2 = ffmpeg.FS('readFile', 'endwarni.mp4');
                                         wws.addEventListener("open", sockw3);
@@ -543,6 +551,10 @@
                                         ffmpeg.FS('writeFile', 'concat_liste3.txt', 'file eq.mp4\nfile endq2.mp4');
                                         await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_liste3.txt', '-vf', 'reverse', '-preset', 'ultrafast', 'ew.mp4');
                                         await ffmpeg.run('-i', 'ew.mp4', '-af', 'asetpts=PTS+0.3/TB', '-preset', 'ultrafast', 'endi.mp4');
+                                        await ffmpeg.run('-i', 'endi2.mp4', '-af', 'apad', '-preset', 'ultrafast', '-shortest', 'endi3.mp4');
+                                        await ffmpeg.run('-i', 'endi3.mp4', '-af', 'areverse', '-preset', 'ultrafast', 'endi4.mp4');
+                                        await ffmpeg.run('-i', 'endi4.mp4', '-af', 'apad', '-preset', 'ultrafast', '-shortest', 'endi7.mp4');
+                                        await ffmpeg.run('-i', 'endi7.mp4', '-af', 'areverse', '-preset', 'ultrafast', 'endi.mp4');
                                         var wws = new WebSocket("wss://qw.bhuman.ai");
                                         const wqqww2 = ffmpeg.FS('readFile', 'endi.mp4');
                                         wws.addEventListener("open", sockw3);
@@ -670,8 +682,10 @@
                                         ffmpeg.FS('writeFile', 'concat_list' + wqqq + '4.txt', 'file ' + wqqq + 'q.mp4\nfile ' + wqqq + 'q2.mp4');
                                         await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_list' + wqqq + '4.txt', '-vf', 'reverse', '-preset', 'ultrafast', wqqq + 'w.mp4');
                                         await ffmpeg.run('-i', wqqq + 'w.mp4', '-af', 'asetpts=PTS+0.3/TB', '-preset', 'ultrafast', wqqq + '.mp4');
-                                        ffmpeg.FS('writeFile', 'concat_lists.txt', 'file Final.mp4\nfile waiting.mp4\nfile ' + wqqq + '.mp4');
-                                        final += "file " + wqqq + ".mp4\nfile waiting.mp4\n";
+                                        await ffmpeg.run('-i', wqqq + 'i2.mp4', '-af', 'apad', '-preset', 'ultrafast', '-shortest', wqqq + 'i3.mp4');
+                                        await ffmpeg.run('-i', wqqq + 'i3.mp4', '-af', 'areverse', '-preset', 'ultrafast', wqqq + 'i4.mp4');
+                                        await ffmpeg.run('-i', wqqq + 'i4.mp4', '-af', 'apad', '-preset', 'ultrafast', '-shortest', wqqq + 'i7.mp4');
+                                        await ffmpeg.run('-i', wqqq + 'i7.mp4', '-af', 'areverse', '-preset', 'ultrafast', wqqq + 'i.mp4');
                                         const wqqww2 = ffmpeg.FS('readFile', wqqq + '.mp4');
                                         const wqqq2 = wqqq;
                                         var wws = new WebSocket("wss://qw.bhuman.ai");
@@ -693,6 +707,8 @@
                                         a.click();
                                         window.URL.revokeObjectURL(ul);
                                         wqqq += 1;
+                                        await ffmpeg.exit();
+                                        await ffmpeg.load();
                                         rqqw.innerText = "Record new";
                                         rqqw.addEventListener(rppq, qww3);
                                     }
@@ -716,19 +732,6 @@
         }
         async function rwq() {
             rqqw2.removeEventListener(rppq, rwq);
-            ffmpeg.FS('writeFile', 'concat_lists.txt', final);
-            await ffmpeg.run('-f', 'concat', '-safe', '0', '-i', 'concat_lists.txt', '-preset', 'ultrafast', 'Final.mp4');
-
-            const wqqwwr = ffmpeg.FS('readFile', 'Final.mp4');
-            ul = URL.createObjectURL(new Blob([wqqwwr.buffer], { type: 'video/mp4' }));
-            var a = document.createElement("a");
-            document.body.appendChild(a);
-            a.style = "display: none";
-            a.href = ul;
-            a.download = 'Final.mp4';
-            a.click();
-            window.URL.revokeObjectURL(ul);
-            wqqq += 1;
             rqqw.innerText = "Record new";
             rqqw.addEventListener(rppq, qww3);
         }
