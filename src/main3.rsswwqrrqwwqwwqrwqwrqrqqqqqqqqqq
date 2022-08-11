@@ -45,21 +45,9 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
             .arg("-c")
             .arg(format!("cd frame_interpolation\nmkdir qq{}",rq))
             .output()
-            .unwrap();
-    fs::write(format!("./frame_interpolation/qq{}/q22.jpg", rq), qw).unwrap();
-    Command::new("sh")
-            .arg("-c")
-            .arg(format!("ffmpeg -y -i ./frame_interpolation/qq{}/q22.jpg ./frame_interpolation/qq{}/q2.jpg", rq, rq))
-            .output()
-            .unwrap();
-    File::open(format!("./frame_interpolation/qq{}/q2.jpg", rq)).unwrap();
-    fs::write(format!("./frame_interpolation/qq{}/q32.jpg", rq), qwp).unwrap();
-    Command::new("sh")
-            .arg("-c")
-            .arg(format!("ffmpeg -y -i ./frame_interpolation/qq{}/q32.jpg ./frame_interpolation/qq{}/q3.jpg", rq, rq))
-            .output()
-            .unwrap();
-    File::open(format!("./frame_interpolation/qq{}/q3.jpg", rq)).unwrap();
+            .expect("failed to execute process");
+    fs::write(format!("./frame_interpolation/qq{}/q2.jpg", rq), qw).unwrap();
+    fs::write(format!("./frame_interpolation/qq{}/q3.jpg", rq), qwp).unwrap();
     let mut q =3;
     while q >= 3
     {
