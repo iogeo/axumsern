@@ -108,11 +108,6 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
         let mut r = File::open(format!("./q{}/final.mp4", rq)).unwrap();
         let mut p = vec![];
         r.read_to_end(&mut p);
-        let qww2 = Command::new("sh")
-            .arg("-c")
-            .arg(format!("rm -r q{}\ny\n", rq))
-            .output()
-            .unwrap();
         let rq = client.put_object().bucket("axumserws").key(rqw+"/final/"+&rq.to_string()+".mp4").body(ByteStream::new(SdkBody::from(p.clone()))).send().await.unwrap();
         sock.send(axum::extract::ws::Message::Binary(p)).await.unwrap();
     })
