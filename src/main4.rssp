@@ -102,7 +102,7 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
         fs::write(format!("./q{}/concat", rq), &q.to_string().as_bytes()).unwrap();
         let qww = Command::new("sh")
             .arg("-c")
-            .arg(format!("ffmpeg -y -f ./q{}/concat -safe 0 -i concat -preset ultrafast ./q{}/final.mp4", rq, rq))
+            .arg(format!("cd q{}\nffmpeg -y -f concat -safe 0 -i concat -preset ultrafast final.mp4", rq))
             .output()
             .unwrap();
         let mut r = File::open(format!("./q{}/final.mp4", rq)).unwrap();
