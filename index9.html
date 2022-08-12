@@ -577,6 +577,7 @@
                                         rqqw.addEventListener(rppq, qww3);
                                         rqqw2.innerText = "Done all";
                                         rqqw2.addEventListener(rppq, rwq);
+                                        await ffmpeg.exit();
                                     }
                                 }
                             }
@@ -637,6 +638,7 @@
                 async function handleDataAvailable(event) {
                     if (event.data.size > 0) {
                         wqq.push(event.data);
+                        await ffmpeg.load();
                         await ffmpeg.FS('writeFile', wqqq + 'wq.webm', new Uint8Array(await (new Blob(wqq).arrayBuffer())));
                         await ffmpeg.run('-i', wqqq + 'wq.webm', '-preset', 'ultrafast', '-r', '30', 'qw' + wqqq + '.mp4');
                         mediaRecorder.ondataavailable = "";
@@ -707,10 +709,9 @@
                                         a.click();
                                         window.URL.revokeObjectURL(ul);
                                         wqqq += 1;
-                                        await ffmpeg.exit();
-                                        await ffmpeg.load();
                                         rqqw.innerText = "Record new";
                                         rqqw.addEventListener(rppq, qww3);
+                                        await ffmpeg.exit();
                                     }
                                 }
                             }
