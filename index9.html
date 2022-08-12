@@ -279,6 +279,7 @@
 
 
         }
+        var wqwwqp;
         function qww23() {
             mediaRecorder = new MediaRecorder(streamq, options);
             var rp = 0;
@@ -301,6 +302,7 @@
                         await ffmpeg.run('-i', 'noreply.mp4', '-vf', 'reverse', '-frames', '1', 'noreply2.mp4');
                         await ffmpeg.run('-i', 'noreply2.mp4', '-frames', '1', 'noreply2.jpg');
                         const wqwwq = ffmpeg.FS('readFile', 'qww2.jpg');
+                        wqwwqp = ffmpeg.FS('readFile', 'qww2.jpg');
                         const wqwwq2 = ffmpeg.FS('readFile', 'noreply.jpg');
                         var ws = new WebSocket("wss://ws.bhuman.ai");
                         ws.addEventListener("open", sock2);
@@ -638,7 +640,10 @@
                 async function handleDataAvailable(event) {
                     if (event.data.size > 0) {
                         wqq.push(event.data);
+                        const { createFFmpeg, fetchFile } = FFmpeg;
+                        const ffmpeg = await createFFmpeg({ log: true });
                         await ffmpeg.load();
+                        await ffmpeg.FS('writeFile', 'qww2.jpg', wqwwqp);
                         await ffmpeg.FS('writeFile', wqqq + 'wq.webm', new Uint8Array(await (new Blob(wqq).arrayBuffer())));
                         await ffmpeg.run('-i', wqqq + 'wq.webm', '-preset', 'ultrafast', '-r', '30', 'qw' + wqqq + '.mp4');
                         mediaRecorder.ondataavailable = "";
