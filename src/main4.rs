@@ -52,8 +52,18 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
             .unwrap();
         let rwq = client.get_object().bucket("axumserws").key(rqw.clone()+"/waiting/waiting.mp4").send().await.unwrap().body.collect().await.unwrap().into_bytes().to_vec();
         fs::write(format!("./q{}/waiting.mp4", rq), &rwq).unwrap();
+        Command::new("sh")
+            .arg("-c")
+            .arg(format!("cd q{}\nffmpeg -y -i waiting.mp4 -preset ultrafast -chroma_sample_location top waiting.mp4", rq))
+            .output()
+            .unwrap();
         let rwq = client.get_object().bucket("axumserws").key(rqw.clone()+"/end/end.mp4").send().await.unwrap().body.collect().await.unwrap().into_bytes().to_vec();
         fs::write(format!("./q{}/end.mp4", rq), &rwq).unwrap();
+        Command::new("sh")
+            .arg("-c")
+            .arg(format!("cd q{}\nffmpeg -y -i end.mp4 -preset ultrafast -chroma_sample_location top end.mp4", rq))
+            .output()
+            .unwrap();
         while qw != "w"{
             let pq;
             let pqp = &("/qw/".to_string()+&qw+".mp4");
@@ -84,6 +94,11 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
             if qw != "waiting"{
                 let rwq = client.get_object().bucket("axumserws").key(rqw.clone()+&pq).send().await.unwrap().body.collect().await.unwrap().into_bytes().to_vec();
                 fs::write(format!("./q{}/", rq)+&qw.clone()+".mp4", &rwq).unwrap();
+                let qww = Command::new("sh")
+                .arg("-c")
+                .arg(format!("cd q{}\nffmpeg -y -i "+&format!("./q{}/", rq)+&qw.clone()+".mp4 -preset ultrafast -chroma_sample_location top "+&format!("./q{}/", rq)+&qw.clone()+".mp4", rq))
+                .output()
+                .unwrap();
             }
             q += "file ";
             q += &qw;
@@ -102,7 +117,7 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
         fs::write(format!("./q{}/concat", rq), &q.to_string().as_bytes()).unwrap();
         let qww = Command::new("sh")
             .arg("-c")
-            .arg(format!("cd q{}\nffmpeg -y -f concat -safe 0 -i concat -preset ultrafast -chroma_sample_location top final.mp4", rq))
+            .arg(format!("cd q{}\nffmpeg -y -f concat -safe 0 -i concat -preset ultrafast final.mp4", rq))
             .output()
             .unwrap();
         let mut r = File::open(format!("./q{}/final.mp4", rq)).unwrap();
