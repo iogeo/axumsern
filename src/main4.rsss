@@ -96,7 +96,7 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
                 fs::write(format!("./q{}/", rq)+&qw.clone()+".mp4", &rwq).unwrap();
                 let qww = Command::new("sh")
                 .arg("-c")
-                .arg(format!("cd q{}\nffmpeg -y -i ", rq)+&qw.clone()+".mp4 -preset ultrafast -chroma_sample_location top "+&qw.clone()+".mp4", rq))
+                .arg(format!("cd q{}\nffmpeg -y -i ", rq)+&qw.clone()+".mp4 -preset ultrafast -chroma_sample_location top "+&qw.clone()+".mp4")
                 .output()
                 .unwrap();
             }
