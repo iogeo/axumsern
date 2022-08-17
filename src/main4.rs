@@ -55,14 +55,24 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
         fs::write(format!("./q{}/waiting.mp4", rq), &rwq).unwrap();
         Command::new("sh")
             .arg("-c")
-            .arg(format!("cd q{}\nffmpeg -y -i waiting.mp4 -preset ultrafast -chroma_sample_location top waiting.mp4", rq))
+            .arg(format!("cd q{}\nffmpeg -y -i waiting.mp4 -preset ultrafast -chroma_sample_location top waiting.webm", rq))
+            .output()
+            .unwrap();
+        Command::new("sh")
+            .arg("-c")
+            .arg(format!("cd q{}\nffmpeg -y -i waiting.webm -preset ultrafast -chroma_sample_location top waiting.mp4", rq))
             .output()
             .unwrap();
         let rwq = client.get_object().bucket("axumserws").key(rqw.clone()+"/end/end.mp4").send().await.unwrap().body.collect().await.unwrap().into_bytes().to_vec();
         fs::write(format!("./q{}/end.mp4", rq), &rwq).unwrap();
         Command::new("sh")
             .arg("-c")
-            .arg(format!("cd q{}\nffmpeg -y -i end.mp4 -preset ultrafast -chroma_sample_location top end.mp4", rq))
+            .arg(format!("cd q{}\nffmpeg -y -i end.mp4 -preset ultrafast -chroma_sample_location top end.webm", rq))
+            .output()
+            .unwrap();
+        Command::new("sh")
+            .arg("-c")
+            .arg(format!("cd q{}\nffmpeg -y -i end.webm -preset ultrafast -chroma_sample_location top end.mp4", rq))
             .output()
             .unwrap();
         while qw != "w"{
@@ -97,7 +107,12 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
                 fs::write(format!("./q{}/", rq)+&qw.clone()+".mp4", &rwq).unwrap();
                 let qww = Command::new("sh")
                 .arg("-c")
-                .arg(format!("cd q{}\nffmpeg -y -i ", rq)+&qw.clone()+".mp4 -chroma_sample_location top -preset ultrafast "+&qw.clone()+".mp4")
+                .arg(format!("cd q{}\nffmpeg -y -i ", rq)+&qw.clone()+".mp4 -chroma_sample_location top -preset ultrafast "+&qw.clone()+".webm")
+                .output()
+                .unwrap();
+                let qww = Command::new("sh")
+                .arg("-c")
+                .arg(format!("cd q{}\nffmpeg -y -i ", rq)+&qw.clone()+".webm -chroma_sample_location top -preset ultrafast "+&qw.clone()+".mp4")
                 .output()
                 .unwrap();
             }
