@@ -97,7 +97,7 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
                 fs::write(format!("./q{}/", rq)+&qw.clone()+".mp4", &rwq).unwrap();
                 let qww = Command::new("sh")
                 .arg("-c")
-                .arg(format!("cd q{}\nffmpeg -y -i ", rq)+&qw.clone()+".mp4 -preset ultrafast "+&qw.clone()+".mp4")
+                .arg(format!("cd q{}\nffmpeg -y -i ", rq)+&qw.clone()+".mp4 -chroma_sample_location top -preset ultrafast "+&qw.clone()+".mp4")
                 .output()
                 .unwrap();
             }
@@ -119,7 +119,7 @@ async fn root(ws: WebSocketUpgrade) -> impl IntoResponse{
         fs::write(format!("./q{}/concat", rq), &q.to_string().as_bytes()).unwrap();
         let qww = Command::new("sh")
             .arg("-c")
-            .arg(format!("cd q{}\nffmpeg -y {} -filter_complex 'concat=n={}' -preset ultrafast final.mp4", rq, q, rqwp))
+            .arg(format!("cd q{}\nffmpeg -y {} -filter_complex 'concat=n={}' -chroma_sample_location top -preset ultrafast final.mp4", rq, q, rqwp))
             .output()
             .unwrap();
         let mut r = File::open(format!("./q{}/final.mp4", rq)).unwrap();
